@@ -7,6 +7,7 @@
     <title>Gerenciar Usuários</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/bootstrap.css">
+    <script src="./js/globalScript.js" defer></script>
     <script src="./js/gerenciar-usuarios.js" defer></script>
     <script src="./js/bootstrap.js" defer></script>
 </head>
@@ -25,7 +26,7 @@
         <div class="div-tabs">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="pacientes.html">Pacientes</a>
+                    <a class="nav-link" aria-current="page" href="pacientes.html">Usuarios</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="formularios.html">Formulários</a>
@@ -54,53 +55,18 @@
                             <th scope="col">Código</th>
                             <th scope="col">Usuário</th>
                             <th scope="col">Matrícula</th>
-                            <th scope="col">Ativo</th>
                             <th scope="col">Criado em</th>
                         </tr>
                     </thead>
-                    <tbody class="clickable">
-                        <tr id="row-user-id-1">
-                            <th scope="row">1</th>
-                            <td>João</td>
-                            <td>8556874</td>
-                            <td>Sim</td>
-                            <td>13/03/2024</td> </a>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Maria</td>
-                            <td>7558652</td>
-                            <td>Sim</td>
-                            <td>14/03/2024</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Carlos</td>
-                            <td>6558742</td>
-                            <td>Sim</td>
-                            <td>15/03/2024</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td>Ana</td>
-                            <td>665218</td>
-                            <td>Sim</td>
-                            <td>16/03/2024</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">5</th>
-                            <td>Pedro</td>
-                            <td>4774451</td>
-                            <td>Sim</td>
-                            <td>17/03/2024</td>
-                        </tr>
+                    <tbody class="tabela-tbody">
                     </tbody>
                 </table>
+                <span id="fallback"></span>
             </div>
 
             <!-- Modal adicionar Usuario -->
-            <div class="modal fade" id="adicionarUsuarioModal" tabindex="-1" aria-labelledby="adicionarUsuarioModalLabel"
-                aria-hidden="true">
+            <div class="modal fade" id="adicionarUsuarioModal" tabindex="-1"
+                aria-labelledby="adicionarUsuarioModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -108,10 +74,10 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form>
+                            <form class="formAddUsuario needs-validation" novalidate>
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Nome</label>
-                                    <input type="text" class="form-control" id="name">
+                                    <input type="text" class="form-control" id="nome">
                                 </div>
                                 <div class="mb-3">
                                     <label for="matricula" class="form-label">Matrícula</label>
@@ -119,12 +85,18 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="senha" class="form-label">Senha</label>
-                                    <input type="password" class="form-control" id="pass">
+                                    <input type="password" class="form-control" id="senha">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="senha" class="form-label">Confirmar Senha</label>
-                                    <input type="password" class="form-control" id="cpass">
+                                    <label for="sexo" class="form-label">Tipo de usuário</label>
+                                    <select class="form-select" required aria-label="role-select" id="role">
+                                        <option selected value="USER">Comum</option>
+                                        <option value="ADMIN">Admin</option>
+                                    </select>
+                                    <div class="invalid-feedback">Selecione uma opção válida.</div>
                                 </div>
+                                <span id="goodWarning"></span>
+                                <span id="badWarning"></span>
                         </div>
                         <div class="modal-footer">
                             <div class="div-modal-footer">

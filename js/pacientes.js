@@ -58,8 +58,7 @@ function consultarPaciente(id) {
         })
             .then(response => response.json())
             .then(paciente => {
-                var pacienteNome = paciente.nome;
-                document.querySelector(".modal-title").textContent = pacienteNome;
+                document.querySelector(".modal-title").textContent = paciente.nome;
                 resolve(paciente);
             })
             .catch(error => {
