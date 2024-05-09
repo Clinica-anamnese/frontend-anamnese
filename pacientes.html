@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pacientes</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <script src="./js/globalScript.js" defer></script>
+    <script src="./js/pacientes.js" defer></script>
+    <script src="./js/bootstrap.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <div class="div-header">
+            <span>Nome</span>
+            <span>|</span>
+            <svg aria-hidden="true" focusable="false" viewBox="0 0 512 512" width="16" height="16">
+                <path fill="#0079BF"
+                    d="M497 273L329 441c-15 15-41 4.5-41-17v-96H152c-13.3 0-24-10.7-24-24v-96c0-13.3 10.7-24 24-24h136V88c0-21.4 25.9-32 41-17l168 168c9.3 9.4 9.3 24.6 0 34zM192 436v-40c0-6.6-5.4-12-12-12H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h84c6.6 0 12-5.4 12-12V76c0-6.6-5.4-12-12-12H96c-53 0-96 43-96 96v192c0 53 43 96 96 96h84c6.6 0 12-5.4 12-12z">
+                </path>
+            </svg>
+        </div>
+        <div class="div-tabs">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="pacientes.html">Pacientes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="formularios.html">Formulários</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="gerenciar-usuarios.html">Gerenciar Usuários</a>
+            </ul>
+            </li>
+        </div>
+    </header>
+
+    <div class="div-principal">
+        <img src="./img/unisantos-logo.png" alt="Logo Unisantos" width="233px">
+        <div class="div-conteudo">
+            <form class="search-bar form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Search">
+                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Pesquisar</button>
+            </form>
+            <div class="div-tabela">
+                <button type="button" class="btn add-button btn-success" data-bs-toggle="modal"
+                    data-bs-target="#modalAddPaciente">Adicionar Paciente</button>
+                <table class="table caption-top table-bordered table-hover">
+                    <caption>Lista de Pacientes</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Código</th>
+                            <th scope="col">Paciente</th>
+                            <th scope="col">Criado Em</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tabela-tbody">
+                    </tbody>
+                </table>
+                <span id="fallback"></span>
+            </div>
+
+            <!-- Modal Paciente -->
+            <div class="modal fade" id="modalPaciente" tabindex="-1" aria-labelledby="modalPacienteLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="modalPacienteLabel"></h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <span>Nome: João</span><br>
+                            <span>Idade: 20 anos</span><br>
+                            <span>Cidade: Santos</span>
+                            <table class="table caption-top table-bordered table-hover">
+                                <caption>Formulários de João</caption>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Código</th>
+                                        <th scope="col">Tipo de Formulário</th>
+                                        <th scope="col">Paciente</th>
+                                        <th scope="col">Última Atualização</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="clickable">
+                                        <th scope="row">1</th>
+                                        <td>Anamnese Adulto</td>
+                                        <td>João</td>
+                                        <td>13/03/2024</td>
+                                    </tr>
+                                    <tr class="clickable">
+                                        <th scope="row">2</th>
+                                        <td>Formulario de Retorno</td>
+                                        <td>Maria</td>
+                                        <td>14/03/2024</td>
+                                    </tr>
+                                    <tr class="clickable">
+                                        <th scope="row">3</th>
+                                        <td>Formulario de Retorno</td>
+                                        <td>Carlos</td>
+                                        <td>15/03/2024</td>
+                                    </tr>
+                                    <tr class="clickable">
+                                        <th scope="row">4</th>
+                                        <td>Formulario de Retorno</td>
+                                        <td>Ana</td>
+                                        <td>16/03/2024</td>
+                                    </tr>
+                                    <tr class="clickable">
+                                        <th scope="row">5</th>
+                                        <td>Formulario de Retorno</td>
+                                        <td>Pedro</td>
+                                        <td>17/03/2024</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Adicionar Paciente -->
+            <div class="modal fade" id="modalAddPaciente" tabindex="-1" aria-labelledby="modalAddPacienteLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="modalAddPacienteLabel">Adicionar Paciente</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="formAddPaciente needs-validation" novalidate>
+                                <div class="mb-3">
+                                    <label for="nome" class="form-label">Nome Completo</label>
+                                    <input type="text" class="form-control" id="nome" required>
+                                    <div class="invalid-feedback">Campo obrigatório.</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="sexo" class="form-label">Sexo</label>
+                                    <select class="form-select" required aria-label="sexo-select" id="sexo">
+                                        <option selected disabled value="">Selecione o sexo</option>
+                                        <option value="masculino">Masculino</option>
+                                        <option value="feminino">Feminino</option>
+                                        <option value="nao_informado">Não informado</option>
+                                    </select>
+                                    <div class="invalid-feedback">Selecione uma opção válida.</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="dataNasc" class="form-label">Data de Nascimento</label>
+                                    <input type="date" class="form-control" id="dataNasc" required>
+                                    <div class="invalid-feedback">Campo obrigatório.</div>
+                                </div>
+                                <span id="goodWarning"></span>
+                                <span id="badWarning"></span>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="div-modal-footer">
+                                <button class="btn btn-danger">Cancelar</button>
+                                <button type="submit" class="btn btn-primary">Adicionar</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

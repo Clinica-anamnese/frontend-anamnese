@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrar</title>
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <script src="./js/globalScript.js" defer></script>
+    <script src="./js/login.js" defer></script>
+    <script src="./js/bootstrap.js" defer></script>
+</head>
+
+<body>
+    <div class="div-principal">
+        <img src="./img/unisantos-logo.png" alt="Logo Unisantos" width="233px">
+        <div class="div-conteudo">
+            <h1 id="login-title">Fazer login</h1>
+            <form id="formLogin">
+                <div class="mb-3">
+                    <label for="matricula" class="form-label">Matrícula</label>
+                    <input type="text" class="form-control" id="matricula">
+                </div>
+                <div class="mb-3">
+                    <label for="matricula" class="form-label">Senha</label>
+                    <input type="password" class="form-control" id="senha">
+                </div>
+                <div class="div-login-button">
+                    <span id="badWarning"></span>
+                    <button type="submit" class="btn btn-primary">Entrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

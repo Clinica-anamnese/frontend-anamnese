@@ -1,0 +1,26 @@
+.div-principal {
+    height: 80vh;
+}
+
+.div-conteudo {
+    max-width: 400px;
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px;
+}
+
+.div-login-button {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+#login-title {
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#badWarning {
+    margin-bottom: 10px;
+}
