@@ -1,6 +1,10 @@
-const urlApi = "https://backend-anamnese.onrender.com/"
 let endpoint = "pacientes";
+const urlApi = "http://localhost:8080/"
 const token = localStorage.getItem("jwtToken");
+const goodWarning = document.getElementById("goodWarning");
+const badWarning = document.getElementById("badWarning");
+const fallback = document.getElementById("fallback");
+const tbody = document.querySelector(".tabela-tbody");
 
 function verificarAutenticacao() {
     if (!token) {
@@ -21,4 +25,17 @@ function verificarAutenticacao() {
             console.log("Erro ao realizar autenticação: ", error);
             window.location.href = "login.html";
         })
+}
+
+function validateForm(form) {
+    if (!form.checkValidity()) {
+        form.classList.add("was-validated")
+        return false;
+    }
+    return true;
+}
+
+function limparTabela() {
+    tbody.innerHTML = "";
+    fallback.textContent = "";
 }

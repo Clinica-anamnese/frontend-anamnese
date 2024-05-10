@@ -26,7 +26,7 @@
         <div class="div-tabs">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="pacientes.html">Usuarios</a>
+                    <a class="nav-link" aria-current="page" href="pacientes.html">Pacientes</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="formularios.html">Formulários</a>
@@ -47,7 +47,7 @@
             </form>
             <div class="div-tabela">
                 <button type="button" class="btn add-button btn-success" data-bs-toggle="modal"
-                    data-bs-target="#adicionarUsuarioModal">Adicionar Usuário</button>
+                    data-bs-target="#modalAddUsuario">Adicionar Usuário</button>
                 <table class="table caption-top table-bordered table-hover">
                     <caption>Lista de Usuários</caption>
                     <thead>
@@ -55,6 +55,7 @@
                             <th scope="col">Código</th>
                             <th scope="col">Usuário</th>
                             <th scope="col">Matrícula</th>
+                            <th scope="col">Tipo</th>
                             <th scope="col">Criado em</th>
                         </tr>
                     </thead>
@@ -65,35 +66,37 @@
             </div>
 
             <!-- Modal adicionar Usuario -->
-            <div class="modal fade" id="adicionarUsuarioModal" tabindex="-1"
-                aria-labelledby="adicionarUsuarioModalLabel" aria-hidden="true">
+            <div class="modal fade" id="modalAddUsuario" tabindex="-1"
+                aria-labelledby="modalAddUsuarioLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="adicionarUsuarioModalLabel">Adicionar Usuário</h1>
+                            <h1 class="modal-title fs-5" id="modalAddUsuarioLabel">Adicionar Usuário</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <form class="formAddUsuario needs-validation" novalidate>
                                 <div class="mb-3">
-                                    <label for="name" class="form-label">Nome</label>
-                                    <input type="text" class="form-control" id="nome">
+                                    <label for="nome" class="form-label">Nome</label>
+                                    <input type="text" class="form-control" id="nome" required>
+                                    <div class="invalid-feedback">Campo obrigatório.</div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="matricula" class="form-label">Matrícula</label>
-                                    <input type="text" class="form-control" id="matricula">
+                                    <input type="text" class="form-control" id="matricula" required>
+                                    <div class="invalid-feedback">Campo obrigatório.</div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="senha" class="form-label">Senha</label>
-                                    <input type="password" class="form-control" id="senha">
+                                    <input type="password" class="form-control" id="senha" required>
+                                    <div class="invalid-feedback">Campo obrigatório.</div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="sexo" class="form-label">Tipo de usuário</label>
+                                    <label for="role" class="form-label">Tipo de usuário</label>
                                     <select class="form-select" required aria-label="role-select" id="role">
                                         <option selected value="USER">Comum</option>
                                         <option value="ADMIN">Admin</option>
                                     </select>
-                                    <div class="invalid-feedback">Selecione uma opção válida.</div>
                                 </div>
                                 <span id="goodWarning"></span>
                                 <span id="badWarning"></span>

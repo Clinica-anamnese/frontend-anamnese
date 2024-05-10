@@ -1,8 +1,7 @@
 endpoint = "auth/login";
-const badWarning = document.getElementById("badWarning");
 const formLogin = document.getElementById("formLogin");
-const matricula = document.getElementById("matricula");
-const senha = document.getElementById("senha");
+const fMatricula = document.getElementById("matricula");
+const fSenha = document.getElementById("senha");
 
 function fazerLogin() {
     return new Promise((resolve, reject) => {
@@ -11,12 +10,13 @@ function fazerLogin() {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ login: matricula.value, password: senha.value })
+            body: JSON.stringify({ login: fMatricula.value, password: fSenha.value })
         })
             .then(response => {
                 if (!response.ok) {
                     badWarning.textContent = "Matrícula ou senha incorretos.";
-                    throw new Error("Login inválido.");
+                    console.error(response);
+                    reject(response);
                 } else {
                     resolve(response);
                     return response.json();
@@ -27,6 +27,8 @@ function fazerLogin() {
                 window.location.href = "pacientes.html";
             })
             .catch(error => {
+                badWarning.textContent = "Erro na comunicação com a API.";
+                console.error(error);
                 reject(error);
             });
     })

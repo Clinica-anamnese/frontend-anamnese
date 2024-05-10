@@ -1,8 +1,4 @@
 endpoint = "usuarios";
-const goodWarning = document.getElementById("goodWarning");
-const badWarning = document.getElementById("badWarning");
-const fallback = document.getElementById("fallback");
-const tbody = document.querySelector(".tabela-tbody");
 const formAddUsuario = document.querySelector(".formAddUsuario");
 const fNome = document.getElementById("nome");
 const fMatricula = document.getElementById("matricula");
@@ -26,8 +22,6 @@ function listarUsuarios() {
                 const itemTabela = document.createElement('tr');
                 itemTabela.id = usuario.id;
                 itemTabela.classList.add = "clickable";
-                itemTabela.setAttribute("data-bs-toggle", "modal");
-                itemTabela.setAttribute("data-bs-target", "#modalUsuario");
                 tbody.appendChild(itemTabela);
                 const colunaID = document.createElement('th');
                 colunaID.textContent = `${usuario.id}`
@@ -38,6 +32,9 @@ function listarUsuarios() {
                 const colunaMatricula = document.createElement('td');
                 colunaMatricula.textContent = `${usuario.login}`
                 itemTabela.appendChild(colunaMatricula);
+                const colunaTipo = document.createElement('td');
+                colunaTipo.textContent = `${usuario.role}`
+                itemTabela.appendChild(colunaTipo);
                 const colunaAt = document.createElement('td');
                 const dataValue = usuario.criadoEm;
                 const partes = dataValue.split("-");
@@ -61,7 +58,6 @@ function consultarUsuario(id) {
         })
             .then(response => response.json())
             .then(usuario => {
-                document.querySelector(".modal-title").textContent = usuario.nome;
                 resolve(usuario);
             })
             .catch(error => {
@@ -73,7 +69,7 @@ function consultarUsuario(id) {
 
 function cadastrarUsuario() {
     return new Promise((resolve, reject) => {
-        if (validateForm()) {
+        if (validateForm(formAddUsuario)) {
             fetch(urlApi + endpoint, {
                 headers: {
                     "Content-Type": 'application/json',
@@ -84,37 +80,37 @@ function cadastrarUsuario() {
                     nome: fNome.value,
                     login: fMatricula.value,
                     password: fSenha.value,
-                    userRole: fRole.value
+                    role: fRole.value
                 })
             })
                 .then(response => {
-                    goodWarning.textContent = "Usuario cadastrado com sucesso!";
-                    resolve(response);
+                    if (response.ok) {
+                        goodWarning.textContent = "Usuário cadastrado com sucesso!";
+                        console.log(response);
+                        formAddUsuario.reset();
+                        resolve(response);
+                    } else {
+                        badWarning.textContent = "Erro ao cadastrar: " + response.statusText;
+                        console.error(response);
+                        reject(response);
+                    }
                 })
-                .catch(error => reject(error))
+                .catch(error => {
+                    badWarning.textContent = "Erro na comunicação com a API.";
+                    console.error(error);
+                    reject(error);
+                });
         }
     });
 }
 
-function validateForm() {
-    if (!formAddUsuario.checkValidity()) {
-        formAddUsuario.classList.add("was-validated")
-        return false;
-    }
-    return true;
-}
-
 formAddUsuario.addEventListener('submit', async event => {
     event.preventDefault();
-    try {
-        await cadastrarUsuario();
-        limparTabela();
-        listarUsuarios();
-    }
-    catch {
-        console.log("Erro ao cadastrar usuario");
-        badWarning.textContent = "Erro ao cadastrar usuario.";
-    }
+    badWarning.textContent = "";
+    goodWarning.textContent = "";
+    await cadastrarUsuario();
+    limparTabela();
+    listarUsuarios();
 });
 
 verificarAutenticacao();

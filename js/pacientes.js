@@ -1,18 +1,8 @@
 endpoint = "pacientes";
-const modal = document.getElementById("modalPaciente");
-const goodWarning = document.getElementById("goodWarning");
-const badWarning = document.getElementById("badWarning");
-const fallback = document.getElementById("fallback");
-const tbody = document.querySelector(".tabela-tbody");
 const formAddPaciente = document.querySelector(".formAddPaciente");
 const fNome = document.getElementById("nome");
 const fSexo = document.getElementById("sexo");
 const fDataNasc = document.getElementById("dataNasc");
-
-function limparTabela() {
-    tbody.innerHTML = "";
-    fallback.textContent = "";
-}
 
 function listarPacientes() {
     fetch(urlApi + endpoint, {
@@ -26,8 +16,6 @@ function listarPacientes() {
                 const itemTabela = document.createElement('tr');
                 itemTabela.id = paciente.id;
                 itemTabela.classList.add = "clickable";
-                itemTabela.setAttribute("data-bs-toggle", "modal");
-                itemTabela.setAttribute("data-bs-target", "#modalPaciente");
                 tbody.appendChild(itemTabela);
                 const colunaID = document.createElement('th');
                 colunaID.textContent = `${paciente.id}`
@@ -58,7 +46,6 @@ function consultarPaciente(id) {
         })
             .then(response => response.json())
             .then(paciente => {
-                document.querySelector(".modal-title").textContent = paciente.nome;
                 resolve(paciente);
             })
             .catch(error => {
@@ -70,7 +57,7 @@ function consultarPaciente(id) {
 
 function cadastrarPaciente() {
     return new Promise((resolve, reject) => {
-        if (validateForm()) {
+        if (validateForm(formAddPaciente)) {
             fetch(urlApi + endpoint, {
                 headers: {
                     "Content-Type": 'application/json',
@@ -84,43 +71,33 @@ function cadastrarPaciente() {
                 })
             })
                 .then(response => {
-                    goodWarning.textContent = "Paciente cadastrado com sucesso!";
-                    resolve(response);
+                    if (response.ok) {
+                        goodWarning.textContent = "Paciente cadastrado com sucesso!";
+                        console.log(response);
+                        formAddPaciente.reset();
+                        resolve(response);
+                    } else {
+                        badWarning.textContent = "Erro ao cadastrar: " + response.statusText;
+                        console.error(response);
+                        reject(response);
+                    }
                 })
-                .catch(error => reject(error))
+                .catch(error => {
+                    badWarning.textContent = "Erro na comunicação com a API.";
+                    console.error(error);
+                    reject(error);
+                });
         }
     });
 }
 
-function validateForm() {
-    if (!formAddPaciente.checkValidity()) {
-        formAddPaciente.classList.add("was-validated")
-        return false;
-    }
-    return true;
-}
-
 formAddPaciente.addEventListener('submit', async event => {
     event.preventDefault();
-    try {
-        await cadastrarPaciente();
-        limparTabela();
-        listarPacientes();
-    }
-    catch {
-        console.log("Erro ao cadastrar paciente");
-        badWarning.textContent = "Erro ao cadastrar paciente.";
-    }
-});
-
-modal.addEventListener('show.bs.modal', async event => {
-    var pacienteId = event.relatedTarget.id;
-    try {
-        await consultarPaciente(pacienteId);
-    }
-    catch {
-        console.log("Erro ao consultar paciente");
-    }
+    badWarning.textContent = "";
+    goodWarning.textContent = "";
+    await cadastrarPaciente();
+    limparTabela();
+    listarPacientes();
 });
 
 verificarAutenticacao();
