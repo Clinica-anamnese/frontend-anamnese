@@ -24,6 +24,7 @@ function fazerLogin() {
             })
             .then(data => {
                 localStorage.setItem("jwtToken", data.token);
+                localStorage.setItem("userName", data.userName);
                 window.location.href = "pacientes.html";
             })
             .catch(error => {

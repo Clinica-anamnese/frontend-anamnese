@@ -15,7 +15,6 @@ function listarPacientes() {
             data.forEach(paciente => {
                 const itemTabela = document.createElement('tr');
                 itemTabela.id = paciente.id;
-                itemTabela.classList.add = "clickable";
                 tbody.appendChild(itemTabela);
                 const colunaID = document.createElement('th');
                 colunaID.textContent = `${paciente.id}`
@@ -74,7 +73,7 @@ function cadastrarPaciente() {
                     if (response.ok) {
                         goodWarning.textContent = "Paciente cadastrado com sucesso!";
                         console.log(response);
-                        formAddPaciente.reset();
+                        resetForm(formAddPaciente);
                         resolve(response);
                     } else {
                         badWarning.textContent = "Erro ao cadastrar: " + response.statusText;
@@ -101,4 +100,6 @@ formAddPaciente.addEventListener('submit', async event => {
 });
 
 verificarAutenticacao();
+hideUsersTab();
+getHeaderData();
 listarPacientes();

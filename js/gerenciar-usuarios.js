@@ -21,7 +21,6 @@ function listarUsuarios() {
             data.forEach(usuario => {
                 const itemTabela = document.createElement('tr');
                 itemTabela.id = usuario.id;
-                itemTabela.classList.add = "clickable";
                 tbody.appendChild(itemTabela);
                 const colunaID = document.createElement('th');
                 colunaID.textContent = `${usuario.id}`
@@ -87,7 +86,7 @@ function cadastrarUsuario() {
                     if (response.ok) {
                         goodWarning.textContent = "Usuário cadastrado com sucesso!";
                         console.log(response);
-                        formAddUsuario.reset();
+                        resetForm(formAddUsuario);
                         resolve(response);
                     } else {
                         badWarning.textContent = "Erro ao cadastrar: " + response.statusText;
@@ -113,5 +112,7 @@ formAddUsuario.addEventListener('submit', async event => {
     listarUsuarios();
 });
 
-verificarAutenticacao();
+verificarAutenticacaoAdmin();
+hideUsersTab();
+getHeaderData();
 listarUsuarios();
