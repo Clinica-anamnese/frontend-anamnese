@@ -12,46 +12,44 @@ const headerUserName = document.getElementById("headerUserName");
 
 function verificarAutenticacao() {
     if (!token) {
-        window.location.href = "login.html";
-    }
-
-    fetch(urlApi + "pacientes", {
-        headers: {
-            "Authorization": `${token}`
-        }
-    })
-        .then(response => {
-            if (!response.ok) {
-                logout();
-                window.location.href = "login.html";
+        logout();
+    } else {
+        fetch(urlApi + "pacientes", {
+            headers: {
+                "Authorization": `${token}`
             }
         })
-        .catch(error => {
-            console.log("Erro ao realizar autenticação: ", error);
-            window.location.href = "login.html";
-        })
+            .then(response => {
+                if (!response.ok) {
+                    return Promise.reject();
+                }
+            })
+            .catch(() => {
+                alert("Sessão encerrada.");
+                logout();
+            })
+    }
 }
 
 function verificarAutenticacaoAdmin() {
     if (!token) {
-        window.location.href = "login.html";
-    }
-
-    fetch(urlApi + "usuarios", {
-        headers: {
-            "Authorization": `${token}`
-        }
-    })
-        .then(response => {
-            if (!response.ok) {
-                logout();
-                window.location.href = "login.html";
+        logout();
+    } else {
+        fetch(urlApi + "usuarios", {
+            headers: {
+                "Authorization": `${token}`
             }
         })
-        .catch(error => {
-            console.log("Erro ao realizar autenticação: ", error);
-            window.location.href = "login.html";
-        })
+            .then(response => {
+                if (!response.ok) {
+                    return Promise.reject();
+                }
+            })
+            .catch(() => {
+                alert("Sessão encerrada.");
+                logout();
+            })
+    }
 }
 
 function logout() {
@@ -78,10 +76,6 @@ function limparTabela() {
 }
 
 function hideUsersTab() {
-    if (!token) {
-        window.location.href = "login.html";
-    }
-
     fetch(urlApi + "usuarios", {
         headers: {
             "Authorization": `${token}`
@@ -96,6 +90,7 @@ function hideUsersTab() {
 
 function getHeaderData() {
     headerUserName.textContent = userName;
+    hideUsersTab();
 }
 
 if (header) {

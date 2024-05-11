@@ -56,6 +56,7 @@ function consultarPaciente(id) {
 
 function cadastrarPaciente() {
     return new Promise((resolve, reject) => {
+        let forbidden = false;
         if (validateForm(formAddPaciente)) {
             fetch(urlApi + endpoint, {
                 headers: {
@@ -70,20 +71,20 @@ function cadastrarPaciente() {
                 })
             })
                 .then(response => {
-                    if (response.ok) {
-                        goodWarning.textContent = "Paciente cadastrado com sucesso!";
-                        console.log(response);
-                        resetForm(formAddPaciente);
-                        resolve(response);
-                    } else {
-                        badWarning.textContent = "Erro ao cadastrar: " + response.statusText;
-                        console.error(response);
-                        reject(response);
+                    if (!response.ok) {
+                        forbidden = true;
+                        return Promise.reject();
                     }
+                    goodWarning.textContent = "Paciente cadastrado com sucesso!";
+                    resetForm(formAddPaciente);
+                    resolve(response);
                 })
                 .catch(error => {
-                    badWarning.textContent = "Erro na comunicação com a API.";
-                    console.error(error);
+                    if (forbidden) {
+                        badWarning.textContent = "Dados inválidos.";
+                    } else {
+                        badWarning.textContent = "Erro na comunicação com a API.";
+                    }
                     reject(error);
                 });
         }
@@ -94,12 +95,14 @@ formAddPaciente.addEventListener('submit', async event => {
     event.preventDefault();
     badWarning.textContent = "";
     goodWarning.textContent = "";
-    await cadastrarPaciente();
-    limparTabela();
-    listarPacientes();
+    try {
+        await cadastrarPaciente();
+        limparTabela();
+        listarPacientes();
+    } catch {
+        verificarAutenticacao();
+    }
 });
 
 verificarAutenticacao();
-hideUsersTab();
-getHeaderData();
 listarPacientes();

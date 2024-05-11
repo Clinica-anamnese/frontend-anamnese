@@ -67,6 +67,7 @@ function consultarUsuario(id) {
 }
 
 function cadastrarUsuario() {
+    let forbidden = false;
     return new Promise((resolve, reject) => {
         if (validateForm(formAddUsuario)) {
             fetch(urlApi + endpoint, {
@@ -83,20 +84,20 @@ function cadastrarUsuario() {
                 })
             })
                 .then(response => {
-                    if (response.ok) {
-                        goodWarning.textContent = "Usuário cadastrado com sucesso!";
-                        console.log(response);
-                        resetForm(formAddUsuario);
-                        resolve(response);
-                    } else {
-                        badWarning.textContent = "Erro ao cadastrar: " + response.statusText;
-                        console.error(response);
-                        reject(response);
+                    if (!response.ok) {
+                        forbidden = true;
+                        return Promise.reject();
                     }
+                    goodWarning.textContent = "Usuário cadastrado com sucesso!";
+                    resetForm(formAddUsuario);
+                    resolve(response);
                 })
                 .catch(error => {
-                    badWarning.textContent = "Erro na comunicação com a API.";
-                    console.error(error);
+                    if (forbidden) {
+                        badWarning.textContent = "Dados inválidos.";
+                    } else {
+                        badWarning.textContent = "Erro na comunicação com a API.";
+                    }
                     reject(error);
                 });
         }
@@ -107,12 +108,14 @@ formAddUsuario.addEventListener('submit', async event => {
     event.preventDefault();
     badWarning.textContent = "";
     goodWarning.textContent = "";
-    await cadastrarUsuario();
-    limparTabela();
-    listarUsuarios();
+    try {
+        await cadastrarUsuario();
+        limparTabela();
+        listarUsuarios();
+    } catch {
+        verificarAutenticacaoAdmin();
+    }
 });
 
 verificarAutenticacaoAdmin();
-hideUsersTab();
-getHeaderData();
 listarUsuarios();
