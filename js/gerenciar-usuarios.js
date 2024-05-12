@@ -4,6 +4,10 @@ const fNome = document.getElementById("nome");
 const fMatricula = document.getElementById("matricula");
 const fRole = document.getElementById("role");
 const fSenha = document.getElementById("senha");
+const roles = {
+    "ADMIN": "Admin",
+    "USER": "Comum"
+}
 
 function limparTabela() {
     tbody.innerHTML = "";
@@ -32,7 +36,7 @@ function listarUsuarios() {
                 colunaMatricula.textContent = `${usuario.login}`
                 itemTabela.appendChild(colunaMatricula);
                 const colunaTipo = document.createElement('td');
-                colunaTipo.textContent = `${usuario.role}`
+                colunaTipo.textContent = roles[usuario.role];
                 itemTabela.appendChild(colunaTipo);
                 const colunaAt = document.createElement('td');
                 const dataValue = usuario.criadoEm;

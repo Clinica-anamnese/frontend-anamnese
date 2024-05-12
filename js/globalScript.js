@@ -1,5 +1,5 @@
-let endpoint = "";
 const urlApi = "http://localhost:8080/"
+let endpoint = "";
 const token = localStorage.getItem("jwtToken");
 const userName = localStorage.getItem("userName");
 const goodWarning = document.getElementById("goodWarning");
@@ -29,6 +29,25 @@ function verificarAutenticacao() {
                 logout();
             })
     }
+}
+
+function deletarItem(id) {
+    return new Promise((resolve, reject) => {
+        fetch(urlApi + endpoint + "/" + id, {
+            headers: {
+                "Authorization": `${token}`
+            },
+            method: "DELETE"
+        })
+            .then(response => {
+                console.log(response);
+                resolve(response);
+            })
+            .catch(error => {
+                console.error(error);
+                reject(error);
+            })
+    })
 }
 
 function verificarAutenticacaoAdmin() {
@@ -97,5 +116,5 @@ if (header) {
     const exitIcon = document.getElementById("exitIcon");
     getHeaderData();
 
-    exitIcon.addEventListener('click', logout);
+    exitIcon.addEventListener("click", logout);
 }

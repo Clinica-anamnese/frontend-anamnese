@@ -34,7 +34,8 @@ header {
 
 .div-conteudo {
     margin-top: 30px;
-    width: 70%;
+    max-width: 800px;
+    width: 90%;
 }
 
 .search-bar {

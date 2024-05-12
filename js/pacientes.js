@@ -3,6 +3,7 @@ const formAddPaciente = document.querySelector(".formAddPaciente");
 const fNome = document.getElementById("nome");
 const fSexo = document.getElementById("sexo");
 const fDataNasc = document.getElementById("dataNasc");
+let itensTabela = "";
 
 function listarPacientes() {
     fetch(urlApi + endpoint, {
@@ -13,45 +14,35 @@ function listarPacientes() {
         .then(response => response.json())
         .then(data => {
             data.forEach(paciente => {
-                const itemTabela = document.createElement('tr');
+                const itemTabela = document.createElement("tr");
+                itemTabela.classList.add("itemTabela");
                 itemTabela.id = paciente.id;
                 tbody.appendChild(itemTabela);
-                const colunaID = document.createElement('th');
+                const colunaID = document.createElement("th");
                 colunaID.textContent = `${paciente.id}`
                 itemTabela.appendChild(colunaID);
-                const colunaPaciente = document.createElement('td');
+                const colunaPaciente = document.createElement("td");
                 colunaPaciente.textContent = `${paciente.nome}`
                 itemTabela.appendChild(colunaPaciente);
-                const colunaAt = document.createElement('td');
+                const colunaAt = document.createElement("td");
                 const dataValue = paciente.criadoEm;
                 const partes = dataValue.split("-");
                 const dataFormatada = partes[2] + "/" + partes[1] + "/" + partes[0];
                 colunaAt.textContent = dataFormatada;
                 itemTabela.appendChild(colunaAt);
             });
+            let itensTabela = document.querySelectorAll(".itemTabela");
+            itensTabela.forEach((paciente) => {
+                paciente.addEventListener("click", () => {
+                    localStorage.setItem("pacienteId", paciente.id);
+                    window.location.href = "paciente.html";
+                })
+            })
         })
         .catch(error => {
             console.error(error);
-            fallback.textContent = 'Sem conexão com a API.';
+            fallback.textContent = "Sem conexão com a API.";
         })
-}
-
-function consultarPaciente(id) {
-    return new Promise((resolve, reject) => {
-        fetch(urlApi + endpoint + "/" + id, {
-            headers: {
-                "Authorization": `${token}`
-            }
-        })
-            .then(response => response.json())
-            .then(paciente => {
-                resolve(paciente);
-            })
-            .catch(error => {
-                reject(error);
-            })
-
-    })
 }
 
 function cadastrarPaciente() {
@@ -60,10 +51,10 @@ function cadastrarPaciente() {
         if (validateForm(formAddPaciente)) {
             fetch(urlApi + endpoint, {
                 headers: {
-                    "Content-Type": 'application/json',
+                    "Content-Type": "application/json",
                     "Authorization": `${token}`
                 },
-                method: 'POST',
+                method: "POST",
                 body: JSON.stringify({
                     nome: fNome.value,
                     sexo: fSexo.value,
@@ -91,7 +82,7 @@ function cadastrarPaciente() {
     });
 }
 
-formAddPaciente.addEventListener('submit', async event => {
+formAddPaciente.addEventListener("submit", async event => {
     event.preventDefault();
     badWarning.textContent = "";
     goodWarning.textContent = "";
