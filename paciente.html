@@ -45,13 +45,13 @@
             <div class="div-info">
                 <div class="div-status-acoes">
                     <button type="button" class="botao-ativo">Ativo</button>
-                    <h1 class="h3">Paciente</h1>
+                    <h1 class="h4">Paciente</h1>
                     <div class="div-acoes">
                         <button class="btn btn-danger" data-bs-toggle="modal"
                         data-bs-target="#modalDeletarPaciente">Deletar</button>
                     </div>
                 </div>
-                <form class="formAddPaciente needs-validation" novalidate>
+                <form class="formAtualizarPaciente needs-validation" novalidate>
                     <div class="mb-3">
                         <label for="nome" class="form-label">Nome Completo</label>
                         <input type="text" class="form-control" id="nome" required>
@@ -72,9 +72,11 @@
                         <input type="date" class="form-control" id="dataNasc" required>
                         <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
-                    <span id="goodWarning"></span>
-                    <span id="badWarning"></span>
-                    <button type="submit" class="btn btn-primary">Atualizar</button>
+                    <div class="div-atualizar">
+                        <span id="goodWarning"></span>
+                        <span id="badWarning"></span>
+                        <button type="submit" class="btn btn-primary">Atualizar</button>
+                    </div>
                 </form>
             </div>
             <div class="div-tabela">

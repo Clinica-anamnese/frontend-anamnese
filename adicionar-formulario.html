@@ -4,20 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página do Usuário</title>
+    <title>Adicionar Formulário</title>
     <link rel="stylesheet" href="./css/add-formulario.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/bootstrap.css">
     <script src="./js/add-formulario.js" defer></script>
+    <script src="./js/globalScript.js" defer></script>
     <script src="./js/bootstrap.js" defer></script>
 </head>
 
 <body>
     <header>
         <div class="div-header">
-            <span>Nome</span>
+            <span id="headerUserName"></span>
             <span>|</span>
-            <svg aria-hidden="true" focusable="false" viewBox="0 0 512 512" width="16" height="16">
+            <svg aria-hidden="true" focusable="false" viewBox="0 0 512 512" width="16" height="16" id="exitIcon" class="clickable">
                 <path fill="#0079BF"
                     d="M497 273L329 441c-15 15-41 4.5-41-17v-96H152c-13.3 0-24-10.7-24-24v-96c0-13.3 10.7-24 24-24h136V88c0-21.4 25.9-32 41-17l168 168c9.3 9.4 9.3 24.6 0 34zM192 436v-40c0-6.6-5.4-12-12-12H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h84c6.6 0 12-5.4 12-12V76c0-6.6-5.4-12-12-12H96c-53 0-96 43-96 96v192c0 53 43 96 96 96h84c6.6 0 12-5.4 12-12z">
                 </path>
@@ -31,40 +32,40 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="formularios.html">Formulários</a>
                 </li>
-                <li class="nav-item">
+                <li class="usersTab nav-item">
                     <a class="nav-link" aria-current="page" href="gerenciar-usuarios.html">Gerenciar Usuários</a>
+                </li>
             </ul>
-            </li>
         </div>
     </header>
 
     <div class="div-principal">
         <img src="./img/unisantos-logo.png" alt="Logo Unisantos" width="233px">
         <div class="div-conteudo">
-            <form id="regForm" action="">
+            <form id="regForm" class="formAddForms needs-validation" novalidate>
 
-                <h1>Register:</h1>
-                
-                <!-- One "tab" for each step in the form: -->
-                <div class="tab">Name:
-                  <p><input placeholder="First name..." oninput="this.className = ''"></p>
-                  <p><input placeholder="Last name..." oninput="this.className = ''"></p>
-                </div>
-                
-                <div class="tab">Contact Info:
-                  <p><input placeholder="E-mail..." oninput="this.className = ''"></p>
-                  <p><input placeholder="Phone..." oninput="this.className = ''"></p>
+                <div class="tab">
+                    <div class="mb-3">
+                        <label for="nome" class="form-label">Nome Completo</label>
+                        <input type="text" class="form-control" id="nome" required>
+                        <div class="invalid-feedback">Campo obrigatório.</div>
+                    </div>        
+                    <div class="mb-3">
+                        <label for="idade" class="form-label">Idade</label>
+                        <input type="text" class="form-control" id="idade" required>
+                        <div class="invalid-feedback">Campo obrigatório.</div>
+                    </div>        
                 </div>
                 
                 <div class="tab">Birthday:
-                  <p><input placeholder="dd" oninput="this.className = ''"></p>
-                  <p><input placeholder="mm" oninput="this.className = ''"></p>
-                  <p><input placeholder="yyyy" oninput="this.className = ''"></p>
+                  <p><input placeholder="dd"></p>
+                  <p><input placeholder="mm"></p>
+                  <p><input placeholder="yyyy"></p>
                 </div>
                 
                 <div class="tab">Login Info:
-                  <p><input placeholder="Username..." oninput="this.className = ''"></p>
-                  <p><input placeholder="Password..." oninput="this.className = ''"></p>
+                  <p><input placeholder="Username..."></p>
+                  <p><input placeholder="Password..."></p>
                 </div>
                 
                 <div style="overflow:auto;">

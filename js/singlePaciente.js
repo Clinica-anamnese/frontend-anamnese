@@ -1,5 +1,5 @@
 endpoint = "pacientes";
-const formAddPaciente = document.querySelector(".formAddPaciente");
+const formAtualizarPaciente = document.querySelector(".formAtualizarPaciente");
 const fNome = document.getElementById("nome");
 const fSexo = document.getElementById("sexo");
 const fDataNasc = document.getElementById("dataNasc");
@@ -23,6 +23,53 @@ function consultarPaciente(id) {
             console.error(error);
         })
 }
+
+function atualizarPaciente(id) {
+    return new Promise((resolve, reject) => {
+        let forbidden = false;
+        if (validateForm(formAtualizarPaciente)) {
+            fetch(urlApi + endpoint + "/" + id, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `${token}`
+                },
+                method: "PUT",
+                body: JSON.stringify({
+                    nome: fNome.value,
+                    sexo: fSexo.value,
+                    dataNascimento: fDataNasc.value
+                })
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        forbidden = true;
+                        return Promise.reject();
+                    }
+                    goodWarning.textContent = "Paciente atualizado com sucesso!";
+                    resolve(response);
+                })
+                .catch(error => {
+                    if (forbidden) {
+                        badWarning.textContent = "Dados inválidos.";
+                    } else {
+                        badWarning.textContent = "Erro na comunicação com a API.";
+                    }
+                    reject(error);
+                });
+        }
+    })
+}
+
+formAtualizarPaciente.addEventListener("submit", async event => {
+    event.preventDefault();
+    badWarning.textContent = "";
+    goodWarning.textContent = "";
+    try {
+        await atualizarPaciente(pacienteId);
+    } catch {
+        verificarAutenticacao();
+    }
+});
 
 botaoDeletar.addEventListener("click", async () => {
     try {

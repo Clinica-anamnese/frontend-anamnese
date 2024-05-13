@@ -1,4 +1,4 @@
-const urlApi = "https://backend-anamnese.onrender.com/"
+const urlApi = "http://localhost:8080/"
 let endpoint = "";
 const token = localStorage.getItem("jwtToken");
 const userName = localStorage.getItem("userName");
