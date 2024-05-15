@@ -1,5 +1,28 @@
+const selectPacientes = document.getElementById('selectPacientes');
+
 var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the current tab
+
+function listarPacientes() {
+  fetch(urlApi + 'pacientes', {
+      headers: {
+          "Authorization": `${token}`
+      }
+  })
+      .then(response => response.json())
+      .then(data => {
+          data.forEach(paciente => {
+            const optionElement = document.createElement('option');
+            optionElement.value = paciente.id;
+            optionElement.textContent = paciente.nome;
+            selectPacientes.appendChild(optionElement);
+          });
+      })
+      .catch(error => {
+          console.error(error);
+          fallback.textContent = "Sem conexão com a API.";
+      })
+}
 
 function showTab(n) {
   // This function will display the specified tab of the form ...
@@ -46,3 +69,5 @@ function fixStepIndicator(n) {
   //... and adds the "active" class to the current step:
   x[n].className += " active";
 }
+
+listarPacientes();
