@@ -1,4 +1,3 @@
-endpoint = "pacientes";
 const formAddPaciente = document.querySelector(".formAddPaciente");
 const fNome = document.getElementById("nome");
 const fSexo = document.getElementById("sexo");
@@ -6,7 +5,7 @@ const fDataNasc = document.getElementById("dataNasc");
 let itensTabela = "";
 
 function listarPacientes() {
-    fetch(urlApi + endpoint, {
+    fetch(urlApi + endpointPacientes, {
         headers: {
             "Authorization": `${token}`
         }
@@ -49,7 +48,7 @@ function cadastrarPaciente() {
     return new Promise((resolve, reject) => {
         let forbidden = false;
         if (validateForm(formAddPaciente)) {
-            fetch(urlApi + endpoint, {
+            fetch(urlApi + endpointPacientes, {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `${token}`

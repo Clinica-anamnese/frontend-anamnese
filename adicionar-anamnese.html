@@ -7,10 +7,10 @@
     <title>Adicionar Formulário</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/bootstrap.css">
-    <link rel="stylesheet" href="./css/addFormulario.css">
-    <script src="./js/globalScript.js" defer></script>
+    <link rel="stylesheet" href="./css/addAnamnese.css">
     <script src="./js/bootstrap.js" defer></script>
-    <script src="./js/addFormulario.js" defer></script>
+    <script src="./js/globalScript.js" defer></script>
+    <script src="./js/addAnamnese.js" defer></script>
 </head>
 
 <body>
@@ -43,7 +43,7 @@
     <div class="div-principal">
         <img src="./img/unisantos-logo.png" alt="Logo Unisantos" width="233px">
         <div class="div-conteudo">
-            <form id="regForm" class="formAddForms needs-validation" novalidate>
+            <form id="regForm" class="formAddAnamnese needs-validation" novalidate>
 
                 <div class="tab">
 
@@ -51,7 +51,7 @@
 
                     <div class="mb-3">
                         <label for="selectPacientes" class="form-label">Paciente</label>
-                        <select class="form-select" required aria-label="paciente-select" id="selectPacientes">
+                        <select class="form-select" required aria-label="paciente-select" id="selectPacientes" required>
                             <option selected disabled value="">Selecione o paciente</option>
                         </select>
                         <div class="invalid-feedback">Selecione uma opção válida.</div>
@@ -59,7 +59,7 @@
 
                     <div class="mb-3">
                         <label for="escolaridade" class="form-label">Escolaridade</label>
-                        <select id="escolaridade" name="escolaridade" class="form-select">
+                        <select id="escolaridade" name="escolaridade" class="form-select" required>
                             <option selected disabled value="">Selecione a escolaridade</option>
                             <option value="fundamental_completo">Fundamental Completo</option>
                             <option value="ensino_medio_completo">Ensino Médio Completo</option>
@@ -67,43 +67,48 @@
                             <option value="ensino_superior_completo">Ensino Superior Completo</option>
                             <option value="outra">Outra</option>
                         </select>
+                        <div class="invalid-feedback">Campo obrigatório.</div>
+                        <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                     <div class="mb-3">
                         <label for="periodoEstudo" class="form-label">Período de Estudo</label>
-                        <select id="periodoEstudo" name="periodoEstudo" class="form-select">
+                        <select id="periodoEstudo" name="periodoEstudo" class="form-select" required>
                             <option selected disabled value="">Selecione o período de estudo</option>
                             <option value="manha">Manhã</option>
                             <option value="tarde">Tarde</option>
                             <option value="noite">Noite</option>
                             <option value="NA">Não se aplica</option>
                         </select>
+                        <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                     <div class="mb-3 form-check">
-                        <input type="checkbox" id="lancheEstudo" name="lancheEstudo" class="form-check-input">
+                        <input type="checkbox" id="lancheEstudo" name="lancheEstudo" class="form-check-input" required>
                         <label for="lancheEstudo" class="form-check-label">Lanche durante o Estudo</label>
                     </div>
 
                     <div class="mb-3">
                         <label for="periodoTrabalho" class="form-label">Período de Trabalho</label>
-                        <select id="periodoTrabalho" name="periodoTrabalho" class="form-select">
+                        <select id="periodoTrabalho" name="periodoTrabalho" class="form-select" required>
                             <option selected disabled value="">Selecione o período de trabalho</option>
                             <option value="manha">Manhã</option>
                             <option value="tarde">Tarde</option>
                             <option value="noite">Noite</option>
                             <option value="NA">Não se aplica</option>
                         </select>
+                        <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                     <div class="mb-3 form-check">
-                        <input type="checkbox" id="lancheTrabalho" name="lancheTrabalho" class="form-check-input">
+                        <input type="checkbox" id="lancheTrabalho" name="lancheTrabalho" class="form-check-input" required>
                         <label for="lancheTrabalho" class="form-check-label">Lanche durante o Trabalho</label>
                     </div>
 
                     <div class="mb-3">
                         <label for="profissao" class="form-label">Profissão</label>
-                        <input type="text" id="profissao" name="profissao" class="form-control">
+                        <input type="text" id="profissao" name="profissao" class="form-control" maxlength="60" required>
+                        <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
 
@@ -115,7 +120,7 @@
 
                     <div class="mb-3">
                         <label for="rendaFamiliar" class="form-label">Renda Familiar</label>
-                        <select id="rendaFamiliar" name="rendaFamiliar" class="form-select">
+                        <select id="rendaFamiliar" name="rendaFamiliar" class="form-select" required>
                             <option selected disabled value="">Selecione a renda familiar</option>
                             <option value="menos_de_1_salario_minimo">Menos de 1 salário mínimo</option>
                             <option value="de_1_a_2_salarios_minimos">De 1 a 2 salários mínimos</option>
@@ -123,12 +128,14 @@
                             <option value="mais_de_5_salarios_minimos">Mais de 5 salários mínimos</option>
                             <option value="nao_sei">Não sei</option>
                         </select>
+                        <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                     <div class="mb-3">
                         <label for="numPessoasDomicilio" class="form-label">Número de Pessoas no Domicílio</label>
                         <input type="number" id="numPessoasDomicilio" name="numPessoasDomicilio" class="form-control"
-                            min="0">
+                            min="0" required>
+                            <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
 
@@ -140,39 +147,49 @@
 
                     <div class="mb-3">
                         <label for="motivo" class="form-label">Motivo pela procura do ambulatório</label>
-                        <input type="text" id="motivo" name="motivo" class="form-control" maxlength="60" required>
+                        <input type="text" id="motivo" name="motivo" class="form-control" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="apresentaDoenca" class="form-label">Apresenta alguma doença?</label>
                         <input type="text" id="apresentaDoenca" name="apresentaDoenca" class="form-control"
-                            maxlength="60">
+                        >
+                        <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                     <div class="mb-3">
                         <label for="antecedentesFamiliares" class="form-label">Apresenta antecedentes familiares de
                             alguma doença crônica? (DM, HAS, dislipidemia...)</label>
                         <input type="text" id="antecedentesFamiliares" name="antecedentesFamiliares"
-                            class="form-control" maxlength="60">
+                            class="form-control">
+                            <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                     <div class="mb-3">
                         <label for="medicamentosContinuos" class="form-label">Faz uso de medicamentos contínuos?</label>
                         <input type="text" id="medicamentosContinuos" name="medicamentosContinuos" class="form-control"
-                            maxlength="60">
+                        >
+                        <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                     <div class="mb-3">
-                        <label for="suplementosComplimentos" class="form-label">Faz uso de suplementos ou complementos
+                        <label for="suplementosComplementos" class="form-label">Faz uso de suplementos ou complementos
                             alimentares?</label>
-                        <input type="text" id="suplementosComplimentos" name="suplementosComplimentos"
-                            class="form-control" maxlength="60">
+                        <input type="text" id="suplementosComplementos" name="suplementosComplementos"
+                            class="form-control">
+                            <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                     <div class="mb-3">
                         <label for="frequenciaEvacuacao" class="form-label">Frequência de Evacuação</label>
-                        <input type="text" id="frequenciaEvacuacao" name="frequenciaEvacuacao" class="form-control"
-                            maxlength="60" required>
+                        <select id="frequenciaEvacuacao" name="frequenciaEvacuacao" class="form-select" required>
+                            <option selected disabled value="">Selecione a frequência de evacuação</option>
+                            <option value="diaria">Diária</option>
+                            <option value="alternada">Alternada</option>
+                            <option value="tres_vezes_por_semana">Três vezes por semana</option>
+                            <option value="menos_de_3_vezes_por_semana">Menos de 3 vezes por semana</option>
+                        </select>
+                        <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                     <div class="mb-3">
@@ -189,26 +206,32 @@
                             <option value="6">Tipo 6</option>
                             <option value="7">Tipo 7</option>
                         </select>
+                        <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                     <div class="mb-3 form-check">
-                        <input type="checkbox" id="praticaAtvFisica" name="praticaAtvFisica" class="form-check-input">
-                        <label for="praticaAtvFisica" class="form-check-label">Pratica atividade física regularmente?</label>
+                        <label for="praticaAtvFisica" class="form-check-label">Pratica atividade física
+                            regularmente?</label>
+                            <input type="checkbox" id="praticaAtvFisica" name="praticaAtvFisica" class="form-check-input" required>
+                            <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                     <div class="mb-3">
                         <label for="atvFisica" class="form-label">Se sim: qual atividade, frequência semanal e duração?</label>
-                        <input type="text" id="atvFisica" name="atvFisica" class="form-control" maxlength="60">
+                        <input type="text" id="atvFisica" name="atvFisica" class="form-control">
+                        <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                 </div>
 
-                <div style="overflow:auto;">
-                    <div style="float:right;">
-                        <button type="button" class="btn btn-secondary" id="prevBtn"
-                            onclick="nextPrev(-1)">Anterior</button>
-                        <button type="button" class="btn btn-primary" id="nextBtn"
-                            onclick="nextPrev(1)">Próximo</button>
+                <div>
+                    <span id="goodWarning"></span>
+                    <span id="badWarning"></span>
+                    <div class="div-step-buttons">
+                            <button type="button" class="btn btn-secondary" id="prevBtn"
+                                onclick="nextPrev(-1, event)">Anterior</button>
+                            <button type="button" class="btn btn-primary" id="nextBtn"
+                                onclick="nextPrev(1, event)">Próximo</button>
                     </div>
                 </div>
 

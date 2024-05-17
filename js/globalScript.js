@@ -1,5 +1,8 @@
 const urlApi = "http://localhost:8080/"
-let endpoint = "";
+const endpointPacientes = "pacientes";
+const endpointUsuarios = "usuarios";
+const endpointAuth = "auth/login";
+const endpointAnamneses = "anamneses";
 const token = localStorage.getItem("jwtToken");
 const userName = localStorage.getItem("userName");
 const goodWarning = document.getElementById("goodWarning");
@@ -14,7 +17,7 @@ function verificarAutenticacao() {
     if (!token) {
         logout();
     } else {
-        fetch(urlApi + "pacientes", {
+        fetch(urlApi + endpointPacientes, {
             headers: {
                 "Authorization": `${token}`
             }
@@ -31,9 +34,9 @@ function verificarAutenticacao() {
     }
 }
 
-function deletarItem(id) {
+function deletarItem(id, url) {
     return new Promise((resolve, reject) => {
-        fetch(urlApi + endpoint + "/" + id, {
+        fetch(urlApi + url + "/" + id, {
             headers: {
                 "Authorization": `${token}`
             },
@@ -54,7 +57,7 @@ function verificarAutenticacaoAdmin() {
     if (!token) {
         logout();
     } else {
-        fetch(urlApi + "usuarios", {
+        fetch(urlApi + endpointUsuarios, {
             headers: {
                 "Authorization": `${token}`
             }
@@ -95,7 +98,7 @@ function limparTabela() {
 }
 
 function hideUsersTab() {
-    fetch(urlApi + "usuarios", {
+    fetch(urlApi + endpointUsuarios, {
         headers: {
             "Authorization": `${token}`
         }

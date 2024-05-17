@@ -1,11 +1,10 @@
-endpoint = "auth/login";
 const formLogin = document.getElementById("formLogin");
 const fMatricula = document.getElementById("matricula");
 const fSenha = document.getElementById("senha");
 
 function fazerLogin() {
     let forbidden = false;
-    fetch(urlApi + endpoint, {
+    fetch(urlApi + endpointAuth, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

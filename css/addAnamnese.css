@@ -1,9 +1,14 @@
 .div-conteudo {
   background-color: #ffffff;
-  padding: 20px;
+  padding: 20px 40px;
   border-radius: 8px;
   max-width: 800px;
   width: 90%;
+}
+
+.div-step-buttons {
+  display: flex;
+  justify-content: space-between;
 }
 
 .titulo-etapas {
@@ -46,7 +51,7 @@ input.invalid {
 }
 
 .mb-3 {
-  padding: 20px 10px;
+  padding: 20px;
   border-radius: 5px;
   background-color: #f7f7f7;
 }

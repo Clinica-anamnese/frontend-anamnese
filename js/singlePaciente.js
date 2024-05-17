@@ -1,4 +1,3 @@
-endpoint = "pacientes";
 const formAtualizarPaciente = document.querySelector(".formAtualizarPaciente");
 const fNome = document.getElementById("nome");
 const fSexo = document.getElementById("sexo");
@@ -8,7 +7,7 @@ const botaoDeletar = document.getElementById("botaoDeletar");
 let itensTabela = "";
 
 function consultarPaciente(id) {
-    fetch(urlApi + endpoint + "/" + id, {
+    fetch(urlApi + endpointPacientes + "/" + id, {
         headers: {
             "Authorization": `${token}`
         }
@@ -28,7 +27,7 @@ function atualizarPaciente(id) {
     return new Promise((resolve, reject) => {
         let forbidden = false;
         if (validateForm(formAtualizarPaciente)) {
-            fetch(urlApi + endpoint + "/" + id, {
+            fetch(urlApi + endpointPacientes + "/" + id, {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `${token}`
@@ -73,7 +72,7 @@ formAtualizarPaciente.addEventListener("submit", async event => {
 
 botaoDeletar.addEventListener("click", async () => {
     try {
-        await deletarItem(pacienteId);
+        await deletarItem(pacienteId, endpointPacientes);
         window.location.href = "pacientes.html";
     } catch {
         verificarAutenticacao();

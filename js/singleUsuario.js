@@ -1,4 +1,3 @@
-endpoint = "usuarios";
 const formAtualizarUsuario = document.querySelector(".formAtualizarUsuario");
 const fNome = document.getElementById("nome");
 const fMatricula = document.getElementById("matricula");
@@ -8,7 +7,7 @@ const botaoDeletar = document.getElementById("botaoDeletar");
 let itensTabela = "";
 
 function consultarUsuario(id) {
-    fetch(urlApi + endpoint + "/" + id, {
+    fetch(urlApi + endpointUsuarios + "/" + id, {
         headers: {
             "Authorization": `${token}`
         }
@@ -27,7 +26,7 @@ function atualizarUsuario(id) {
     return new Promise((resolve, reject) => {
         let forbidden = false;
         if (validateForm(formAtualizarUsuario)) {
-            fetch(urlApi + endpoint + "/" + id, {
+            fetch(urlApi + endpointUsuarios + "/" + id, {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `${token}`
@@ -71,7 +70,7 @@ formAtualizarUsuario.addEventListener("submit", async event => {
 
 botaoDeletar.addEventListener("click", async () => {
     try {
-        await deletarItem(usuarioId);
+        await deletarItem(usuarioId, endpointUsuarios);
         window.location.href = "gerenciar-usuarios.html";
     } catch {
         verificarAutenticacao();
