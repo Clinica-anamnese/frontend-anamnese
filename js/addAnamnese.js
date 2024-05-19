@@ -3,6 +3,7 @@ const selectPacientes = document.getElementById('selectPacientes');
 const divStepButtons = document.querySelector(".div-step-buttons");
 const nextBtn = document.getElementById("nextBtn");
 const prevBtn = document.getElementById("prevBtn");
+const tabs = document.getElementsByClassName("tab");
 const fPacienteId = document.getElementById("selectPacientes");
 const fEscolaridade = document.getElementById("escolaridade");
 const fPeriodoEstudo = document.getElementById("periodoEstudo");
@@ -21,9 +22,7 @@ const fFrequenciaEvacuacao = document.getElementById("frequenciaEvacuacao");
 const fConsistenciaEvacuacao = document.getElementById("consistenciaEvacuacao");
 const fPraticaAtvFisica = document.getElementById("praticaAtvFisica");
 const fAtvFisica = document.getElementById("atvFisica");
-
-var currentTab = 0;
-showTab(currentTab);
+let currentTab = 0;
 
 // exibe os Anamneses no select do formulario
 function listarPacientesSelect() {
@@ -58,6 +57,7 @@ function cadastrarAnamnese() {
         method: "POST",
         body: JSON.stringify({
           pacienteId: fPacienteId.value,
+          usuarioId: usuarioId,
           escolaridade: fEscolaridade.value,
           periodoEstudo: fPeriodoEstudo.value,
           lancheEstudo: fLancheEstudo.checked,
@@ -98,30 +98,27 @@ function cadastrarAnamnese() {
   })
 }
 
-function showTab(n) {
-  var x = document.getElementsByClassName("tab");
-  x[n].style.display = "flex";
-  x[n].style.flexDirection = "column";
-  x[n].style.gap = "10px";
+async function showTab(n) {
+  tabs[n].style.display = "flex";
+  tabs[n].style.flexDirection = "column";
+  tabs[n].style.gap = "10px";
+
   if (n == 0) {
     prevBtn.style.display = "none";
     divStepButtons.style.flexDirection = "row-reverse"
-  } else {
-    prevBtn.style.display = "inline";
-    divStepButtons.style.flexDirection = "row"
-  }
-  if (n == (x.length - 1)) {
+  } else if (n == (tabs.length - 1)) {
     nextBtn.textContent = "Enviar";
+    prevBtn.style.display = "inline";
   } else {
-    nextBtn.textContent = "Próximo";
+    divStepButtons.style.flexDirection = "row"
+    prevBtn.style.display = "inline";
   }
+
   fixStepIndicator(n)
 }
 
-async function nextPrev(n, event) {
-  event.preventDefault();
-  var x = document.getElementsByClassName("tab");
-  if (currentTab >= x.length - 1) {
+async function nextTab() {
+  if (currentTab >= tabs.length - 1) {
     try {
       await cadastrarAnamnese();
       window.location.href = "formularios.html";
@@ -130,10 +127,16 @@ async function nextPrev(n, event) {
       verificarAutenticacao();
     }
   } else {
-    x[currentTab].style.display = "none";
-    currentTab += n;
+    tabs[currentTab].style.display = "none";
+    currentTab += 1;
     showTab(currentTab);
   }
+}
+
+function prevTab() {
+  tabs[currentTab].style.display = "none";
+  currentTab -= 1;
+  showTab(currentTab);
 }
 
 function fixStepIndicator(n) {
@@ -146,3 +149,4 @@ function fixStepIndicator(n) {
 
 verificarAutenticacao();
 listarPacientesSelect();
+showTab(currentTab);

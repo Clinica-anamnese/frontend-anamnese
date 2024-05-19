@@ -3,15 +3,18 @@ const endpointPacientes = "pacientes";
 const endpointUsuarios = "usuarios";
 const endpointAuth = "auth/login";
 const endpointAnamneses = "anamneses";
+const usuarioId = localStorage.getItem("usuarioId");
+const usuarioNome = localStorage.getItem("usuarioNome");
 const token = localStorage.getItem("jwtToken");
-const userName = localStorage.getItem("userName");
 const goodWarning = document.getElementById("goodWarning");
+const goodWarningPass = document.getElementById("goodWarningPass");
+const badWarningPass = document.getElementById("badWarningPass");
 const badWarning = document.getElementById("badWarning");
 const fallback = document.getElementById("fallback");
 const tbody = document.querySelector(".tabela-tbody");
 const usersTab = document.querySelector(".usersTab");
 const header = document.querySelector("header");
-const headerUserName = document.getElementById("headerUserName");
+const headerusuarioNome = document.getElementById("headerusuarioNome");
 
 function verificarAutenticacao() {
     if (!token) {
@@ -111,7 +114,7 @@ function hideUsersTab() {
 }
 
 function getHeaderData() {
-    headerUserName.textContent = userName;
+    headerusuarioNome.textContent = usuarioNome;
     hideUsersTab();
 }
 

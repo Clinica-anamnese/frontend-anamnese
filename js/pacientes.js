@@ -15,6 +15,7 @@ function listarPacientes() {
             data.forEach(paciente => {
                 const itemTabela = document.createElement("tr");
                 itemTabela.classList.add("itemTabela");
+                itemTabela.classList.add("clickable");
                 itemTabela.id = paciente.id;
                 tbody.appendChild(itemTabela);
                 const colunaID = document.createElement("th");

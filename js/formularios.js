@@ -15,6 +15,7 @@ function listarAnamneses() {
             data.forEach(anamnese => {
                 const itemTabela = document.createElement("tr");
                 itemTabela.classList.add("itemTabela");
+                itemTabela.classList.add("clickable");
                 itemTabela.id = anamnese.id;
                 tbody.appendChild(itemTabela);
                 const colunaId = document.createElement("th");

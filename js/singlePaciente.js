@@ -4,10 +4,10 @@ const fSexo = document.getElementById("sexo");
 const fDataNasc = document.getElementById("dataNasc");
 const pacienteId = localStorage.getItem("pacienteId");
 const botaoDeletar = document.getElementById("botaoDeletar");
-let itensTabela = "";
+const captionName = document.getElementById("captionName");
 
-function consultarPaciente(id) {
-    fetch(urlApi + endpointPacientes + "/" + id, {
+function consultarPaciente() {
+    fetch(urlApi + endpointPacientes + "/" + pacienteId, {
         headers: {
             "Authorization": `${token}`
         }
@@ -17,17 +17,59 @@ function consultarPaciente(id) {
             fNome.value = paciente.nome;
             fSexo.value = paciente.sexo;
             fDataNasc.value = paciente.dataNascimento;
+            captionName.textContent = paciente.nome;
         })
         .catch(error => {
             console.error(error);
         })
 }
 
-function atualizarPaciente(id) {
+function listarAnamnesesDoPaciente() {
+    fetch(urlApi + endpointAnamneses + "/" + endpointPacientes + "/" + pacienteId, {
+        headers: {
+            "Authorization": `${token}`
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(anamnese => {
+                const itemTabela = document.createElement("tr");
+                itemTabela.classList.add("itemTabela");
+                itemTabela.classList.add("clickable");
+                itemTabela.id = anamnese.id;
+                tbody.appendChild(itemTabela);
+                const colunaId = document.createElement("th");
+                colunaId.textContent = `${anamnese.id}`
+                itemTabela.appendChild(colunaId);
+                const colunaPaciente = document.createElement("td");
+                colunaPaciente.textContent = `${anamnese.pacienteNome}`
+                itemTabela.appendChild(colunaPaciente);
+                const colunaAt = document.createElement("td");
+                const dataValue = anamnese.criadoEm;
+                const partes = dataValue.split("-");
+                const dataFormatada = partes[2] + "/" + partes[1] + "/" + partes[0];
+                colunaAt.textContent = dataFormatada;
+                itemTabela.appendChild(colunaAt);
+            });
+            let itensTabela = document.querySelectorAll(".itemTabela");
+            itensTabela.forEach((anamnese) => {
+                anamnese.addEventListener("click", () => {
+                    localStorage.setItem("anamneseId", anamnese.id);
+                    window.location.href = "anamnese.html";
+                })
+            })
+        })
+        .catch(error => {
+            console.error(error);
+            fallback.textContent = "Sem conexão com a API.";
+        })
+}
+
+function atualizarPaciente() {
     return new Promise((resolve, reject) => {
         let forbidden = false;
         if (validateForm(formAtualizarPaciente)) {
-            fetch(urlApi + endpointPacientes + "/" + id, {
+            fetch(urlApi + endpointPacientes + "/" + pacienteId, {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `${token}`
@@ -64,7 +106,7 @@ formAtualizarPaciente.addEventListener("submit", async event => {
     badWarning.textContent = "";
     goodWarning.textContent = "";
     try {
-        await atualizarPaciente(pacienteId);
+        await atualizarPaciente();
     } catch {
         verificarAutenticacao();
     }
@@ -80,4 +122,5 @@ botaoDeletar.addEventListener("click", async () => {
 });
 
 verificarAutenticacao();
-consultarPaciente(pacienteId);
+consultarPaciente();
+listarAnamnesesDoPaciente();
