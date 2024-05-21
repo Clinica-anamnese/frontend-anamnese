@@ -51,16 +51,15 @@
 
                     <div class="mb-4">
                         <label for="selectPacientes" class="form-label">Paciente <span class="required">*</span></label>
-                        <select class="form-select" required aria-label="paciente-select" id="selectPacientes" required>
+                        <select class="form-select" aria-label="paciente-select" id="selectPacientes">
                             <option selected disabled value="">Selecione o paciente</option>
                         </select>
                         <div class="invalid-feedback">Selecione uma opção válida.</div>
                     </div>
 
                     <div class="mb-4">
-                        <label for="escolaridade" class="form-label">Escolaridade <span
-                                class="required">*</span></label>
-                        <select id="escolaridade" name="escolaridade" class="form-select" required>
+                        <label for="escolaridade" class="form-label">Escolaridade</label>
+                        <select id="escolaridade" name="escolaridade" class="form-select">
                             <option selected disabled value="">Selecione a escolaridade</option>
                             <option value="fundamental_completo">Fundamental Completo</option>
                             <option value="ensino_medio_completo">Ensino Médio Completo</option>
@@ -72,9 +71,8 @@
                     </div>
 
                     <div class="mb-4">
-                        <label for="periodoEstudo" class="form-label">Período de Estudo <span
-                                class="required">*</span></label>
-                        <select id="periodoEstudo" name="periodoEstudo" class="form-select" required>
+                        <label for="periodoEstudo" class="form-label">Período de Estudo</label>
+                        <select id="periodoEstudo" name="periodoEstudo" class="form-select">
                             <option selected disabled value="">Selecione o período de estudo</option>
                             <option value="manha">Manhã</option>
                             <option value="tarde">Tarde</option>
@@ -90,9 +88,8 @@
                     </div>
 
                     <div class="mb-4">
-                        <label for="periodoTrabalho" class="form-label">Período de Trabalho <span
-                                class="required">*</span></label>
-                        <select id="periodoTrabalho" name="periodoTrabalho" class="form-select" required>
+                        <label for="periodoTrabalho" class="form-label">Período de Trabalho</label>
+                        <select id="periodoTrabalho" name="periodoTrabalho" class="form-select">
                             <option selected disabled value="">Selecione o período de trabalho</option>
                             <option value="manha">Manhã</option>
                             <option value="tarde">Tarde</option>
@@ -119,9 +116,8 @@
                     <h2 class="h5 titulo-tab">Características Socioeconômicas</h2>
 
                     <div class="mb-4">
-                        <label for="rendaFamiliar" class="form-label">Renda Familiar <span
-                                class="required">*</span></label>
-                        <select id="rendaFamiliar" name="rendaFamiliar" class="form-select" required>
+                        <label for="rendaFamiliar" class="form-label">Renda Familiar</label>
+                        <select id="rendaFamiliar" name="rendaFamiliar" class="form-select">
                             <option selected disabled value="">Selecione a renda familiar</option>
                             <option value="menos_de_1_salario_minimo">Menos de 1 salário mínimo</option>
                             <option value="de_1_a_2_salarios_minimos">De 1 a 2 salários mínimos</option>
@@ -133,10 +129,9 @@
                     </div>
 
                     <div class="mb-4">
-                        <label for="numPessoasDomicilio" class="form-label">Número de Pessoas no Domicílio <span
-                                class="required">*</span></label>
+                        <label for="numPessoasDomicilio" class="form-label">Número de Pessoas no Domicílio</label>
                         <input type="number" id="numPessoasDomicilio" name="numPessoasDomicilio" class="form-control"
-                            min="0" required>
+                            min="0">
                         <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
@@ -147,9 +142,8 @@
                     <h2 class="h5 titulo-tab">História Clínica</h2>
 
                     <div class="mb-4">
-                        <label for="motivo" class="form-label">Motivo pela procura do ambulatório <span
-                                class="required">*</span></label>
-                        <input type="text" id="motivo" name="motivo" class="form-control" required>
+                        <label for="motivo" class="form-label">Motivo pela procura do ambulatório</label>
+                        <input type="text" id="motivo" name="motivo" class="form-control">
                     </div>
 
                     <div class="mb-4">
@@ -181,9 +175,8 @@
                     </div>
 
                     <div class="mb-4">
-                        <label for="frequenciaEvacuacao" class="form-label">Frequência de Evacuação <span
-                                class="required">*</span></label>
-                        <select id="frequenciaEvacuacao" name="frequenciaEvacuacao" class="form-select" required>
+                        <label for="frequenciaEvacuacao" class="form-label">Frequência de Evacuação</label>
+                        <select id="frequenciaEvacuacao" name="frequenciaEvacuacao" class="form-select">
                             <option selected disabled value="">Selecione a frequência de evacuação</option>
                             <option value="diaria">Diária</option>
                             <option value="alternada">Alternada</option>
@@ -194,10 +187,9 @@
                     </div>
 
                     <div class="mb-4">
-                        <label for="consistenciaEvacuacao" class="form-label">Consistência da evacuação <span
-                                class="required">*</span></label>
+                        <label for="consistenciaEvacuacao" class="form-label">Consistência da evacuação</label>
                         <img src="img/consistencia-evacuacao.jpg" alt="Consistência de Evacuação">
-                        <select id="consistenciaEvacuacao" name="consistenciaEvacuacao" class="form-select" required>
+                        <select id="consistenciaEvacuacao" name="consistenciaEvacuacao" class="form-select">
                             <option selected disabled value="">Selecione o tipo</option>
                             <option value="0">Tipo 0</option>
                             <option value="1">Tipo 1</option>
@@ -231,7 +223,7 @@
                     <h2 class="h5 titulo-tab">Frequência Alimentar</h2>
 
                     <div class="container text-center mb-4 p-3 rounded border">
-                        <div class="row mb-4">
+                        <div class="row mb-4 question">
                             <div class="col">
                                 Legumes
                             </div>
@@ -248,141 +240,157 @@
                                 Não
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="legumesCenoura">
                             <div class="col">
                                 Cenoura
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" value="diario" name="legumesCenoura" id="legumesCenoura1">
+                                <input class="form-check-input" type="radio" name="legumesCenoura" value="diario"
+                                    id="legumesCenoura1">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" value="semanal" name="legumesCenoura" id="legumesCenoura2">
+                                <input class="form-check-input" type="radio" name="legumesCenoura" value="semanal"
+                                    id="legumesCenoura2">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" value="mensal" name="legumesCenoura" id="legumesCenoura3">
+                                <input class="form-check-input" type="radio" name="legumesCenoura" value="mensal"
+                                    id="legumesCenoura3">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" value="nao" name="legumesCenoura" id="legumesCenoura4">
+                                <input class="form-check-input" type="radio" name="legumesCenoura" value="nao"
+                                    id="legumesCenoura4">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="legumesBeterraba">
                             <div class="col">
                                 Beterraba
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" value="diario" name="legumesBeterraba"
+                                <input class="form-check-input" type="radio" name="legumesBeterraba" value="diario"
                                     id="legumesBeterraba1">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" value="semanal" name="legumesBeterraba"
+                                <input class="form-check-input" type="radio" name="legumesBeterraba" value="semanal"
                                     id="legumesBeterraba2">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" value="mensal" name="legumesBeterraba"
+                                <input class="form-check-input" type="radio" name="legumesBeterraba" value="mensal"
                                     id="legumesBeterraba3">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" value="nao" name="legumesBeterraba"
+                                <input class="form-check-input" type="radio" name="legumesBeterraba" value="nao"
                                     id="legumesBeterraba4">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="legumesBerinjela">
                             <div class="col">
                                 Berinjela
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" value="diario" name="legumesBerinjela"
+                                <input class="form-check-input" type="radio" name="legumesBerinjela" value="diario"
                                     id="legumesBerinjela1">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" value="semanal" name="legumesBerinjela"
+                                <input class="form-check-input" type="radio" name="legumesBerinjela" value="semanal"
                                     id="legumesBerinjela2">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" value="mensal" name="legumesBerinjela"
+                                <input class="form-check-input" type="radio" name="legumesBerinjela" value="mensal"
                                     id="legumesBerinjela3">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" value="nao" name="legumesBerinjela"
+                                <input class="form-check-input" type="radio" name="legumesBerinjela" value="nao"
                                     id="legumesBerinjela4">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="legumesPepino">
                             <div class="col">
                                 Pepino
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" value="diario" name="legumesPepino" id="legumesPepino1">
+                                <input class="form-check-input" type="radio" name="legumesPepino" value="diario"
+                                    id="legumesPepino1">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" value="semanal" name="legumesPepino" id="legumesPepino2">
+                                <input class="form-check-input" type="radio" name="legumesPepino" value="semanal"
+                                    id="legumesPepino2">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" value="mensal" name="legumesPepino" id="legumesPepino3">
+                                <input class="form-check-input" type="radio" name="legumesPepino" value="mensal"
+                                    id="legumesPepino3">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" value="nao" name="legumesPepino" id="legumesPepino4">
+                                <input class="form-check-input" type="radio" name="legumesPepino" value="nao"
+                                    id="legumesPepino4">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="legumesAbobrinha">
                             <div class="col">
                                 Abobrinha
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" value="diario" name="legumesAbobrinha"
+                                <input class="form-check-input" type="radio" name="legumesAbobrinha" value="diario"
                                     id="legumesAbobrinha1">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" value="semanal" name="legumesAbobrinha"
+                                <input class="form-check-input" type="radio" name="legumesAbobrinha" value="semanal"
                                     id="legumesAbobrinha2">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" value="mensal" name="legumesAbobrinha"
+                                <input class="form-check-input" type="radio" name="legumesAbobrinha" value="mensal"
                                     id="legumesAbobrinha3">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" value="nao" name="legumesAbobrinha"
+                                <input class="form-check-input" type="radio" name="legumesAbobrinha" value="nao"
                                     id="legumesAbobrinha4">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="legumesChuchu">
                             <div class="col">
                                 Chuchu
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" value="diario" name="legumesChuchu" id="legumesChuchu1">
+                                <input class="form-check-input" type="radio" name="legumesChuchu" value="diario"
+                                    id="legumesChuchu1">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" value="semanal" name="legumesChuchu" id="legumesChuchu2">
+                                <input class="form-check-input" type="radio" name="legumesChuchu" value="semanal"
+                                    id="legumesChuchu2">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" value="mensal" name="legumesChuchu" id="legumesChuchu3">
+                                <input class="form-check-input" type="radio" name="legumesChuchu" value="mensal"
+                                    id="legumesChuchu3">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" value="nao" name="legumesChuchu" id="legumesChuchu4">
+                                <input class="form-check-input" type="radio" name="legumesChuchu" value="nao"
+                                    id="legumesChuchu4">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="legumesTomate">
                             <div class="col">
                                 Tomate
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" value="diario" name="legumesTomate" id="legumesTomate1">
+                                <input class="form-check-input" type="radio" name="legumesTomate" value="diario"
+                                    id="legumesTomate1">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" value="semanal" name="legumesTomate" id="legumesTomate2">
+                                <input class="form-check-input" type="radio" name="legumesTomate" value="semanal"
+                                    id="legumesTomate2">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" value="mensal" name="legumesTomate" id="legumesTomate3">
+                                <input class="form-check-input" type="radio" name="legumesTomate" value="mensal"
+                                    id="legumesTomate3">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" value="nao" name="legumesTomate" id="legumesTomate4">
+                                <input class="form-check-input" type="radio" name="legumesTomate" value="nao"
+                                    id="legumesTomate4">
                             </div>
                         </div>
                     </div>
 
                     <div class="container text-center mb-4 p-3 rounded border">
-                        <div class="row mb-4">
+                        <div class="row mb-4 question">
                             <div class="col">
                                 Verduras
                             </div>
@@ -399,7 +407,7 @@
                                 Não
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="verdurasAcelga">
                             <div class="col">
                                 Acelga
                             </div>
@@ -420,7 +428,7 @@
                                     value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="verdurasAgriao">
                             <div class="col">
                                 Agrião
                             </div>
@@ -441,7 +449,7 @@
                                     value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="verdurasAlface">
                             <div class="col">
                                 Alface
                             </div>
@@ -462,7 +470,7 @@
                                     value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="verdurasBrocolis">
                             <div class="col">
                                 Brócolis
                             </div>
@@ -483,7 +491,7 @@
                                     id="verdurasBrocolis4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="verdurasChicoria">
                             <div class="col">
                                 Chicória
                             </div>
@@ -504,7 +512,7 @@
                                     id="verdurasChicoria4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="verdurasCouveManteiga">
                             <div class="col">
                                 Couve Manteiga
                             </div>
@@ -525,7 +533,7 @@
                                     id="verdurasCouveManteiga4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="verdurasCouveFlor">
                             <div class="col">
                                 Couve-flor
                             </div>
@@ -546,7 +554,7 @@
                                     id="verdurasCouveFlor4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="verdurasEspinafre'">
                             <div class="col">
                                 Espinafre
                             </div>
@@ -567,7 +575,7 @@
                                     id="verdurasEspinafre4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="verdurasRucula">
                             <div class="col">
                                 Rúcula
                             </div>
@@ -591,7 +599,7 @@
                     </div>
 
                     <div class="container text-center mb-4 p-3 rounded border">
-                        <div class="row mb-4">
+                        <div class="row mb-4 question">
                             <div class="col">
                                 Frutas Cítricas
                             </div>
@@ -608,7 +616,7 @@
                                 Não
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="frutasCLaranja">
                             <div class="col">
                                 Laranja
                             </div>
@@ -629,7 +637,7 @@
                                     value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="frutasCTangerina">
                             <div class="col">
                                 Tangerina
                             </div>
@@ -650,7 +658,7 @@
                                     id="frutasCTangerina4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="frutasCLimao">
                             <div class="col">
                                 Limão
                             </div>
@@ -671,7 +679,7 @@
                                     value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="frutasCAbacaxi">
                             <div class="col">
                                 Abacaxi
                             </div>
@@ -692,7 +700,7 @@
                                     value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="frutasCAcerola">
                             <div class="col">
                                 Acerola
                             </div>
@@ -713,7 +721,7 @@
                                     value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="frutasCMorango">
                             <div class="col">
                                 Morango
                             </div>
@@ -734,7 +742,7 @@
                                     value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="frutasCKiwi">
                             <div class="col">
                                 Kiwi
                             </div>
@@ -755,7 +763,7 @@
                                     value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="frutasCMaracuja">
                             <div class="col">
                                 Maracujá
                             </div>
@@ -779,7 +787,7 @@
                     </div>
 
                     <div class="container text-center mb-4 p-3 rounded border">
-                        <div class="row mb-4">
+                        <div class="row mb-4 question">
                             <div class="col">
                                 Demais Frutas
                             </div>
@@ -796,7 +804,7 @@
                                 Não
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="demaisFrutasBanana">
                             <div class="col">
                                 Banana
                             </div>
@@ -817,7 +825,7 @@
                                     id="demaisFrutasBanana4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="demaisFrutasGoiaba">
                             <div class="col">
                                 Goiaba
                             </div>
@@ -838,7 +846,7 @@
                                     id="demaisFrutasGoiaba4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="demaisFrutasMaca">
                             <div class="col">
                                 Maçã
                             </div>
@@ -859,7 +867,7 @@
                                     id="demaisFrutasMaca4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="demaisFrutasMamao">
                             <div class="col">
                                 Mamão
                             </div>
@@ -880,7 +888,7 @@
                                     id="demaisFrutasMamao4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="demaisFrutasManga">
                             <div class="col">
                                 Manga
                             </div>
@@ -901,7 +909,7 @@
                                     id="demaisFrutasManga4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="demaisFrutasMelancia">
                             <div class="col">
                                 Melancia
                             </div>
@@ -922,7 +930,7 @@
                                     id="demaisFrutasMelancia4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="demaisFrutasMelao">
                             <div class="col">
                                 Melão
                             </div>
@@ -943,7 +951,7 @@
                                     id="demaisFrutasMelao4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="demaisFrutasPera">
                             <div class="col">
                                 Pera
                             </div>
@@ -964,7 +972,7 @@
                                     id="demaisFrutasPera4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="demaisFrutasPessego">
                             <div class="col">
                                 Pêssego
                             </div>
@@ -985,7 +993,7 @@
                                     id="demaisFrutasPessego4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="demaisFrutasUva">
                             <div class="col">
                                 Uva
                             </div>
@@ -1009,7 +1017,7 @@
                     </div>
 
                     <div class="container text-center mb-4 p-3 rounded border">
-                        <div class="row mb-4">
+                        <div class="row mb-4 question">
                             <div class="col">
                                 Leguminosas
                             </div>
@@ -1026,7 +1034,7 @@
                                 Não
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="leguminosasFeijao">
                             <div class="col">
                                 Feijão
                             </div>
@@ -1047,7 +1055,7 @@
                                     id="leguminosasFeijao4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="leguminosasLentilha">
                             <div class="col">
                                 Lentilha
                             </div>
@@ -1068,7 +1076,7 @@
                                     id="leguminosasLentilha4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="leguminosasErvilha">
                             <div class="col">
                                 Ervilha
                             </div>
@@ -1089,7 +1097,7 @@
                                     id="leguminosasErvilha4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="leguminosasSoja">
                             <div class="col">
                                 Soja
                             </div>
@@ -1110,7 +1118,7 @@
                                     id="leguminosasSoja4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="leguminosasGraoDeBico">
                             <div class="col">
                                 Grão-de-Bico
                             </div>
@@ -1131,7 +1139,7 @@
                                     id="leguminosasGraoDeBico4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="leguminosasVagem">
                             <div class="col">
                                 Vagem
                             </div>
@@ -1155,7 +1163,7 @@
                     </div>
 
                     <div class="container text-center mb-4 p-3 rounded border">
-                        <div class="row mb-4">
+                        <div class="row mb-4 question">
                             <div class="col">
                                 Carnes/ovos/peixe
                             </div>
@@ -1172,7 +1180,7 @@
                                 Não
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="carnesBovina">
                             <div class="col">
                                 Bovina
                             </div>
@@ -1193,7 +1201,7 @@
                                     value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="carnesSuina">
                             <div class="col">
                                 Suína
                             </div>
@@ -1214,7 +1222,7 @@
                                     value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="carnesAves">
                             <div class="col">
                                 Aves
                             </div>
@@ -1235,7 +1243,7 @@
                                     value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="carnesPeixe">
                             <div class="col">
                                 Peixe
                             </div>
@@ -1256,7 +1264,7 @@
                                     value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="frutosDoMar">
                             <div class="col">
                                 Frutos do Mar
                             </div>
@@ -1277,7 +1285,7 @@
                                     value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="ovo">
                             <div class="col">
                                 Ovo
                             </div>
@@ -1297,7 +1305,7 @@
                     </div>
 
                     <div class="container text-center mb-4 p-3 rounded border">
-                        <div class="row mb-4">
+                        <div class="row mb-4 question">
                             <div class="col">
                                 Arroz
                             </div>
@@ -1314,7 +1322,7 @@
                                 Não
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="arrozBrancoPolido">
                             <div class="col">
                                 Arroz Branco Polido
                             </div>
@@ -1335,7 +1343,7 @@
                                     id="arrozBrancoPolido4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="arrozIntegral">
                             <div class="col">
                                 Arroz Integral
                             </div>
@@ -1359,7 +1367,7 @@
                     </div>
 
                     <div class="container text-center mb-4 p-3 rounded border">
-                        <div class="row mb-4">
+                        <div class="row mb-4 question">
                             <div class="col">
                                 Lácteos
                             </div>
@@ -1376,7 +1384,7 @@
                                 Não
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="lacteosLeiteIntegralDesnatadoSemi">
                             <div class="col">
                                 Leite Integral / Desnatado / Semi
                             </div>
@@ -1397,7 +1405,7 @@
                                     id="lacteosLeiteIntegralDesnatadoSemi4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="lacteosLeiteSemLactose">
                             <div class="col">
                                 Leite Sem Lactose
                             </div>
@@ -1418,7 +1426,7 @@
                                     id="lacteosLeiteSemLactose4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="lacteosQueijosPedacoOuFatia">
                             <div class="col">
                                 Queijos (Pedaço ou Fatia)
                             </div>
@@ -1439,7 +1447,7 @@
                                     id="lacteosQueijosPedacoOuFatia4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="lacteosIogurtes">
                             <div class="col">
                                 Iogurtes
                             </div>
@@ -1463,7 +1471,7 @@
                     </div>
 
                     <div class="container text-center mb-4 p-3 rounded border">
-                        <div class="row mb-4">
+                        <div class="row mb-4 question">
                             <div class="col">
                                 Cereais
                             </div>
@@ -1480,7 +1488,7 @@
                                 Não
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="cereaisAveia">
                             <div class="col">
                                 Aveia
                             </div>
@@ -1501,7 +1509,7 @@
                                     value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="cereaisGranolaInNatura">
                             <div class="col">
                                 Granola in Natura
                             </div>
@@ -1522,7 +1530,7 @@
                                     id="cereaisGranolaInNatura4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="cereaisQuinoa">
                             <div class="col">
                                 Quinoa
                             </div>
@@ -1543,7 +1551,7 @@
                                     value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="cereaisLinhaca">
                             <div class="col">
                                 Linhaça
                             </div>
@@ -1564,7 +1572,7 @@
                                     value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="cereaisChia">
                             <div class="col">
                                 Chia
                             </div>
@@ -1588,7 +1596,7 @@
                     </div>
 
                     <div class="container text-center mb-4 p-3 rounded border">
-                        <div class="row mb-4">
+                        <div class="row mb-4 question">
                             <div class="col">
                                 Pães
                             </div>
@@ -1605,7 +1613,7 @@
                                 Não
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="paesFrancesMediaNormal">
                             <div class="col">
                                 Pão Francês Média Normal
                             </div>
@@ -1626,7 +1634,7 @@
                                     id="paesFrancesMediaNormal4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="paesFrancesMediaIntegral">
                             <div class="col">
                                 Pão Francês Média Integral
                             </div>
@@ -1647,7 +1655,7 @@
                                     id="paesFrancesMediaIntegral4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="paesForma">
                             <div class="col">
                                 Pão de Forma
                             </div>
@@ -1668,7 +1676,7 @@
                                     value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="paesFormaIntegral">
                             <div class="col">
                                 Pão de Forma Integral
                             </div>
@@ -1689,7 +1697,7 @@
                                     id="paesFormaIntegral4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="paesCara">
                             <div class="col">
                                 Pão de Cará
                             </div>
@@ -1712,7 +1720,7 @@
                     </div>
 
                     <div class="container text-center mb-4 p-3 rounded border">
-                        <div class="row mb-4">
+                        <div class="row mb-4 question">
                             <div class="col">
                                 Pastas
                             </div>
@@ -1729,7 +1737,7 @@
                                 Não
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="pastasRequeijao">
                             <div class="col">
                                 Requeijão
                             </div>
@@ -1750,7 +1758,7 @@
                                     id="pastasRequeijao4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="pastasMargarina">
                             <div class="col">
                                 Margarina
                             </div>
@@ -1771,7 +1779,7 @@
                                     id="pastasMargarina4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="pastasManteiga">
                             <div class="col">
                                 Manteiga
                             </div>
@@ -1792,7 +1800,7 @@
                                     value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="pastasRicota">
                             <div class="col">
                                 Ricota
                             </div>
@@ -1813,7 +1821,7 @@
                                     value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="pastasCottage">
                             <div class="col">
                                 Cottage
                             </div>
@@ -1834,7 +1842,7 @@
                                     value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="pastasDoceDeLeite">
                             <div class="col">
                                 Doce de Leite
                             </div>
@@ -1855,7 +1863,7 @@
                                     id="pastasDoceDeLeite4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="pastasCremeDeAvela">
                             <div class="col">
                                 Creme de Avelã
                             </div>
@@ -1876,7 +1884,7 @@
                                     id="pastasCremeDeAvela4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="pastasGeleia">
                             <div class="col">
                                 Geleia
                             </div>
@@ -1900,7 +1908,7 @@
                     </div>
 
                     <div class="container text-center mb-4 p-3 rounded border">
-                        <div class="row mb-4">
+                        <div class="row mb-4 question">
                             <div class="col">
                                 Salgados
                             </div>
@@ -1917,7 +1925,7 @@
                                 Não
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="salgadosMistinhoEsfiha">
                             <div class="col">
                                 Mistinho Esfiha
                             </div>
@@ -1938,7 +1946,7 @@
                                     id="salgadosMistinhoEsfiha4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="salgadosCoxinhaCroquete">
                             <div class="col">
                                 Coxinha/Croquete
                             </div>
@@ -1959,7 +1967,7 @@
                                     id="salgadosCoxinhaCroquete4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="salgadosEmpadas">
                             <div class="col">
                                 Empadas
                             </div>
@@ -1980,7 +1988,7 @@
                                     id="salgadosEmpadas4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="salgadosPaoDeQueijo">
                             <div class="col">
                                 Pão de Queijo
                             </div>
@@ -2004,7 +2012,7 @@
                     </div>
 
                     <div class="container text-center mb-4 p-3 rounded border">
-                        <div class="row mb-4">
+                        <div class="row mb-4 question">
                             <div class="col">
                                 Ultraprocessados
                             </div>
@@ -2021,7 +2029,7 @@
                                 Não
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="ultraprocessadosSalgadinhoDePacote">
                             <div class="col">
                                 Salgadinho de Pacote
                             </div>
@@ -2042,7 +2050,7 @@
                                     id="ultraprocessadosSalgadinhoDePacote4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="ultraprocessadosBiscoitoSalgado">
                             <div class="col">
                                 Biscoito Salgado
                             </div>
@@ -2063,7 +2071,7 @@
                                     id="ultraprocessadosBiscoitoSalgado4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="ultraprocessadosBiscoitoDoce">
                             <div class="col">
                                 Biscoito Doce
                             </div>
@@ -2084,7 +2092,7 @@
                                     id="ultraprocessadosBiscoitoDoce4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="ultraprocessadosChocolate">
                             <div class="col">
                                 Chocolate
                             </div>
@@ -2105,7 +2113,7 @@
                                     id="ultraprocessadosChocolate4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="ultraprocessadosRefrigerante">
                             <div class="col">
                                 Refrigerante
                             </div>
@@ -2126,7 +2134,7 @@
                                     id="ultraprocessadosRefrigerante4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="ultraprocessadosSucoEmPoCaixinha">
                             <div class="col">
                                 Suco em Pó / Caixinha
                             </div>
@@ -2147,8 +2155,8 @@
                                     id="ultraprocessadosSucoEmPoCaixinha4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
-                            <div class="col">
+                        <div class="row mb-4 question" question-name="">
+                            <div class="colultraprocessadosPratosProntosCongelados">
                                 Pratos Prontos Congelados
                             </div>
                             <div class="col">
@@ -2172,7 +2180,7 @@
                                     id="ultraprocessadosPratosProntosCongelados4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="ultraprocessadosMacarraoInstantaneo">
                             <div class="col">
                                 Macarrão Instantâneo
                             </div>
@@ -2193,7 +2201,7 @@
                                     id="ultraprocessadosMacarraoInstantaneo4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="ultraprocessadosBolinho">
                             <div class="col">
                                 Bolinho
                             </div>
@@ -2214,7 +2222,7 @@
                                     id="ultraprocessadosBolinho4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="ultraprocessadosFastFood">
                             <div class="col">
                                 Fast Food
                             </div>
@@ -2238,7 +2246,7 @@
                     </div>
 
                     <div class="container text-center mb-4 p-3 rounded border">
-                        <div class="row mb-4">
+                        <div class="row mb-4 question">
                             <div class="col">
                                 Embutidos
                             </div>
@@ -2255,7 +2263,7 @@
                                 Não
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="embutidosSalame">
                             <div class="col">
                                 Salame
                             </div>
@@ -2276,7 +2284,7 @@
                                     id="embutidosSalame4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="embutidosPresunto">
                             <div class="col">
                                 Presunto
                             </div>
@@ -2297,7 +2305,7 @@
                                     id="embutidosPresunto4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="embutidosApresuntadoMortadela">
                             <div class="col">
                                 Apresuntado / Mortadela
                             </div>
@@ -2318,7 +2326,7 @@
                                     id="embutidosApresuntadoMortadela4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="embutidosLinguicaToscanaCalabresa">
                             <div class="col">
                                 Linguiça Toscana / Calabresa
                             </div>
@@ -2339,7 +2347,7 @@
                                     id="embutidosLinguicaToscanaCalabresa4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="embutidosSalsicha">
                             <div class="col">
                                 Salsicha
                             </div>
@@ -2360,7 +2368,7 @@
                                     id="embutidosSalsicha4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="embutidosPeitoDePeru">
                             <div class="col">
                                 Peito de Peru
                             </div>
@@ -2381,7 +2389,7 @@
                                     id="embutidosPeitoDePeru4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="embutidosRosbife">
                             <div class="col">
                                 Rosbife
                             </div>
@@ -2402,7 +2410,7 @@
                                     id="embutidosRosbife4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="embutidosNuggets">
                             <div class="col">
                                 Nuggets
                             </div>
@@ -2423,7 +2431,7 @@
                                     id="embutidosNuggets4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="embutidosHamburguerTradicional">
                             <div class="col">
                                 Hambúrguer Tradicional
                             </div>
@@ -2447,7 +2455,7 @@
                     </div>
 
                     <div class="container text-center mb-4 p-3 rounded border">
-                        <div class="row mb-4">
+                        <div class="row mb-4 question">
                             <div class="col">
                                 Açúcares
                             </div>
@@ -2464,7 +2472,7 @@
                                 Não
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="acucaresAcucar">
                             <div class="col">
                                 Açúcar
                             </div>
@@ -2485,7 +2493,7 @@
                                     value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="acucaresAdocante">
                             <div class="col">
                                 Adoçante
                             </div>
@@ -2506,7 +2514,7 @@
                                     id="acucaresAdocante4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="acucaresMelMelado">
                             <div class="col">
                                 Mel / Melado
                             </div>
@@ -2527,7 +2535,7 @@
                                     id="acucaresMelMelado4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="acucaresProdutosConfeitaria">
                             <div class="col">
                                 Produtos de Confeitaria
                             </div>
@@ -2548,7 +2556,7 @@
                                     id="acucaresProdutosConfeitaria4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="acucaresGuloseimas">
                             <div class="col">
                                 Guloseimas
                             </div>
@@ -2569,7 +2577,7 @@
                                     id="acucaresGuloseimas4" value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="acucaresAchocolatados">
                             <div class="col">
                                 Achocolatados
                             </div>
@@ -2593,7 +2601,7 @@
                     </div>
 
                     <div class="container text-center mb-4 p-3 rounded border">
-                        <div class="row mb-4">
+                        <div class="row mb-4 question">
                             <div class="col">
                                 Molhos
                             </div>
@@ -2610,7 +2618,7 @@
                                 Não
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="molhosKetchup">
                             <div class="col">
                                 Ketchup
                             </div>
@@ -2631,7 +2639,7 @@
                                     value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="molhosMostarda">
                             <div class="col">
                                 Mostarda
                             </div>
@@ -2652,7 +2660,7 @@
                                     value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="molhosShoyu">
                             <div class="col">
                                 Shoyu
                             </div>
@@ -2673,7 +2681,7 @@
                                     value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="molhosTare">
                             <div class="col">
                                 Tare
                             </div>
@@ -2694,7 +2702,7 @@
                                     value="nao">
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="molhosMaionese">
                             <div class="col">
                                 Maionese
                             </div>
@@ -2729,11 +2737,12 @@
                     </div>
 
                     <div class="mb-4">
-                        <label for="necessidadeComerEstressadoAnsiosoTriste" class="form-label">Costuma ter a necessidade de comer quando
+                        <label for="necessidadeComerEstressadoAnsiosoTriste" class="form-label">Costuma ter a
+                            necessidade de comer quando
                             está
-                            estressado(a), ansioso(a) ou triste? <span class="required">*</span></label>
-                        <select class="form-select" required aria-label="necessidadeComerEstressadoAnsiosoTriste" name="necessidadeComerEstressadoAnsiosoTriste"
-                            id="necessidadeComerEstressadoAnsiosoTriste" required>
+                            estressado(a), ansioso(a) ou triste?</label>
+                        <select class="form-select" aria-label="necessidadeComerEstressadoAnsiosoTriste"
+                            name="necessidadeComerEstressadoAnsiosoTriste" id="necessidadeComerEstressadoAnsiosoTriste">
                             <option selected disabled value="">Selecione a opção</option>
                             <option value="sim">Sim</option>
                             <option value="nao">Não</option>
@@ -2744,10 +2753,9 @@
 
                     <div class="mb-4">
                         <label for="realizaRefeicoesSozinhoAcompanhado" class="form-label">Costuma realizar as
-                            refeições sozinho(a) ou acompanhado(a)? <span class="required">*</span></label>
-                        <select class="form-select" required aria-label="realizaRefeicoesSozinhoAcompanhado"
-                            name="realizaRefeicoesSozinhoAcompanhado"
-                            id="realizaRefeicoesSozinhoAcompanhado" required>
+                            refeições sozinho(a) ou acompanhado(a)?</label>
+                        <select class="form-select" aria-label="realizaRefeicoesSozinhoAcompanhado"
+                            name="realizaRefeicoesSozinhoAcompanhado" id="realizaRefeicoesSozinhoAcompanhado">
                             <option selected disabled value="">Selecione a opção</option>
                             <option value="sozinho">Sozinho</option>
                             <option value="acompanhado">Acompanhado</option>
@@ -2771,10 +2779,9 @@
 
                     <div class="mb-4">
                         <label for="necessidadeConsoloAlimentar" class="form-label">Sente que precisa "se
-                            consolar" comendo algo após um acontecimento ruim/estressante? <span
-                                class="required">*</span></label>
-                        <select class="form-select" required aria-label="necessidadeConsoloAlimentar"
-                            name="necessidadeConsoloAlimentar" id="necessidadeConsoloAlimentar" required>
+                            consolar" comendo algo após um acontecimento ruim/estressante?</label>
+                        <select class="form-select" aria-label="necessidadeConsoloAlimentar"
+                            name="necessidadeConsoloAlimentar" id="necessidadeConsoloAlimentar">
                             <option selected disabled value="">Selecione a opção</option>
                             <option value="sim">Sim</option>
                             <option value="nao">Não</option>
@@ -2785,9 +2792,9 @@
 
                     <div class="mb-4">
                         <label for="dificuldadePararDeComer" class="form-label">É difícil para você parar de comer ainda
-                            que tenha restado comida no prato? <span class="required">*</span></label>
-                        <select class="form-select" required aria-label="dificuldadePararDeComer" name="dificuldadePararDeComer"
-                            id="dificuldadePararDeComer" required>
+                            que tenha restado comida no prato?</label>
+                        <select class="form-select" aria-label="dificuldadePararDeComer" name="dificuldadePararDeComer"
+                            id="dificuldadePararDeComer">
                             <option selected disabled value="">Selecione a opção</option>
                             <option value="sim">Sim</option>
                             <option value="nao">Não</option>
@@ -2798,9 +2805,9 @@
 
                     <div class="mb-4">
                         <label for="frequenciaFomeFisiologica" class="form-label">Qual a frequência da sua fome
-                            fisiológica? <span class="required">*</span></label>
-                        <select class="form-select" required aria-label="frequenciaFomeFisiologica"
-                            name="frequenciaFomeFisiologica" id="frequenciaFomeFisiologica" required>
+                            fisiológica?</label>
+                        <select class="form-select" aria-label="frequenciaFomeFisiologica"
+                            name="frequenciaFomeFisiologica" id="frequenciaFomeFisiologica">
                             <option selected disabled value="">Selecione a opção</option>
                             <option value="Apenas nos horários das refeições">Apenas nos horários das refeições</option>
                             <option value="Às vezes nos intervalos entre as refeições">Às vezes nos intervalos entre as
@@ -2813,10 +2820,9 @@
 
                     <div class="mb-4">
                         <label for="frequenciaNecessidadeEmocionalComer" class="form-label">Qual a frequência da sua
-                            necessidade emocional de comer alguma coisa? <span class="required">*</span></label>
-                        <select class="form-select" required aria-label="frequenciaNecessidadeEmocionalComer"
-                            name="frequenciaNecessidadeEmocionalComer" id="frequenciaNecessidadeEmocionalComer"
-                            required>
+                            necessidade emocional de comer alguma coisa?</label>
+                        <select class="form-select" aria-label="frequenciaNecessidadeEmocionalComer"
+                            name="frequenciaNecessidadeEmocionalComer" id="frequenciaNecessidadeEmocionalComer">
                             <option selected disabled value="">Selecione a opção</option>
                             <option value="Não há">Não há</option>
                             <option value="Por ansiedade">Por ansiedade</option>
@@ -2892,45 +2898,45 @@
                                 10
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="notaSaciedadePosRefeicoes">
                             <div class="col">
-                                <input class="form-check-input" type="radio" required name="notaSaciedadePosRefeicoes"
+                                <input class=" form-check-input" type="radio" name="notaSaciedadePosRefeicoes"
                                     id="notaSaciedadePosRefeicoes1" value="1">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" required name="notaSaciedadePosRefeicoes"
+                                <input class="form-check-input" type="radio" name="notaSaciedadePosRefeicoes"
                                     id="notaSaciedadePosRefeicoes2" value="2">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" required name="notaSaciedadePosRefeicoes"
+                                <input class="form-check-input" type="radio" name="notaSaciedadePosRefeicoes"
                                     id="notaSaciedadePosRefeicoes3" value="3">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" required name="notaSaciedadePosRefeicoes"
+                                <input class="form-check-input" type="radio" name="notaSaciedadePosRefeicoes"
                                     id="notaSaciedadePosRefeicoes4" value="4">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" required name="notaSaciedadePosRefeicoes"
+                                <input class="form-check-input" type="radio" name="notaSaciedadePosRefeicoes"
                                     id="notaSaciedadePosRefeicoes5" value="5">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" required name="notaSaciedadePosRefeicoes"
+                                <input class="form-check-input" type="radio" name="notaSaciedadePosRefeicoes"
                                     id="notaSaciedadePosRefeicoes6" value="6">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" required name="notaSaciedadePosRefeicoes"
+                                <input class="form-check-input" type="radio" name="notaSaciedadePosRefeicoes"
                                     id="notaSaciedadePosRefeicoes7" value="7">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" required name="notaSaciedadePosRefeicoes"
+                                <input class="form-check-input" type="radio" name="notaSaciedadePosRefeicoes"
                                     id="notaSaciedadePosRefeicoes8" value="8">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" required name="notaSaciedadePosRefeicoes"
+                                <input class="form-check-input" type="radio" name="notaSaciedadePosRefeicoes"
                                     id="notaSaciedadePosRefeicoes9" value="9">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" required name="notaSaciedadePosRefeicoes"
+                                <input class="form-check-input" type="radio" name="notaSaciedadePosRefeicoes"
                                     id="notaSaciedadePosRefeicoes10" value="10">
                             </div>
 
@@ -2971,45 +2977,45 @@
                                 10
                             </div>
                         </div>
-                        <div class="row mb-4">
+                        <div class="row mb-4 question" question-name="notaHumorPosRefeicoes">
                             <div class="col">
-                                <input class="form-check-input" type="radio" required name="notaHumorPosRefeicoes"
+                                <input class=" form-check-input" type="radio" name="notaHumorPosRefeicoes"
                                     id="notaHumorPosRefeicoes1" value="1">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" required name="notaHumorPosRefeicoes"
+                                <input class="form-check-input" type="radio" name="notaHumorPosRefeicoes"
                                     id="notaHumorPosRefeicoes2" value="2">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" required name="notaHumorPosRefeicoes"
+                                <input class="form-check-input" type="radio" name="notaHumorPosRefeicoes"
                                     id="notaHumorPosRefeicoes3" value="3">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" required name="notaHumorPosRefeicoes"
+                                <input class="form-check-input" type="radio" name="notaHumorPosRefeicoes"
                                     id="notaHumorPosRefeicoes4" value="4">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" required name="notaHumorPosRefeicoes"
+                                <input class="form-check-input" type="radio" name="notaHumorPosRefeicoes"
                                     id="notaHumorPosRefeicoes5" value="5">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" required name="notaHumorPosRefeicoes"
+                                <input class="form-check-input" type="radio" name="notaHumorPosRefeicoes"
                                     id="notaHumorPosRefeicoes6" value="6">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" required name="notaHumorPosRefeicoes"
+                                <input class="form-check-input" type="radio" name="notaHumorPosRefeicoes"
                                     id="notaHumorPosRefeicoes7" value="7">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" required name="notaHumorPosRefeicoes"
+                                <input class="form-check-input" type="radio" name="notaHumorPosRefeicoes"
                                     id="notaHumorPosRefeicoes8" value="8">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" required name="notaHumorPosRefeicoes"
+                                <input class="form-check-input" type="radio" name="notaHumorPosRefeicoes"
                                     id="notaHumorPosRefeicoes9" value="9">
                             </div>
                             <div class="col">
-                                <input class="form-check-input" type="radio" required name="notaHumorPosRefeicoes"
+                                <input class="form-check-input" type="radio" name="notaHumorPosRefeicoes"
                                     id="notaHumorPosRefeicoes10" value="10">
                             </div>
 
