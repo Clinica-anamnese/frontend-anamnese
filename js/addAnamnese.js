@@ -5,32 +5,20 @@ const nextBtn = document.getElementById("nextBtn");
 const prevBtn = document.getElementById("prevBtn");
 const tabs = document.getElementsByClassName("tab");
 const fPacienteId = document.getElementById("selectPacientes");
-const fEscolaridade = document.getElementById("escolaridade");
-const fPeriodoEstudo = document.getElementById("periodoEstudo");
 const fLancheEstudo = document.getElementById("lancheEstudo");
-const fPeriodoTrabalho = document.getElementById("periodoTrabalho");
 const fLancheTrabalho = document.getElementById("lancheTrabalho");
 const fProfissao = document.getElementById("profissao");
-const fRendaFamiliar = document.getElementById("rendaFamiliar");
 const fNumPessoasDomicilio = document.getElementById("numPessoasDomicilio");
 const fMotivo = document.getElementById("motivo");
 const fApresentaDoenca = document.getElementById("apresentaDoenca");
 const fAntecedentesFamiliares = document.getElementById("antecedentesFamiliares");
 const fMedicamentosContinuos = document.getElementById("medicamentosContinuos");
 const fSuplementosComplementos = document.getElementById("suplementosComplementos");
-const fFrequenciaEvacuacao = document.getElementById("frequenciaEvacuacao");
-const fConsistenciaEvacuacao = document.getElementById("consistenciaEvacuacao");
 const fPraticaAtvFisica = document.getElementById("praticaAtvFisica");
 const fAtvFisica = document.getElementById("atvFisica");
 const fQuemCozinha = document.getElementById("quemCozinha");
-const fNecessidadeComerEstressadoAnsiosoTriste = document.getElementById("necessidadeComerEstressadoAnsiosoTriste");
-const fRealizaRefeicoesSozinhoAcompanhado = document.getElementById("realizaRefeicoesSozinhoAcompanhado");
-const fExcessoAlimentosNaoSaudaveisSintomas = document.getElementById("excessoAlimentosNaoSaudaveisSintomas");
 const fDificuldadeRotinaAlimentarSaudavel = document.getElementById("dificuldadeRotinaAlimentarSaudavel");
 const fNecessidadeConsoloAlimentar = document.getElementById("necessidadeConsoloAlimentar");
-const fDificuldadePararDeComer = document.getElementById("dificuldadePararDeComer");
-const fFrequenciaFomeFisiologica = document.getElementById("frequenciaFomeFisiologica");
-const fFrequenciaNecessidadeEmocionalComer = document.getElementById("frequenciaNecessidadeEmocionalComer");
 const fNaoModificarPlanoAlimentar = document.getElementById("naoModificarPlanoAlimentar");
 const fAversaoAlimentar = document.getElementById("aversaoAlimentar");
 const fToleraAlimentosProteinaAnimal = document.getElementById("toleraAlimentosProteinaAnimal");
@@ -60,6 +48,7 @@ const fEmapEsquerda = document.getElementById("emapEsquerda");
 const fForcaPreencaoManualDireita = document.getElementById("forcaPreencaoManualDireita");
 const fForcaPreencaoManualEsquerda = document.getElementById("forcaPreencaoManualEsquerda");
 const fMetas = document.getElementById("metas");
+
 let currentTab = 0;
 
 // exibe os Anamneses no select do formulario
@@ -84,86 +73,8 @@ function listarPacientesSelect() {
     })
 }
 
-// obtem os valores dos campos
-function getSelectedRadioValues() {
-  const questions = document.querySelectorAll('.question');
-  const data = {
-    pacienteId: fPacienteId.value,
-    usuarioId: usuarioId,
-    escolaridade: fEscolaridade.value,
-    periodoEstudo: fPeriodoEstudo.value,
-    lancheEstudo: fLancheEstudo.checked,
-    periodoTrabalho: fPeriodoTrabalho.value,
-    lancheTrabalho: fLancheTrabalho.checked,
-    profissao: fProfissao.value,
-    rendaFamiliar: fRendaFamiliar.value,
-    numPessoasDomicilio: fNumPessoasDomicilio.value,
-    motivo: fMotivo.value,
-    apresentaDoenca: fApresentaDoenca.value,
-    antecedentesFamiliares: fAntecedentesFamiliares.value,
-    medicamentosContinuos: fMedicamentosContinuos.value,
-    suplementosComplementos: fSuplementosComplementos.value,
-    frequenciaEvacuacao: fFrequenciaEvacuacao.value,
-    consistenciaEvacuacao: fConsistenciaEvacuacao.value,
-    praticaAtvFisica: fPraticaAtvFisica.checked,
-    atvFisica: fAtvFisica.value,
-    quemCozinha: fQuemCozinha.value,
-    necessidadeComerEstressadoAnsiosoTriste: fNecessidadeComerEstressadoAnsiosoTriste.value,
-    realizaRefeicoesSozinhoAcompanhado: fRealizaRefeicoesSozinhoAcompanhado.value,
-    realizaRefeicoesSozinhoAcompanhado: fRealizaRefeicoesSozinhoAcompanhado.value,
-    excessoAlimentosNaoSaudaveisSintomas: fExcessoAlimentosNaoSaudaveisSintomas.value,
-    dificuldadeRotinaAlimentarSaudavel: fDificuldadeRotinaAlimentarSaudavel.value,
-    necessidadeConsoloAlimentar: fNecessidadeConsoloAlimentar.value,
-    dificuldadePararDeComer: fDificuldadePararDeComer.value,
-    frequenciaFomeFisiologica: fFrequenciaFomeFisiologica.value,
-    frequenciaNecessidadeEmocionalComer: fFrequenciaNecessidadeEmocionalComer.value,
-    naoModificarPlanoAlimentar: fNaoModificarPlanoAlimentar.value,
-    aversaoAlimentar: fAversaoAlimentar.value,
-    toleraAlimentosProteinaAnimal: fToleraAlimentosProteinaAnimal.value,
-    alergiaIntoleranciasAlimentares: fAlergiaIntoleranciasAlimentares.value,
-    pesoAtual: fPesoAtual.value,
-    estatura: fEstatura.value,
-    imc: fImc.value,
-    cb: fCb.value,
-    dct: fDct.value,
-    dcb: fDcb.value,
-    dcse: fDcse.value,
-    dcsi: fDcsi.value,
-    somatoria4Dobras: fSomatoria4Dobras.value,
-    porcentagemGorduraCorporalSomatoria4Dobras: fPorcentagemGorduraCorporalSomatoria4Dobras.value,
-    pesoGordura: fPesoGordura.value,
-    pesoMassaMagra: fPesoMassaMagra.value,
-    totalAgua: fTotalAgua.value,
-    porcentagemAguaMassaMagra: fPorcentagemAguaMassaMagra.value,
-    resistencia: fResistencia.value,
-    reactancia: fReactancia.value,
-    anguloDeFase: fAnguloDeFase.value,
-    circunferenciaCintura: fCircunferenciaCintura.value,
-    circunferenciaQuadril: fCircunferenciaQuadril.value,
-    circunferenciaPanturrilha: fCircunferenciaPanturrilha.value,
-    emapDireita: fEmapDireita.value,
-    emapEsquerda: fEmapEsquerda.value,
-    forcaPreencaoManualDireita: fForcaPreencaoManualDireita.value,
-    forcaPreencaoManualEsquerda: fForcaPreencaoManualEsquerda.value,
-    metas: fMetas.value,
-  };
-
-  questions.forEach(question => {
-    const name = question.getAttribute('question-name');
-    const selectedOption = question.querySelector(`input[name="${name}"]:checked`);
-
-    if (selectedOption) {
-      data[name] = selectedOption.value;
-    } else {
-      data[name] = null; // Ou qualquer outro valor padrão
-    }
-  });
-
-  return data;
-}
-
 function cadastrarAnamnese() {
-  const data = getSelectedRadioValues();
+  const data = getData();
   return new Promise((resolve, reject) => {
     if (validateForm(formAddAnamnese)) {
       fetch(urlApi + endpointAnamneses, {
@@ -245,6 +156,84 @@ function fixStepIndicator(n) {
     x[i].className = x[i].className.replace(" active", "");
   }
   x[n].className += " active";
+}
+
+// obtem os valores dos campos
+function getData() {
+  const data = {
+    pacienteId: fPacienteId.value,
+    usuarioId: usuarioId,
+    lancheEstudo: fLancheEstudo.checked,
+    lancheTrabalho: fLancheTrabalho.checked,
+    profissao: fProfissao.value,
+    numPessoasDomicilio: fNumPessoasDomicilio.value,
+    motivo: fMotivo.value,
+    apresentaDoenca: fApresentaDoenca.value,
+    antecedentesFamiliares: fAntecedentesFamiliares.value,
+    medicamentosContinuos: fMedicamentosContinuos.value,
+    suplementosComplementos: fSuplementosComplementos.value,
+    praticaAtvFisica: fPraticaAtvFisica.checked,
+    atvFisica: fAtvFisica.value,
+    quemCozinha: fQuemCozinha.value,
+    dificuldadeRotinaAlimentarSaudavel: fDificuldadeRotinaAlimentarSaudavel.value,
+    necessidadeConsoloAlimentar: fNecessidadeConsoloAlimentar.value,
+    naoModificarPlanoAlimentar: fNaoModificarPlanoAlimentar.value,
+    aversaoAlimentar: fAversaoAlimentar.value,
+    toleraAlimentosProteinaAnimal: fToleraAlimentosProteinaAnimal.value,
+    alergiaIntoleranciasAlimentares: fAlergiaIntoleranciasAlimentares.value,
+    pesoAtual: fPesoAtual.value,
+    estatura: fEstatura.value,
+    imc: fImc.value,
+    cb: fCb.value,
+    dct: fDct.value,
+    dcb: fDcb.value,
+    dcse: fDcse.value,
+    dcsi: fDcsi.value,
+    somatoria4Dobras: fSomatoria4Dobras.value,
+    porcentagemGorduraCorporalSomatoria4Dobras: fPorcentagemGorduraCorporalSomatoria4Dobras.value,
+    pesoGordura: fPesoGordura.value,
+    pesoMassaMagra: fPesoMassaMagra.value,
+    totalAgua: fTotalAgua.value,
+    porcentagemAguaMassaMagra: fPorcentagemAguaMassaMagra.value,
+    resistencia: fResistencia.value,
+    reactancia: fReactancia.value,
+    anguloDeFase: fAnguloDeFase.value,
+    circunferenciaCintura: fCircunferenciaCintura.value,
+    circunferenciaQuadril: fCircunferenciaQuadril.value,
+    circunferenciaPanturrilha: fCircunferenciaPanturrilha.value,
+    emapDireita: fEmapDireita.value,
+    emapEsquerda: fEmapEsquerda.value,
+    forcaPreencaoManualDireita: fForcaPreencaoManualDireita.value,
+    forcaPreencaoManualEsquerda: fForcaPreencaoManualEsquerda.value,
+    metas: fMetas.value,
+  };
+
+  // define valor dos radio buttons para null caso nao estejam marcados
+  const radioInput = document.querySelectorAll('.radioInput');
+  radioInput.forEach(input => {
+    const name = input.getAttribute('radioInput-name');
+    const selectedOption = input.querySelector(`input[name="${name}"]:checked`);
+
+    if (selectedOption) {
+      data[name] = selectedOption.value;
+    } else {
+      data[name] = null;
+    }
+  });
+
+  // converte selects com strings vazias para null
+  const selectElement = document.querySelectorAll('select');
+  selectElement.forEach((select) => {
+    const id = select.getAttribute('id');
+    const selectedOption = document.getElementById(id);
+    if (selectedOption.value === "") {
+      data[id] = null;
+    } else {
+      data[id] = selectedOption.value
+    }
+  })
+
+  return data;
 }
 
 verificarAutenticacao();
