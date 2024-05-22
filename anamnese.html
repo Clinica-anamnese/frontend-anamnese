@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./css/addAnamnese.css">
     <script src="./js/bootstrap.js" defer></script>
     <script src="./js/globalScript.js" defer></script>
-    <script src="./js/addAnamnese.js" defer></script>
+    <script src="./js/editAnamnese.js" defer></script>
 </head>
 
 <body>
@@ -67,6 +67,7 @@
                             <option value="ensino_superior_completo">Ensino Superior Completo</option>
                             <option value="outra">Outra</option>
                         </select>
+                        <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                     <div class="mb-4">
@@ -78,6 +79,7 @@
                             <option value="noite">Noite</option>
                             <option value="NA">Não se aplica</option>
                         </select>
+                        <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                     <div class="mb-4 form-check">
@@ -94,6 +96,7 @@
                             <option value="noite">Noite</option>
                             <option value="NA">Não se aplica</option>
                         </select>
+                        <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                     <div class="mb-4 form-check">
@@ -122,12 +125,14 @@
                             <option value="mais_de_5_salarios_minimos">Mais de 5 salários mínimos</option>
                             <option value="nao_sei">Não sei</option>
                         </select>
+                        <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                     <div class="mb-4">
                         <label for="numPessoasDomicilio" class="form-label">Número de Pessoas no Domicílio</label>
                         <input type="number" id="numPessoasDomicilio" name="numPessoasDomicilio" class="form-control"
                             min="0">
+                        <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                 </div>
@@ -144,6 +149,7 @@
                     <div class="mb-4">
                         <label for="apresentaDoenca" class="form-label">Apresenta alguma doença?</label>
                         <input type="text" id="apresentaDoenca" name="apresentaDoenca" class="form-control">
+                        <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                     <div class="mb-4">
@@ -151,11 +157,13 @@
                             alguma doença crônica? (DM, HAS, dislipidemia...)</label>
                         <input type="text" id="antecedentesFamiliares" name="antecedentesFamiliares"
                             class="form-control">
+                        <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                     <div class="mb-4">
                         <label for="medicamentosContinuos" class="form-label">Faz uso de medicamentos contínuos?</label>
                         <input type="text" id="medicamentosContinuos" name="medicamentosContinuos" class="form-control">
+                        <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                     <div class="mb-4">
@@ -163,6 +171,7 @@
                             alimentares?</label>
                         <input type="text" id="suplementosComplementos" name="suplementosComplementos"
                             class="form-control">
+                        <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                     <div class="mb-4">
@@ -174,6 +183,7 @@
                             <option value="tres_vezes_por_semana">Três vezes por semana</option>
                             <option value="menos_de_3_vezes_por_semana">Menos de 3 vezes por semana</option>
                         </select>
+                        <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                     <div class="mb-4">
@@ -190,6 +200,7 @@
                             <option value="6">Tipo 6</option>
                             <option value="7">Tipo 7</option>
                         </select>
+                        <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                     <div class="mb-4 form-check">
@@ -202,6 +213,7 @@
                         <label for="atvFisica" class="form-label">Se sim: qual atividade, frequência semanal e
                             duração?</label>
                         <input type="text" id="atvFisica" name="atvFisica" class="form-control">
+                        <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                 </div>
