@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./css/anamnese.css">
     <script src="./js/bootstrap.js" defer></script>
     <script src="./js/globalScript.js" defer></script>
-    <script src="./js/addAnamnese.js" defer></script>
+    <script src="./js/addRetorno.js" defer></script>
 </head>
 
 <body>
@@ -43,73 +43,152 @@
     <div class="div-principal">
         <img src="./img/unisantos-logo.png" alt="Logo Unisantos" width="233px">
         <div class="div-conteudo">
-            <form id="regForm" class="formAddAnamnese needs-validation" novalidate>
+            <form id="regForm" class="formAddRetorno needs-validation" novalidate>
 
                 <div class="tab">
 
                     <h1 class="h4 titulo-tab">Retorno</h1>
 
                     <div class="mb-4">
-                        <label for="retorno">Retorno</label>
-                        <input type="number" class="form-control" id="retorno" placeholder="Digite o retorno">
+                        <label class="form-label" for="pacienteId" class="form-label">Paciente <span class="required">*</span></label>
+                        <select class="form-select" aria-label="paciente-select" id="pacienteId" name="pacienteId">
+                            <option selected disabled value="">Selecione o paciente</option>
+                        </select>
+                        <div class="invalid-feedback">Selecione uma opção válida.</div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label" for="retorno">Retorno <span class="required">*</span></label>
+                        <input name="retorno" type="number" class="form-control" id="retorno">
                     </div>
                     <div class="mb-4">
-                        <label for="metasUltimasConsultas">Metas da Última Consulta</label>
-                        <textarea class="form-control" id="metasUltimasConsultas" rows="3"
-                            placeholder="Digite as metas da última consulta"></textarea>
+                        <label class="form-label" for="metasUltimasConsultas">Quais metas foram estabelecidas na última consulta?</label>
+                        <input name="metasUltimasConsultas" type="text" class="form-control" id="metasUltimasConsultas" rows="3"></input>
                     </div>
                     <div class="mb-4">
-                        <label for="comentariosObservacao">Comentários/Observação</label>
-                        <textarea class="form-control" id="comentariosObservacao" rows="3"
-                            placeholder="Digite os comentários/observações"></textarea>
+                        <label class="form-label" for="comentariosObservacao">Comentários/Observação</label>
+                        <input name="comentariosObservacao" type="text" class="form-control" id="comentariosObservacao" rows="3"></input>
                     </div>
                     <div class="mb-4">
-                        <label for="metasForamCumpridas">Metas Foram Cumpridas</label>
-                        <select class="form-control" id="metasForamCumpridas">
+                        <label class="form-label" for="metasForamCumpridas">Do que foi estabelecido na última consulta, as metas
+                            estabelecidas foram cumpridas?</label>
+                        <select class="form-select" id="metasForamCumpridas" name="metasForamCumpridas">
                             <option value="sim">Sim</option>
                             <option value="nao">Não</option>
                             <option value="mais_ou_menos">Mais ou Menos</option>
                         </select>
                     </div>
-                    <div class="mb-4">
-                        <label for="desempenhoCumprimentoMetas">Desempenho no Cumprimento das Metas</label>
-                        <input type="number" class="form-control" id="desempenhoCumprimentoMetas"
-                            placeholder="Digite o desempenho (0-10)">
+                    <div class="container text-center mb-4 p-3 rounded border">
+                        <div class="mb-4">De 0 a 10, dê uma nota ao seu desempenho no cumprimento das metas desde a
+                            última consulta</div>
+                        <div class="row mb-4">
+                            <div class="col">
+                                1
+                            </div>
+                            <div class="col">
+                                2
+                            </div>
+                            <div class="col">
+                                3
+                            </div>
+                            <div class="col">
+                                4
+                            </div>
+                            <div class="col">
+                                5
+                            </div>
+                            <div class="col">
+                                6
+                            </div>
+                            <div class="col">
+                                7
+                            </div>
+                            <div class="col">
+                                8
+                            </div>
+                            <div class="col">
+                                9
+                            </div>
+                            <div class="col">
+                                10
+                            </div>
+                        </div>
+                        <div class="row mb-4 radioInput" radioInput-name="desempenhoCumprimentoMetas">
+                            <div class="col">
+                                <input name="="" class=" form-check-input" type="radio" name="desempenhoCumprimentoMetas"
+                                    id="desempenhoCumprimentoMetas1" value="1">
+                            </div>
+                            <div class="col">
+                                <input name="="" class="form-check-input" type="radio" name="desempenhoCumprimentoMetas"
+                                    id="desempenhoCumprimentoMetas2" value="2">
+                            </div>
+                            <div class="col">
+                                <input name="="" class="form-check-input" type="radio" name="desempenhoCumprimentoMetas"
+                                    id="desempenhoCumprimentoMetas3" value="3">
+                            </div>
+                            <div class="col">
+                                <input name="="" class="form-check-input" type="radio" name="desempenhoCumprimentoMetas"
+                                    id="desempenhoCumprimentoMetas4" value="4">
+                            </div>
+                            <div class="col">
+                                <input name="="" class="form-check-input" type="radio" name="desempenhoCumprimentoMetas"
+                                    id="desempenhoCumprimentoMetas5" value="5">
+                            </div>
+                            <div class="col">
+                                <input name="="" class="form-check-input" type="radio" name="desempenhoCumprimentoMetas"
+                                    id="desempenhoCumprimentoMetas6" value="6">
+                            </div>
+                            <div class="col">
+                                <input name="="" class="form-check-input" type="radio" name="desempenhoCumprimentoMetas"
+                                    id="desempenhoCumprimentoMetas7" value="7">
+                            </div>
+                            <div class="col">
+                                <input name="="" class="form-check-input" type="radio" name="desempenhoCumprimentoMetas"
+                                    id="desempenhoCumprimentoMetas8" value="8">
+                            </div>
+                            <div class="col">
+                                <input name="="" class="form-check-input" type="radio" name="desempenhoCumprimentoMetas"
+                                    id="desempenhoCumprimentoMetas9" value="9">
+                            </div>
+                            <div class="col">
+                                <input name="="" class="form-check-input" type="radio" name="desempenhoCumprimentoMetas"
+                                    id="desempenhoCumprimentoMetas10" value="10">
+                            </div>
+
+                        </div>
                     </div>
                     <div class="mb-4">
-                        <label for="motivoAssinaladoCumprimentoMetas">Motivo Assinalado para Cumprimento das
-                            Metas</label>
-                        <textarea class="form-control" id="motivoAssinaladoCumprimentoMetas" rows="3"
-                            placeholder="Digite o motivo"></textarea>
+                        <label class="form-label" for="motivoAssinaladoCumprimentoMetas">Descreva o motivo assinalado no cumprimento das
+                            metas</label>
+                        <input name="motivoAssinaladoCumprimentoMetas" type="text" class="form-control" id="motivoAssinaladoCumprimentoMetas" rows="3"></input>
                     </div>
                     <div class="mb-4">
-                        <label for="comoSentiuMudancaHabitos">Como Sentiu a Mudança de Hábitos</label>
-                        <textarea class="form-control" id="comoSentiuMudancaHabitos" rows="3"
-                            placeholder="Descreva como se sentiu com a mudança de hábitos"></textarea>
+                        <label class="form-label" for="comoSentiuMudancaHabitos">Como você se sentiu com as mudanças de hábito?</label>
+                        <input name="comoSentiuMudancaHabitos" type="text" class="form-control" id="comoSentiuMudancaHabitos" rows="3"></input>
                     </div>
                     <div class="mb-4">
-                        <label for="adaptacaoMudancaHabitos">Adaptação à Mudança de Hábitos</label>
-                        <textarea class="form-control" id="adaptacaoMudancaHabitos" rows="3"
-                            placeholder="Descreva a adaptação à mudança de hábitos"></textarea>
+                        <label class="form-label" for="adaptacaoMudancaHabitos">Como se adaptou às mudanças de hábitos?</label>
+                        <input name="adaptacaoMudancaHabitos" type="text" class="form-control" id="adaptacaoMudancaHabitos" rows="3"></input>
                     </div>
                     <div class="mb-4">
-                        <label for="motivosDificuldadeAdaptacao">Motivos de Dificuldade na Adaptação</label>
-                        <textarea class="form-control" id="motivosDificuldadeAdaptacao" rows="3"
-                            placeholder="Descreva os motivos de dificuldade na adaptação"></textarea>
+                        <label class="form-label" for="motivosDificuldadeAdaptacao">Caso tenha tido alguma dificuldade ou não tenha
+                            conseguido se adaptar às metas propostas, por favor relate brevemente, quais os principais
+                            motivos?</label>
+                        <input name="motivosDificuldadeAdaptacao" type="text" class="form-control" id="motivosDificuldadeAdaptacao" rows="3"></input>
                     </div>
                     <div class="mb-4">
-                        <label for="sentePrecisaMelhorarAlimentacao">Sente que Precisa Melhorar a Alimentação</label>
-                        <textarea class="form-control" id="sentePrecisaMelhorarAlimentacao" rows="3"
-                            placeholder="Descreva se sente que precisa melhorar a alimentação"></textarea>
+                        <label class="form-label" for="sentePrecisaMelhorarAlimentacao">O que sente que ainda precisa melhorar quanto à sua
+                            alimentação?</label>
+                        <input name="sentePrecisaMelhorarAlimentacao" type="text" class="form-control" id="sentePrecisaMelhorarAlimentacao" rows="3"></input>
                     </div>
                     <div class="mb-4">
-                        <label for="habitoIntestinal">Hábito Intestinal</label>
-                        <textarea class="form-control" id="habitoIntestinal" rows="3"
-                            placeholder="Descreva o hábito intestinal"></textarea>
+                        <label class="form-label" for="habitoIntestinal">Quanto ao seu hábito intestinal</label>
+                        <input name="habitoIntestinal" type="text" class="form-control" id="habitoIntestinal" rows="3"></input>
                     </div>
                     <div class="mb-4">
-                        <label for="atvFisica">Atividade Física</label>
-                        <select class="form-control" id="atvFisica">
+                        <label class="form-label" for="atvFisica">Atividade Física</label>
+                        <select class="form-select" id="atvFisica" name="atvFisica">
+                            <option selected disabled value="">Selecione a opção</option>
                             <option value="manteve_o_que_ja_fazia">Manteve o que já fazia</option>
                             <option value="aumentei_a_frequencia_intensidade">Aumentei a frequência/intensidade</option>
                             <option value="ainda_nao_consegui_praticar">Ainda não consegui praticar</option>
@@ -118,9 +197,8 @@
                         </select>
                     </div>
                     <div class="mb-4">
-                        <label for="metasProximoRetorno">Metas para o Próximo Retorno</label>
-                        <textarea class="form-control" id="metasProximoRetorno" rows="3"
-                            placeholder="Digite as metas para o próximo retorno"></textarea>
+                        <label class="form-label" for="metasProximoRetorno">Metas para o Próximo Retorno</label>
+                        <input name="metasProximoRetorno" type="text" class="form-control" id="metasProximoRetorno" rows="3"></input>
                     </div>
 
                 </div>
@@ -130,87 +208,35 @@
                     <h2 class="h5 titulo-tab">Medidas Corporais</h2>
 
                     <div class="mb-4">
-                        <label for="pesoAtual">ID do Usuário</label>
-                        <input type="number" class="form-control" id="pesoAtual" placeholder="Digite o ID do usuário"
-                            required>
+                        <label class="form-label" for="pesoAtual" class="form-label">Peso atual (kg)</label>
+                        <input na"me="" type="number" id="pesoAtual" name="pesoAtual" class="form-control" min="0" step="0.1">
                     </div>
+
                     <div class="mb-4">
-                        <label for="usuarioNome">Nome do Usuário</label>
-                        <input type="text" class="form-control" id="usuarioNome" maxlength="60"
-                            placeholder="Digite o nome do usuário" required>
+                        <label class="form-label" for="imc" class="form-label">IMC (kg/m²)</label>
+                        <input na"me="" type="number" id="imc" name="imc" class="form-control" min="0" step="0.1">
                     </div>
+
                     <div class="mb-4">
-                        <label for="retorno">Retorno</label>
-                        <input type="number" class="form-control" id="retorno" placeholder="Digite o retorno">
+                        <label class="form-label" for="circunferenciaAbdominal" class="form-label">Circunferência Abdominal</label>
+                        <input na"me="" type="number" id="circunferenciaAbdominal" name="circunferenciaAbdominal"
+                            class="form-control" min="0" step="0.1">
                     </div>
+
+                </div>
+
+                <div class="tab">
+
+                    <h2 class="h5 titulo-tab">Retorno com Bioimpedância</h2>
+
                     <div class="mb-4">
-                        <label for="metasUltimasConsultas">Metas da Última Consulta</label>
-                        <textarea class="form-control" id="metasUltimasConsultas" rows="3"
-                            placeholder="Digite as metas da última consulta"></textarea>
+                        <label class="form-label" for="valoresBioimpedancia">Descrever os valores da Bioimpedância</label>
+                        <input name="valoresBioimpedancia" type="text" class="form-control" id="valoresBioimpedancia" rows="3"></input>
                     </div>
+
                     <div class="mb-4">
-                        <label for="comentariosObservacao">Comentários/Observação</label>
-                        <textarea class="form-control" id="comentariosObservacao" rows="3"
-                            placeholder="Digite os comentários/observações"></textarea>
-                    </div>
-                    <div class="mb-4">
-                        <label for="metasForamCumpridas">Metas Foram Cumpridas</label>
-                        <select class="form-control" id="metasForamCumpridas">
-                            <option value="sim">Sim</option>
-                            <option value="nao">Não</option>
-                            <option value="mais_ou_menos">Mais ou Menos</option>
-                        </select>
-                    </div>
-                    <div class="mb-4">
-                        <label for="desempenhoCumprimentoMetas">Desempenho no Cumprimento das Metas</label>
-                        <input type="number" class="form-control" id="desempenhoCumprimentoMetas"
-                            placeholder="Digite o desempenho (0-10)">
-                    </div>
-                    <div class="mb-4">
-                        <label for="motivoAssinaladoCumprimentoMetas">Motivo Assinalado para Cumprimento das
-                            Metas</label>
-                        <textarea class="form-control" id="motivoAssinaladoCumprimentoMetas" rows="3"
-                            placeholder="Digite o motivo"></textarea>
-                    </div>
-                    <div class="mb-4">
-                        <label for="comoSentiuMudancaHabitos">Como Sentiu a Mudança de Hábitos</label>
-                        <textarea class="form-control" id="comoSentiuMudancaHabitos" rows="3"
-                            placeholder="Descreva como se sentiu com a mudança de hábitos"></textarea>
-                    </div>
-                    <div class="mb-4">
-                        <label for="adaptacaoMudancaHabitos">Adaptação à Mudança de Hábitos</label>
-                        <textarea class="form-control" id="adaptacaoMudancaHabitos" rows="3"
-                            placeholder="Descreva a adaptação à mudança de hábitos"></textarea>
-                    </div>
-                    <div class="mb-4">
-                        <label for="motivosDificuldadeAdaptacao">Motivos de Dificuldade na Adaptação</label>
-                        <textarea class="form-control" id="motivosDificuldadeAdaptacao" rows="3"
-                            placeholder="Descreva os motivos de dificuldade na adaptação"></textarea>
-                    </div>
-                    <div class="mb-4">
-                        <label for="sentePrecisaMelhorarAlimentacao">Sente que Precisa Melhorar a Alimentação</label>
-                        <textarea class="form-control" id="sentePrecisaMelhorarAlimentacao" rows="3"
-                            placeholder="Descreva se sente que precisa melhorar a alimentação"></textarea>
-                    </div>
-                    <div class="mb-4">
-                        <label for="habitoIntestinal">Hábito Intestinal</label>
-                        <textarea class="form-control" id="habitoIntestinal" rows="3"
-                            placeholder="Descreva o hábito intestinal"></textarea>
-                    </div>
-                    <div class="mb-4">
-                        <label for="atvFisica">Atividade Física</label>
-                        <select class="form-control" id="atvFisica">
-                            <option value="manteve_o_que_ja_fazia">Manteve o que já fazia</option>
-                            <option value="aumentei_a_frequencia_intensidade">Aumentei a frequência/intensidade</option>
-                            <option value="ainda_nao_consegui_praticar">Ainda não consegui praticar</option>
-                            <option value="nao_iniciei_e_nao_pretendo_iniciar">Não iniciei e não pretendo iniciar
-                            </option>
-                        </select>
-                    </div>
-                    <div class="mb-4">
-                        <label for="metasProximoRetorno">Metas para o Próximo Retorno</label>
-                        <textarea class="form-control" id="metasProximoRetorno" rows="3"
-                            placeholder="Digite as metas para o próximo retorno"></textarea>
+                        <label class="form-label" for="descricaoBioimpedancia">Observações</label>
+                        <input name="descricaoBioimpedancia" type="text" class="form-control" id="descricaoBioimpedancia" rows="3"></input>
                     </div>
 
                 </div>
