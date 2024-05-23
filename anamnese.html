@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adicionar Formulário</title>
-    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/bootstrap.css">
-    <link rel="stylesheet" href="./css/addAnamnese.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/singleItem.css">
+    <link rel="stylesheet" href="./css/anamnese.css">
     <script src="./js/bootstrap.js" defer></script>
     <script src="./js/globalScript.js" defer></script>
-    <script src="./js/editAnamnese.js" defer></script>
+    <script src="./js/singleAnamnese.js" defer></script>
 </head>
 
 <body>
@@ -46,12 +47,16 @@
             <form id="regForm" class="formAddAnamnese needs-validation" novalidate>
 
                 <div class="tab">
-
-                    <h2 class="h5 titulo-tab">Anamnese Adulto</h2>
+                    <div class="div-status-acoes">
+                        <p class="titulo-tab">Criado por <span id="criadoPor"></span></p>
+                        <h1 class="h4 titulo-tab">Anamnese de <span id="pacienteNome"></span></h1>
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#modalDeletarAnamnese">Deletar</button>
+                    </div>
 
                     <div class="mb-4">
-                        <label for="selectPacientes" class="form-label">Paciente <span class="required">*</span></label>
-                        <select class="form-select" aria-label="paciente-select" id="selectPacientes">
+                        <label for="pacienteId" class="form-label">Paciente <span class="required">*</span></label>
+                        <select class="form-select" aria-label="paciente-select" id="pacienteId" name="pacienteId">
                             <option selected disabled value="">Selecione o paciente</option>
                         </select>
                         <div class="invalid-feedback">Selecione uma opção válida.</div>
@@ -67,7 +72,6 @@
                             <option value="ensino_superior_completo">Ensino Superior Completo</option>
                             <option value="outra">Outra</option>
                         </select>
-                        <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                     <div class="mb-4">
@@ -79,7 +83,6 @@
                             <option value="noite">Noite</option>
                             <option value="NA">Não se aplica</option>
                         </select>
-                        <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                     <div class="mb-4 form-check">
@@ -96,7 +99,6 @@
                             <option value="noite">Noite</option>
                             <option value="NA">Não se aplica</option>
                         </select>
-                        <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                     <div class="mb-4 form-check">
@@ -125,14 +127,12 @@
                             <option value="mais_de_5_salarios_minimos">Mais de 5 salários mínimos</option>
                             <option value="nao_sei">Não sei</option>
                         </select>
-                        <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                     <div class="mb-4">
                         <label for="numPessoasDomicilio" class="form-label">Número de Pessoas no Domicílio</label>
                         <input type="number" id="numPessoasDomicilio" name="numPessoasDomicilio" class="form-control"
                             min="0">
-                        <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                 </div>
@@ -149,7 +149,6 @@
                     <div class="mb-4">
                         <label for="apresentaDoenca" class="form-label">Apresenta alguma doença?</label>
                         <input type="text" id="apresentaDoenca" name="apresentaDoenca" class="form-control">
-                        <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                     <div class="mb-4">
@@ -157,13 +156,11 @@
                             alguma doença crônica? (DM, HAS, dislipidemia...)</label>
                         <input type="text" id="antecedentesFamiliares" name="antecedentesFamiliares"
                             class="form-control">
-                        <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                     <div class="mb-4">
                         <label for="medicamentosContinuos" class="form-label">Faz uso de medicamentos contínuos?</label>
                         <input type="text" id="medicamentosContinuos" name="medicamentosContinuos" class="form-control">
-                        <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                     <div class="mb-4">
@@ -171,7 +168,6 @@
                             alimentares?</label>
                         <input type="text" id="suplementosComplementos" name="suplementosComplementos"
                             class="form-control">
-                        <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                     <div class="mb-4">
@@ -183,7 +179,6 @@
                             <option value="tres_vezes_por_semana">Três vezes por semana</option>
                             <option value="menos_de_3_vezes_por_semana">Menos de 3 vezes por semana</option>
                         </select>
-                        <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                     <div class="mb-4">
@@ -200,7 +195,6 @@
                             <option value="6">Tipo 6</option>
                             <option value="7">Tipo 7</option>
                         </select>
-                        <div class="invalid-feedback">Campo obrigatório.</div>
                     </div>
 
                     <div class="mb-4 form-check">
@@ -213,7 +207,44 @@
                         <label for="atvFisica" class="form-label">Se sim: qual atividade, frequência semanal e
                             duração?</label>
                         <input type="text" id="atvFisica" name="atvFisica" class="form-control">
-                        <div class="invalid-feedback">Campo obrigatório.</div>
+                    </div>
+
+                </div>
+
+                <div class="tab">
+
+                    <h2 class="h5 titulo-tab">Recordatório alimentar</h2>
+                    <p>Descreva todas as refeições e os respectivos horários em que são feitas habitualmente, incluindo
+                        os líquidos e suplementos.</p>
+
+                    <div class="mb-4">
+                        <label for="cafeDaManha" class="form-label">Café da manhã</label>
+                        <input type="text" id="cafeDaManha" name="cafeDaManha" class="form-control">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="lancheDaManha" class="form-label">Lanche da manhã (se houver)</label>
+                        <input type="text" id="lancheDaManha" name="lancheDaManha" class="form-control">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="almoco" class="form-label">Almoço</label>
+                        <input type="text" id="almoco" name="almoco" class="form-control">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="lancheDaTarde" class="form-label">Lanche da tarde</label>
+                        <input type="text" id="lancheDaTarde" name="lancheDaTarde" class="form-control">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="jantar" class="form-label">Jantar</label>
+                        <input type="text" id="jantar" name="jantar" class="form-control">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="ceia" class="form-label">Ceia (se houver)</label>
+                        <input type="text" id="ceia" name="ceia" class="form-control">
                     </div>
 
                 </div>
@@ -2156,7 +2187,7 @@
                             </div>
                         </div>
                         <div class="row mb-4 radioInput" radioInput-name="">
-                            <div class="colultraprocessadosPratosProntosCongelados">
+                            <div class="col">
                                 Pratos Prontos Congelados
                             </div>
                             <div class="col">
@@ -3195,9 +3226,32 @@
                     <span class="step"></span>
                     <span class="step"></span>
                     <span class="step"></span>
+                    <span class="step"></span>
                 </div>
 
             </form>
+        </div>
+    </div>
+
+    <!-- Modal Deletar Anamnese -->
+    <div class="modal fade" id="modalDeletarAnamnese" tabindex="-1" aria-labelledby="modalDeletarAnamneseLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalDeletarAnamneseLabel">Deletar Anamnese</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Tem certeza que deseja deletar essa anamnese?</p>
+                </div>
+                <div class="modal-footer">
+                    <div class="div-modal-footer">
+                        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancelar</button>
+                        <button class="btn btn-danger" id="botaoDeletar">Deletar</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

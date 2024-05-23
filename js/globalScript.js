@@ -3,6 +3,7 @@ const endpointPacientes = "pacientes";
 const endpointUsuarios = "usuarios";
 const endpointAuth = "auth/login";
 const endpointAnamneses = "anamneses";
+const endpointRetornos = "retornos";
 const usuarioId = localStorage.getItem("usuarioId");
 const usuarioNome = localStorage.getItem("usuarioNome");
 const token = localStorage.getItem("jwtToken");
