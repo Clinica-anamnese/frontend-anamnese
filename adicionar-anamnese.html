@@ -7,6 +7,7 @@
     <title>Adicionar Formulário</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/singleItem.css">
     <link rel="stylesheet" href="./css/anamnese.css">
     <script src="./js/bootstrap.js" defer></script>
     <script src="./js/globalScript.js" defer></script>
@@ -43,16 +44,19 @@
     <div class="div-principal">
         <img src="./img/unisantos-logo.png" alt="Logo Unisantos" width="233px">
         <div class="div-conteudo">
+            
             <form id="regForm" class="formAddAnamnese needs-validation" novalidate>
-
+                
                 <div class="tab">
 
-                    <h1 class="h4 titulo-tab">Anamnese</h1>
+                    <div class="header-tab">
+                        <h1>Adicionar Anamnese</h1>
+                    </div>
 
                     <div class="mb-4">
                         <label for="pacienteId" class="form-label">Paciente <span class="required">*</span></label>
-                        <select class="form-select" aria-label="paciente-select" id="pacienteId" name="pacienteId">
-                            <option selected disabled value="">Selecione o paciente</option>
+                        <select class="form-select" aria-label="paciente-select" id="pacienteId" name="pacienteId" required>
+                            <option selected disabled value="">Selecione um paciente</option>
                         </select>
                         <div class="invalid-feedback">Selecione uma opção válida.</div>
                     </div>
@@ -72,7 +76,7 @@
                     <div class="mb-4">
                         <label for="periodoEstudo" class="form-label">Período de Estudo</label>
                         <select id="periodoEstudo" name="periodoEstudo" class="form-select">
-                            <option selected disabled value="">Selecione o período de estudo</option>
+                            <option selected disabled value="">Selecione um período de estudo</option>
                             <option value="manha">Manhã</option>
                             <option value="tarde">Tarde</option>
                             <option value="noite">Noite</option>
@@ -88,7 +92,7 @@
                     <div class="mb-4">
                         <label for="periodoTrabalho" class="form-label">Período de Trabalho</label>
                         <select id="periodoTrabalho" name="periodoTrabalho" class="form-select">
-                            <option selected disabled value="">Selecione o período de trabalho</option>
+                            <option selected disabled value="">Selecione um período de trabalho</option>
                             <option value="manha">Manhã</option>
                             <option value="tarde">Tarde</option>
                             <option value="noite">Noite</option>
@@ -109,8 +113,10 @@
                 </div>
 
                 <div class="tab">
-
-                    <h2 class="h5 titulo-tab">Características Socioeconômicas</h2>
+  
+                    <div class="header-tab">
+                        <h2>Características Socioeconômicas</h2>
+                    </div>
 
                     <div class="mb-4">
                         <label for="rendaFamiliar" class="form-label">Renda Familiar</label>
@@ -134,7 +140,9 @@
 
                 <div class="tab">
 
-                    <h2 class="h5 titulo-tab">História Clínica</h2>
+                    <div class="header-tab">
+                        <h2>História Clínica</h2>
+                    </div>
 
                     <div class="mb-4">
                         <label for="motivo" class="form-label">Motivo pela procura do ambulatório</label>
@@ -180,7 +188,7 @@
                         <label for="consistenciaEvacuacao" class="form-label">Consistência da evacuação</label>
                         <img src="img/consistencia-evacuacao.jpg" alt="Consistência de Evacuação">
                         <select id="consistenciaEvacuacao" name="consistenciaEvacuacao" class="form-select">
-                            <option selected disabled value="">Selecione o tipo</option>
+                            <option selected disabled value="">Selecione um tipo</option>
                             <option value="0">Tipo 0</option>
                             <option value="1">Tipo 1</option>
                             <option value="2">Tipo 2</option>
@@ -208,7 +216,10 @@
 
                 <div class="tab">
 
-                    <h2 class="h5 titulo-tab">Recordatório alimentar</h2>
+                    <div class="header-tab">
+                        <h2>Recordatório Alimentar</h2>
+                    </div>
+
                     <p>Descreva todas as refeições e os respectivos horários em que são feitas habitualmente, incluindo
                         os líquidos e suplementos.</p>
 
@@ -246,7 +257,9 @@
 
                 <div class="tab">
 
-                    <h2 class="h5 titulo-tab">Frequência Alimentar</h2>
+                    <div class="header-tab">
+                        <h2>Frequência Alimentar</h2>
+                    </div>
 
                     <div class="container text-center mb-4 p-3 rounded border">
                         <div class="row mb-4 radioInput">
@@ -2755,7 +2768,9 @@
 
                 <div class="tab">
 
-                    <h2 class="h5 titulo-tab">Comportamento Alimentar</h2>
+                    <div class="header-tab">
+                        <h2>Comportamento Alimentar</h2>
+                    </div>
 
                     <div class="mb-4">
                         <label for="quemCozinha" class="form-label">Quem cozinha sua comida?</label>
@@ -2774,7 +2789,6 @@
                             <option value="nao">Não</option>
                             <option value="as_vezes">As vezes</option>
                         </select>
-                        <div class="invalid-feedback">Selecione uma opção válida.</div>
                     </div>
 
                     <div class="mb-4">
@@ -2786,7 +2800,6 @@
                             <option value="sozinho">Sozinho</option>
                             <option value="acompanhado">Acompanhado</option>
                         </select>
-                        <div class="invalid-feedback">Selecione uma opção válida.</div>
                     </div>
 
                     <div class="mb-4">
@@ -2813,7 +2826,6 @@
                             <option value="nao">Não</option>
                             <option value="as_vezes">As Vezes</option>
                         </select>
-                        <div class="invalid-feedback">Selecione uma opção válida.</div>
                     </div>
 
                     <div class="mb-4">
@@ -2826,7 +2838,6 @@
                             <option value="nao">Não</option>
                             <option value="as_vezes">As Vezes</option>
                         </select>
-                        <div class="invalid-feedback">Selecione uma opção válida.</div>
                     </div>
 
                     <div class="mb-4">
@@ -2841,7 +2852,6 @@
                             <option value="Sempre com fome independente do horário">Sempre com fome independente do
                                 horário</option>
                         </select>
-                        <div class="invalid-feedback">Selecione uma opção válida.</div>
                     </div>
 
                     <div class="mb-4">
@@ -2859,7 +2869,6 @@
                             <option value="Por comemoração a um acontecimento bom">Por comemoração a um acontecimento
                                 bom</option>
                         </select>
-                        <div class="invalid-feedback">Selecione uma opção válida.</div>
                     </div>
 
                     <div class="mb-4">
@@ -3052,7 +3061,9 @@
 
                 <div class="tab">
 
-                    <h2 class="h5 titulo-tab">Avaliação Antopometria</h2>
+                    <div class="header-tab">
+                        <h2>Avaliação Antopometria</h2>
+                    </div>
 
                     <div class="mb-4">
                         <label for="pesoAtual" class="form-label">Peso atual (kg)</label>
@@ -3196,9 +3207,13 @@
 
                 <div class="tab">
 
+                    <div class="header-tab">
+                        <h2>Metas</h2>
+                    </div>
+
                     <div class="mb-4">
                         <label for="metas" class="form-label">Metas para o próximo retorno</label>
-                        <input type="text" id="metas" name="metas" class="form-control">
+                        <textarea type="text" id="metas" name="metas" class="form-control"></textarea>
                     </div>
 
                 </div>

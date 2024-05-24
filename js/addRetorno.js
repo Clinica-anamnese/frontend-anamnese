@@ -29,7 +29,7 @@ function listarPacientesSelect() {
 
 function cadastrarRetorno() {
   const data = getData();
-  const forbidden = false;
+  let forbidden = false;
   return new Promise((resolve, reject) => {
     if (validateForm(formAddRetorno)) {
       fetch(urlApi + endpointRetornos, {

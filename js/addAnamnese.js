@@ -29,7 +29,7 @@ function listarPacientesSelect() {
 
 function cadastrarAnamnese() {
   const data = getData();
-  const forbidden = false;
+  let forbidden = false;
   return new Promise((resolve, reject) => {
     if (validateForm(formAddAnamnese)) {
       fetch(urlApi + endpointAnamneses, {

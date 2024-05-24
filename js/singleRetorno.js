@@ -1,7 +1,7 @@
-const formAddAnamnese = document.querySelector(".formAddAnamnese");
+const formAddRetorno = document.querySelector(".formAddRetorno");
 const pacienteNome = document.getElementById("pacienteNome");
 const criadoPor = document.getElementById("criadoPor");
-const anamneseId = localStorage.getItem("anamneseId");
+const retornoId = localStorage.getItem("retornoId");
 const divStepButtons = document.querySelector(".div-step-buttons");
 const nextBtn = document.getElementById("nextBtn");
 const prevBtn = document.getElementById("prevBtn");
@@ -10,19 +10,19 @@ const fPacienteId = document.getElementById("pacienteId");
 const botaoDeletar = document.getElementById("botaoDeletar");
 let currentTab = 0;
 
-function consultarAnamnese() {
-    fetch(urlApi + endpointAnamneses + "/" + anamneseId, {
+function consultarRetorno() {
+    fetch(urlApi + endpointRetornos + "/" + retornoId, {
         headers: {
             "Authorization": `${token}`
         }
     })
         .then(response => response.json())
-        .then(anamnese => {
-            pacienteNome.textContent = anamnese.pacienteNome;
-            criadoPor.textContent = anamnese.usuarioNome;
-            for (const key in anamnese) {
-                if (anamnese.hasOwnProperty(key)) {
-                    const value = anamnese[key];
+        .then(retorno => {
+            pacienteNome.textContent = retorno.pacienteNome;
+            criadoPor.textContent = retorno.usuarioNome;
+            for (const key in retorno) {
+                if (retorno.hasOwnProperty(key)) {
+                    const value = retorno[key];
                     const input = document.querySelector(`[name=${key}]`);
 
                     if (input) {
@@ -55,7 +55,7 @@ function consultarAnamnese() {
         })
 }
 
-// exibe os Anamneses no select do formulario
+// exibe os Retornos no select do formulario
 function listarPacientesSelect() {
     fetch(urlApi + endpointPacientes, {
         headers: {
@@ -77,12 +77,12 @@ function listarPacientesSelect() {
         })
 }
 
-function atualizarAnamnese() {
+function atualizarRetorno() {
     const data = getData();
     const forbidden = false;
     return new Promise((resolve, reject) => {
-        if (validateForm(formAddAnamnese)) {
-            fetch(urlApi + endpointAnamneses + "/" + anamneseId, {
+        if (validateForm(formAddRetorno)) {
+            fetch(urlApi + endpointRetornos + "/" + retornoId, {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `${token}`
@@ -95,7 +95,7 @@ function atualizarAnamnese() {
                         forbidden = true;
                         return Promise.reject();
                     }
-                    goodWarning.textContent = "Anamnese atualizada com sucesso!";
+                    goodWarning.textContent = "Retorno atualizada com sucesso!";
                     resolve(response);
                 })
                 .catch(error => {
@@ -134,7 +134,7 @@ async function nextTab() {
         try {
             goodWarning.textContent = "";
             badWarning.textContent = "";
-            await atualizarAnamnese();
+            await atualizarRetorno();
         }
         catch (error) {
             verificarAutenticacao();
@@ -164,7 +164,7 @@ function fixStepIndicator(n) {
 
 function getData() {
     // Seleciona todos os inputs e checkboxes dentro do formulário
-    const inputs = document.querySelectorAll('.formAddAnamnese input, .formAddAnamnese select');
+    const inputs = document.querySelectorAll('.formAddRetorno input, .formAddRetorno select');
     const data = { usuarioId: usuarioId, };
 
     // Itera sobre cada elemento e adiciona seu valor ao objeto data
@@ -191,7 +191,7 @@ function getData() {
 
 botaoDeletar.addEventListener("click", async () => {
     try {
-        await deletarItem(anamneseId, endpointAnamneses);
+        await deletarItem(retornoId, endpointRetornos);
         window.location.href = "formularios.html";
     } catch {
         verificarAutenticacao();
@@ -200,5 +200,5 @@ botaoDeletar.addEventListener("click", async () => {
 
 verificarAutenticacao();
 listarPacientesSelect();
-consultarAnamnese();
+consultarRetorno();
 showTab(currentTab);

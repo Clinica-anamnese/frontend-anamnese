@@ -15,26 +15,26 @@ function listarAnamneses() {
         .then(response => response.json())
         .then(data => {
             data.forEach(anamnese => {
-                const itemTabela = document.createElement("tr");
-                itemTabela.classList.add("itemTabela");
-                itemTabela.classList.add("clickable");
-                itemTabela.id = anamnese.id;
-                tbodyAnamneses.appendChild(itemTabela);
+                const itemAnamnese = document.createElement("tr");
+                itemAnamnese.classList.add("itemAnamnese");
+                itemAnamnese.classList.add("clickable");
+                itemAnamnese.id = anamnese.id;
+                tbodyAnamneses.appendChild(itemAnamnese);
                 const colunaId = document.createElement("th");
                 colunaId.textContent = `${anamnese.id}`
-                itemTabela.appendChild(colunaId);
+                itemAnamnese.appendChild(colunaId);
                 const colunaPaciente = document.createElement("td");
                 colunaPaciente.textContent = `${anamnese.pacienteNome}`
-                itemTabela.appendChild(colunaPaciente);
+                itemAnamnese.appendChild(colunaPaciente);
                 const colunaAt = document.createElement("td");
                 const dataValue = anamnese.criadoEm;
                 const partes = dataValue.split("-");
                 const dataFormatada = partes[2] + "/" + partes[1] + "/" + partes[0];
                 colunaAt.textContent = dataFormatada;
-                itemTabela.appendChild(colunaAt);
+                itemAnamnese.appendChild(colunaAt);
             });
-            let itensTabela = document.querySelectorAll(".itemTabela");
-            itensTabela.forEach((anamnese) => {
+            let itensAnamnese = document.querySelectorAll(".itemAnamnese");
+            itensAnamnese.forEach((anamnese) => {
                 anamnese.addEventListener("click", () => {
                     localStorage.setItem("anamneseId", anamnese.id);
                     window.location.href = "anamnese.html";
