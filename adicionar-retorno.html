@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adicionar Formulário</title>
-    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/anamnese.css">
+    <link rel="stylesheet" href="./css/addAnamnese.css">
     <script src="./js/bootstrap.js" defer></script>
     <script src="./js/globalScript.js" defer></script>
     <script src="./js/addRetorno.js" defer></script>
@@ -47,32 +48,39 @@
 
                 <div class="tab">
 
-                    <h1 class="h4 titulo-tab">Retorno</h1>
+                    <div class="header-tab">
+                        <h1 class="fs-5">Adicionar Retorno</h1>
+                    </div>
 
                     <div class="mb-4">
-                        <label class="form-label" for="pacienteId" class="form-label">Paciente <span class="required">*</span></label>
-                        <select class="form-select" aria-label="paciente-select" id="pacienteId" name="pacienteId">
-                            <option selected disabled value="">Selecione o paciente</option>
-                        </select>
-                        <div class="invalid-feedback">Selecione uma opção válida.</div>
+                        <label for="pacienteId" class="form-label">Paciente <span class="required">*</span></label>
+                        <input type="text" class="form-select" list="pacienteSelect" id="pacienteId" name="pacienteId"
+                            placeholder="Selecione um paciente" required>
+                        <datalist id="pacienteSelect">
+                        </datalist>
                     </div>
 
                     <div class="mb-4">
                         <label class="form-label" for="retorno">Retorno <span class="required">*</span></label>
-                        <input name="retorno" type="number" class="form-control" id="retorno">
+                        <input name="retorno" type="number" class="form-control" id="retorno" required>
                     </div>
                     <div class="mb-4">
-                        <label class="form-label" for="metasUltimasConsultas">Quais metas foram estabelecidas na última consulta?</label>
-                        <input name="metasUltimasConsultas" type="text" class="form-control" id="metasUltimasConsultas" rows="3"></input>
+                        <label class="form-label" for="metasUltimasConsultas">Quais metas foram estabelecidas na última
+                            consulta?</label>
+                        <input name="metasUltimasConsultas" type="text" class="form-control" id="metasUltimasConsultas"
+                            rows="3"></input>
                     </div>
                     <div class="mb-4">
                         <label class="form-label" for="comentariosObservacao">Comentários/Observação</label>
-                        <input name="comentariosObservacao" type="text" class="form-control" id="comentariosObservacao" rows="3"></input>
+                        <input name="comentariosObservacao" type="text" class="form-control" id="comentariosObservacao"
+                            rows="3"></input>
                     </div>
                     <div class="mb-4">
-                        <label class="form-label" for="metasForamCumpridas">Do que foi estabelecido na última consulta, as metas
+                        <label class="form-label" for="metasForamCumpridas">Do que foi estabelecido na última consulta,
+                            as metas
                             estabelecidas foram cumpridas?</label>
                         <select class="form-select" id="metasForamCumpridas" name="metasForamCumpridas">
+                            <option selected disabled value="">Selecione uma opção</option>
                             <option value="sim">Sim</option>
                             <option value="nao">Não</option>
                             <option value="mais_ou_menos">Mais ou Menos</option>
@@ -158,37 +166,48 @@
                         </div>
                     </div>
                     <div class="mb-4">
-                        <label class="form-label" for="motivoAssinaladoCumprimentoMetas">Descreva o motivo assinalado no cumprimento das
+                        <label class="form-label" for="motivoAssinaladoCumprimentoMetas">Descreva o motivo assinalado no
+                            cumprimento das
                             metas</label>
-                        <input name="motivoAssinaladoCumprimentoMetas" type="text" class="form-control" id="motivoAssinaladoCumprimentoMetas" rows="3"></input>
+                        <input name="motivoAssinaladoCumprimentoMetas" type="text" class="form-control"
+                            id="motivoAssinaladoCumprimentoMetas" rows="3"></input>
                     </div>
                     <div class="mb-4">
-                        <label class="form-label" for="comoSentiuMudancaHabitos">Como você se sentiu com as mudanças de hábito?</label>
-                        <input name="comoSentiuMudancaHabitos" type="text" class="form-control" id="comoSentiuMudancaHabitos" rows="3"></input>
+                        <label class="form-label" for="comoSentiuMudancaHabitos">Como você se sentiu com as mudanças de
+                            hábito?</label>
+                        <input name="comoSentiuMudancaHabitos" type="text" class="form-control"
+                            id="comoSentiuMudancaHabitos" rows="3"></input>
                     </div>
                     <div class="mb-4">
-                        <label class="form-label" for="adaptacaoMudancaHabitos">Como se adaptou às mudanças de hábitos?</label>
-                        <input name="adaptacaoMudancaHabitos" type="text" class="form-control" id="adaptacaoMudancaHabitos" rows="3"></input>
+                        <label class="form-label" for="adaptacaoMudancaHabitos">Como se adaptou às mudanças de
+                            hábitos?</label>
+                        <input name="adaptacaoMudancaHabitos" type="text" class="form-control"
+                            id="adaptacaoMudancaHabitos" rows="3"></input>
                     </div>
                     <div class="mb-4">
-                        <label class="form-label" for="motivosDificuldadeAdaptacao">Caso tenha tido alguma dificuldade ou não tenha
+                        <label class="form-label" for="motivosDificuldadeAdaptacao">Caso tenha tido alguma dificuldade
+                            ou não tenha
                             conseguido se adaptar às metas propostas, por favor relate brevemente, quais os principais
                             motivos?</label>
-                        <input name="motivosDificuldadeAdaptacao" type="text" class="form-control" id="motivosDificuldadeAdaptacao" rows="3"></input>
+                        <input name="motivosDificuldadeAdaptacao" type="text" class="form-control"
+                            id="motivosDificuldadeAdaptacao" rows="3"></input>
                     </div>
                     <div class="mb-4">
-                        <label class="form-label" for="sentePrecisaMelhorarAlimentacao">O que sente que ainda precisa melhorar quanto à sua
+                        <label class="form-label" for="sentePrecisaMelhorarAlimentacao">O que sente que ainda precisa
+                            melhorar quanto à sua
                             alimentação?</label>
-                        <input name="sentePrecisaMelhorarAlimentacao" type="text" class="form-control" id="sentePrecisaMelhorarAlimentacao" rows="3"></input>
+                        <input name="sentePrecisaMelhorarAlimentacao" type="text" class="form-control"
+                            id="sentePrecisaMelhorarAlimentacao" rows="3"></input>
                     </div>
                     <div class="mb-4">
                         <label class="form-label" for="habitoIntestinal">Quanto ao seu hábito intestinal</label>
-                        <input name="habitoIntestinal" type="text" class="form-control" id="habitoIntestinal" rows="3"></input>
+                        <input name="habitoIntestinal" type="text" class="form-control" id="habitoIntestinal"
+                            rows="3"></input>
                     </div>
                     <div class="mb-4">
                         <label class="form-label" for="atvFisica">Atividade Física</label>
                         <select class="form-select" id="atvFisica" name="atvFisica">
-                            <option selected disabled value="">Selecione a opção</option>
+                            <option selected disabled value="">Selecione uma opção</option>
                             <option value="manteve_o_que_ja_fazia">Manteve o que já fazia</option>
                             <option value="aumentei_a_frequencia_intensidade">Aumentei a frequência/intensidade</option>
                             <option value="ainda_nao_consegui_praticar">Ainda não consegui praticar</option>
@@ -198,14 +217,17 @@
                     </div>
                     <div class="mb-4">
                         <label class="form-label" for="metasProximoRetorno">Metas para o Próximo Retorno</label>
-                        <input name="metasProximoRetorno" type="text" class="form-control" id="metasProximoRetorno" rows="3"></input>
+                        <input name="metasProximoRetorno" type="text" class="form-control" id="metasProximoRetorno"
+                            rows="3"></input>
                     </div>
 
                 </div>
 
                 <div class="tab">
 
-                    <h2 class="h5 titulo-tab">Medidas Corporais</h2>
+                    <div class="header-tab">
+                        <h2 class="fs-5">Medidas Corporais</h2>
+                    </div>
 
                     <div class="mb-4">
                         <label class="form-label" for="pesoAtual" class="form-label">Peso atual (kg)</label>
@@ -218,7 +240,8 @@
                     </div>
 
                     <div class="mb-4">
-                        <label class="form-label" for="circunferenciaAbdominal" class="form-label">Circunferência Abdominal</label>
+                        <label class="form-label" for="circunferenciaAbdominal" class="form-label">Circunferência
+                            Abdominal</label>
                         <input type="number" id="circunferenciaAbdominal" name="circunferenciaAbdominal"
                             class="form-control" min="0" step="0.1">
                     </div>
@@ -227,16 +250,21 @@
 
                 <div class="tab">
 
-                    <h2 class="h5 titulo-tab">Retorno com Bioimpedância</h2>
+                    <div class="header-tab">
+                        <h2 class="fs-5">Retorno com Bioimpedância</h2>
+                    </div>
 
                     <div class="mb-4">
-                        <label class="form-label" for="valoresBioimpedancia">Descrever os valores da Bioimpedância</label>
-                        <input name="valoresBioimpedancia" type="text" class="form-control" id="valoresBioimpedancia" rows="3"></input>
+                        <label class="form-label" for="valoresBioimpedancia">Descrever os valores da
+                            Bioimpedância</label>
+                        <textarea class="form-control" id="valoresBioimpedancia" name="valoresBioimpedancia"
+                            class="form-control"></textarea>
                     </div>
 
                     <div class="mb-4">
                         <label class="form-label" for="observacoesBioimpedancia">Observações</label>
-                        <input name="observacoesBioimpedancia" type="text" class="form-control" id="observacoesBioimpedancia" rows="3"></input>
+                        <textarea class="form-control id=" observacoesBioimpedancia" name="observacoesBioimpedancia"
+                            class="form-control"></textarea>
                     </div>
 
                 </div>
@@ -247,7 +275,8 @@
                     <div class="div-step-buttons mt-3">
                         <button type="button" class="btn btn-secondary" id="prevBtn"
                             onclick="prevTab()">Anterior</button>
-                        <button type="button" class="btn btn-primary" id="nextBtn" onclick="nextTab()">Próximo</button>
+                        <button type="button" class="btn btn-primary" id="nextBtn"
+                            onclick="nextTab(cadastrarRetorno)">Próximo</button>
                     </div>
                 </div>
 

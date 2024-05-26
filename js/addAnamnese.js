@@ -3,29 +3,8 @@ const divStepButtons = document.querySelector(".div-step-buttons");
 const nextBtn = document.getElementById("nextBtn");
 const prevBtn = document.getElementById("prevBtn");
 const tabs = document.getElementsByClassName("tab");
-const fPacienteId = document.getElementById("pacienteId");
+const fPacienteSelect = document.getElementById("pacienteSelect");
 let currentTab = 0;
-
-// exibe os Anamneses no select do formulario
-function listarPacientesSelect() {
-  fetch(urlApi + endpointPacientes, {
-    headers: {
-      "Authorization": `${token}`
-    }
-  })
-    .then(response => response.json())
-    .then(data => {
-      data.forEach(paciente => {
-        const optionElement = document.createElement('option');
-        optionElement.value = paciente.id;
-        optionElement.textContent = paciente.nome;
-        fPacienteId.appendChild(optionElement);
-      });
-    })
-    .catch(error => {
-      console.error(error);
-    })
-}
 
 function cadastrarAnamnese() {
   const data = getData();
@@ -62,60 +41,9 @@ function cadastrarAnamnese() {
   })
 }
 
-async function showTab(n) {
-  tabs[n].style.display = "block"
-
-  if (n == 0) {
-    prevBtn.style.display = "none";
-    divStepButtons.style.flexDirection = "row-reverse"
-  } else if (n == (tabs.length - 1)) {
-    nextBtn.textContent = "Enviar";
-    prevBtn.style.display = "inline";
-  } else {
-    nextBtn.textContent = "Próximo";
-    divStepButtons.style.flexDirection = "row"
-    prevBtn.style.display = "inline";
-  }
-  fixStepIndicator(n)
-}
-
-async function nextTab() {
-  if (currentTab >= tabs.length - 1) {
-    try {
-      goodWarning.textContent = "";
-      badWarning.textContent = "";
-      await cadastrarAnamnese();
-      window.location.href = "formularios.html";
-    }
-    catch (error) {
-      verificarAutenticacao();
-    }
-  } else {
-    tabs[currentTab].style.display = "none";
-    currentTab += 1;
-    showTab(currentTab);
-    window.scrollTo(0, 0);
-  }
-}
-
-function prevTab() {
-  tabs[currentTab].style.display = "none";
-  currentTab -= 1;
-  showTab(currentTab);
-  window.scrollTo(0, 0);
-}
-
-function fixStepIndicator(n) {
-  var i, x = document.getElementsByClassName("step");
-  for (i = 0; i < x.length; i++) {
-    x[i].className = x[i].className.replace(" active", "");
-  }
-  x[n].className += " active";
-}
-
 function getData() {
   // Seleciona todos os inputs e checkboxes dentro do formulário
-  const inputs = document.querySelectorAll('.formAddAnamnese input, .formAddAnamnese select');
+  const inputs = document.querySelectorAll('.formAddAnamnese input, .formAddAnamnese select, .formAddAnamnese textarea');
   const data = { usuarioId: usuarioId, };
 
   // Itera sobre cada elemento e adiciona seu valor ao objeto data
@@ -141,5 +69,5 @@ function getData() {
 }
 
 verificarAutenticacao();
-listarPacientesSelect();
+listarPacientesSelect(fPacienteSelect);
 showTab(currentTab);

@@ -6,7 +6,7 @@ const divStepButtons = document.querySelector(".div-step-buttons");
 const nextBtn = document.getElementById("nextBtn");
 const prevBtn = document.getElementById("prevBtn");
 const tabs = document.getElementsByClassName("tab");
-const fPacienteId = document.getElementById("pacienteId");
+const fPacienteSelect = document.getElementById("pacienteSelect");
 const botaoDeletar = document.getElementById("botaoDeletar");
 let currentTab = 0;
 
@@ -52,28 +52,6 @@ function consultarAnamnese() {
         })
         .catch(error => {
             console.error(error);
-        })
-}
-
-// exibe os Anamneses no select do formulario
-function listarPacientesSelect() {
-    fetch(urlApi + endpointPacientes, {
-        headers: {
-            "Authorization": `${token}`
-        }
-    })
-        .then(response => response.json())
-        .then(data => {
-            data.forEach(paciente => {
-                const optionElement = document.createElement('option');
-                optionElement.value = paciente.id;
-                optionElement.textContent = paciente.nome;
-                fPacienteId.appendChild(optionElement);
-            });
-        })
-        .catch(error => {
-            console.error(error);
-            fallback.textContent = "Sem conexão com a API.";
         })
 }
 
@@ -129,24 +107,6 @@ async function showTab(n) {
     fixStepIndicator(n)
 }
 
-async function nextTab() {
-    if (currentTab >= tabs.length - 1) {
-        try {
-            goodWarning.textContent = "";
-            badWarning.textContent = "";
-            await atualizarAnamnese();
-        }
-        catch (error) {
-            verificarAutenticacao();
-        }
-    } else {
-        tabs[currentTab].style.display = "none";
-        currentTab += 1;
-        showTab(currentTab);
-        window.scrollTo(0, 0);
-    }
-}
-
 function prevTab() {
     tabs[currentTab].style.display = "none";
     currentTab -= 1;
@@ -164,7 +124,7 @@ function fixStepIndicator(n) {
 
 function getData() {
     // Seleciona todos os inputs e checkboxes dentro do formulário
-    const inputs = document.querySelectorAll('.formAddAnamnese input, .formAddAnamnese select');
+    const inputs = document.querySelectorAll('.formAddAnamnese input, .formAddAnamnese select, .formAddAnamnese textarea');
     const data = { usuarioId: usuarioId, };
 
     // Itera sobre cada elemento e adiciona seu valor ao objeto data
@@ -199,6 +159,6 @@ botaoDeletar.addEventListener("click", async () => {
 });
 
 verificarAutenticacao();
-listarPacientesSelect();
+listarPacientesSelect(fPacienteSelect);
 consultarAnamnese();
 showTab(currentTab);

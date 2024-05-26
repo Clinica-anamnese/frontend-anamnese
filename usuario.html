@@ -44,11 +44,11 @@
         <img src="./img/unisantos-logo.png" alt="Logo Unisantos" width="233px">
         <div class="div-conteudo">
             <div class="div-info">
-                <div class="div-status-acoes">
-                    <button type="button" class="botao-ativo">Ativo</button>
-                    <h1 class="h4">Usuário</h1>
+                <div class="header-tab">
+                    <!-- <button type="button" class="botao-ativo">Ativo</button> -->
+                    <h1 class="fs-5">Usuário</h1>
                     <div class="div-acoes">
-                        <button class="btn btn-secondary">Inativar</button>
+                        <!-- <button class="btn btn-secondary">Inativar</button> -->
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                             data-bs-target="#modalDeletarUsuario">Deletar</button>
                     </div>
@@ -76,10 +76,11 @@
             </div>
             <div class="div-tabela">
                 <table class="table caption-top table-bordered table-hover">
-                    <caption>Anamneses criadas por <span id="captionName"></span></caption>
+                    <caption>Formulários criados por <span id="captionName"></span></caption>
                     <thead>
                         <tr>
                             <th scope="col">Código</th>
+                            <th scope="col">Tipo de Formulário</th>
                             <th scope="col">Paciente</th>
                             <th scope="col">Criado Em</th>
                         </tr>
@@ -138,7 +139,7 @@
                 </div>
                 <div class="modal-footer">
                     <div class="div-modal-footer">
-                        <button class="btn btn-danger">Cancelar</button>
+                        <button type="button" class="btn btn-secondary">Cancelar</button>
                         <button type="submit" class="btn btn-primary">Alterar</button>
                     </div>
                     </form>
