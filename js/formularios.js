@@ -3,6 +3,7 @@ const fNome = document.getElementById("nome");
 const fSexo = document.getElementById("sexo");
 const fDataNasc = document.getElementById("dataNasc");
 const tbodyRetornos = document.querySelector(".tabela-tbody-retornos");
+const botaoExportarAnamneses = document.getElementById("botaoExportarAnamneses");
 let itensTabela = "";
 
 function listarFormularios() {
@@ -49,6 +50,41 @@ function listarFormularios() {
             fallback.textContent = "Sem conexão com a API.";
         })
 }
+
+function exportarAnamneses() {
+    return new Promise((resolve, reject) => {
+        fetch(urlApi + endpointFormularios + "/" + "export-anamnese", {
+            headers: {
+                "Authorization": `${token}`
+            }
+        })
+            .then(response => {
+                response.blob();
+            })
+            .then(blob => {
+                var url = window.URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                resolve();
+            })
+            .catch(error => {
+                console.error(error);
+                reject(error);
+            })
+    })
+}
+
+botaoExportarAnamneses.addEventListener("click", async () => {
+    try {
+        await exportarAnamneses();
+    } catch {
+        verificarAutenticacao();
+    }
+});
 
 verificarAutenticacao();
 listarFormularios();
