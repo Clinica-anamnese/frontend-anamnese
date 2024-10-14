@@ -55,20 +55,22 @@ function exportarAnamneses() {
     return new Promise((resolve, reject) => {
         fetch(urlApi + endpointFormularios + "/" + "export-anamnese", {
             headers: {
-                "Authorization": `${token}`
+                "Authorization": `${token}`,
+                'Content-Type': 'text/csv'
             }
         })
             .then(response => {
-                response.blob();
+                return response.blob();
             })
             .then(blob => {
                 var url = window.URL.createObjectURL(blob);
                 var a = document.createElement('a');
                 a.href = url;
-                a.download = filename;
+                a.download = "anamnese.csv";
                 document.body.appendChild(a);
                 a.click();
                 a.remove();
+                window.URL.revokeObjectURL(url);
                 resolve();
             })
             .catch(error => {
