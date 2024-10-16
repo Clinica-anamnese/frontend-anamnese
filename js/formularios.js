@@ -4,6 +4,7 @@ const fSexo = document.getElementById("sexo");
 const fDataNasc = document.getElementById("dataNasc");
 const tbodyRetornos = document.querySelector(".tabela-tbody-retornos");
 const botaoExportarAnamneses = document.getElementById("botaoExportarAnamneses");
+const botaoExportarRetornos = document.getElementById("botaoExportarRetornos");
 let itensTabela = "";
 
 function listarFormularios() {
@@ -80,9 +81,46 @@ function exportarAnamneses() {
     })
 }
 
+function exportarRetornos() {
+    return new Promise((resolve, reject) => {
+        fetch(urlApi + endpointFormularios + "/" + "export-retorno", {
+            headers: {
+                "Authorization": `${token}`,
+                'Content-Type': 'text/csv'
+            }
+        })
+            .then(response => {
+                return response.blob();
+            })
+            .then(blob => {
+                var url = window.URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = "retorno.csv";
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                window.URL.revokeObjectURL(url);
+                resolve();
+            })
+            .catch(error => {
+                console.error(error);
+                reject(error);
+            })
+    })
+}
+
 botaoExportarAnamneses.addEventListener("click", async () => {
     try {
         await exportarAnamneses();
+    } catch {
+        verificarAutenticacao();
+    }
+});
+
+botaoExportarRetornos.addEventListener("click", async () => {
+    try {
+        await exportarRetornos();
     } catch {
         verificarAutenticacao();
     }
