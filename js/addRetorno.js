@@ -4,6 +4,7 @@ const nextBtn = document.getElementById("nextBtn");
 const prevBtn = document.getElementById("prevBtn");
 const tabs = document.getElementsByClassName("tab");
 const fPacienteSelect = document.getElementById("pacienteSelect");
+const fAnamneseSelect = document.getElementById("anamneseSelect");
 let currentTab = 0;
 
 function cadastrarRetorno() {
@@ -68,6 +69,16 @@ function getData() {
   return data;
 }
 
+function adicionarAnamnese() {
+  const urlParametros = new URLSearchParams(window.location.search);
+  const id = urlParametros.get('id');
+  if(!isNaN(id)) {
+    document.getElementById("anamneseId").value = id;
+  }
+}
+
+adicionarAnamnese();
 verificarAutenticacao();
 listarPacientesSelect(fPacienteSelect);
+listarAnamnesesSelect(fAnamneseSelect);
 showTab(currentTab);

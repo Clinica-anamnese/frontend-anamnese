@@ -17,23 +17,36 @@ function listarFormularios() {
         .then(data => {
             data.forEach(formulario => {
                 const itemTabela = document.createElement("tr");
-                itemTabela.classList.add("itemTabela");
-                itemTabela.classList.add("clickable");
+                itemTabela.classList.add("itemTabela", "clickable");
                 itemTabela.id = formulario.id;
                 tbody.appendChild(itemTabela);
+
                 const colunaId = document.createElement("th");
+                colunaId.classList.add("text-center");
                 colunaId.textContent = `${formulario.id}`
                 itemTabela.appendChild(colunaId);
+
                 const colunaTipoForm = document.createElement("td");
                 colunaTipoForm.textContent = `${formulario.tipoFormulario}`
                 itemTabela.appendChild(colunaTipoForm);
+
                 const colunaPaciente = document.createElement("td");
                 colunaPaciente.textContent = `${formulario.pacienteNome}`
                 itemTabela.appendChild(colunaPaciente);
+
                 const colunaAt = document.createElement("td");
+                colunaAt.classList.add("text-center");
                 const dataValue = formatDate(formulario.criadoEm);
                 colunaAt.textContent = dataValue;
                 itemTabela.appendChild(colunaAt);
+
+                const colunaAcoes = document.createElement("td");
+                colunaAcoes.classList.add("text-center");
+                if(formulario.tipoFormulario == 'Anamnese') {
+                    colunaAcoes.innerHTML = `<a href="./adicionar-retorno.html?id=${formulario.id}" class="btn btn-sm btn-outline-success" title="Adicionar retorno" style="padding: 0 5px;">+</a>`;
+                }
+                itemTabela.appendChild(colunaAcoes);
+            
 
                 itemTabela.addEventListener("click", () => {
                     if (formulario.tipoFormulario == "Anamnese") {

@@ -194,7 +194,29 @@ function listarPacientesSelect(pacienteSelect) {
       .catch(error => {
         console.error(error);
       })
-  }
+}
+
+function listarAnamnesesSelect(anamneseSelect) {
+  fetch(urlApi + endpointAnamneses, {
+    headers: {
+      "Authorization": `${token}`
+    }
+  })
+    .then(response => response.json())
+    .then(data => {
+      data.forEach(anamnese => {
+        const dataCriadaEm = new Date(anamnese.criadoEm);
+
+        const optionElement = document.createElement('option');
+        optionElement.value = anamnese.id;
+        optionElement.textContent = `${anamnese.pacienteNome} (${dataCriadaEm.toLocaleDateString("pt-BR")})` ;
+        anamneseSelect.appendChild(optionElement);
+      });
+    })
+    .catch(error => {
+      console.error(error);
+    })
+}
 
 if (header) {
     const exitIcon = document.getElementById("exitIcon");

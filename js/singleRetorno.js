@@ -7,6 +7,7 @@ const nextBtn = document.getElementById("nextBtn");
 const prevBtn = document.getElementById("prevBtn");
 const tabs = document.getElementsByClassName("tab");
 const fPacienteSelect = document.getElementById("pacienteSelect");
+const fAnamneseSelect = document.getElementById("anamneseSelect");
 const botaoDeletar = document.getElementById("botaoDeletar");
 let currentTab = 0;
 
@@ -128,5 +129,6 @@ botaoDeletar.addEventListener("click", async () => {
 
 verificarAutenticacao();
 listarPacientesSelect(fPacienteSelect);
+listarAnamnesesSelect(fAnamneseSelect);
 consultarRetorno();
 showTab(currentTab);
