@@ -8,6 +8,7 @@ const prevBtn = document.getElementById("prevBtn");
 const tabs = document.getElementsByClassName("tab");
 const fPacienteSelect = document.getElementById("pacienteSelect");
 const botaoDeletar = document.getElementById("botaoDeletar");
+const botaoCriarRetorno = document.getElementById("botaoCriarRetorno");
 let currentTab = 0;
 
 function consultarAnamnese() {
@@ -20,6 +21,7 @@ function consultarAnamnese() {
         .then(anamnese => {
             pacienteNome.textContent = anamnese.pacienteNome;
             criadoPor.textContent = anamnese.usuarioNome;
+            botaoCriarRetorno.href = `./adicionar-retorno.html?id=${anamnese.id}`;
             for (const key in anamnese) {
                 if (anamnese.hasOwnProperty(key)) {
                     const value = anamnese[key];
