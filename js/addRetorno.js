@@ -69,16 +69,18 @@ function getData() {
   return data;
 }
 
-function adicionarAnamnese() {
+async function adicionarAnamnese() {
   const urlParametros = new URLSearchParams(window.location.search);
   const id = urlParametros.get('id');
   if(!isNaN(id)) {
     document.getElementById("anamneseId").value = id;
+    await preencherCampoPaciente(id);
   }
 }
 
-adicionarAnamnese();
+limparCampoPaciente();
 verificarAutenticacao();
 listarPacientesSelect(fPacienteSelect);
 listarAnamnesesSelect(fAnamneseSelect);
+adicionarAnamnese();
 showTab(currentTab);

@@ -209,13 +209,54 @@ function listarAnamnesesSelect(anamneseSelect) {
 
         const optionElement = document.createElement('option');
         optionElement.value = anamnese.id;
-        optionElement.textContent = `${anamnese.pacienteNome} (${dataCriadaEm.toLocaleDateString("pt-BR")})` ;
+        optionElement.textContent = anamnese.pacienteNome;
         anamneseSelect.appendChild(optionElement);
       });
     })
     .catch(error => {
       console.error(error);
     })
+}
+
+async function obterAnamnesePorId(pacienteId) {
+  try {
+    const response = await fetch(urlApi + endpointAnamneses + "/" + pacienteId, {
+      headers: {
+        "Authorization": `${token}`
+      }
+    });
+    if (!response.ok) {
+      throw new Error('Erro ao buscar paciente');
+    }
+    const anamnese = await response.json();
+    return anamnese;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
+async function preencherCampoPaciente(anamneseId) {
+  const anamnese = await obterAnamnesePorId(anamneseId);
+
+  const pacienteId = document.getElementById("pacienteId");
+  const pacienteNome = document.getElementById("pacienteNome");
+
+  if (anamnese != null) {
+    pacienteId.value = anamnese.pacienteId;
+    pacienteNome.value = anamnese.pacienteNome;
+  } else {
+    pacienteId.value = null;
+    pacienteNome.value = null;
+  }
+}
+
+function limparCampoPaciente() {
+  const pacienteId = document.getElementById("pacienteId");
+  const pacienteNome = document.getElementById("pacienteNome");
+
+  pacienteId.value = null;
+  pacienteNome.value = null;
 }
 
 if (header) {

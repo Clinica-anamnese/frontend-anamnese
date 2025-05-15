@@ -19,7 +19,7 @@ function consultarRetorno() {
     })
         .then(response => response.json())
         .then(retorno => {
-            pacienteNome.textContent = retorno.pacienteNome;
+            preencherCampoPaciente(retorno.anamneseId);
             criadoPor.textContent = retorno.usuarioNome;
             for (const key in retorno) {
                 if (retorno.hasOwnProperty(key)) {

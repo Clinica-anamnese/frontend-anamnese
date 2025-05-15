@@ -55,17 +55,15 @@
                         <div class="mb-4">
                             <label for="anamneseId" class="form-label">Anamnese <span class="required">*</span></label>
                             <input type="text" class="form-select" list="anamneseSelect" id="anamneseId" name="anamneseId"
-                                placeholder="Selecione um anamnese" required>
+                                placeholder="Selecione um anamnese" onchange="preencherCampoPaciente(this.value)" required>
                             <datalist id="anamneseSelect">
                             </datalist>
                         </div>
 
                         <div class="mb-4">
                             <label for="pacienteId" class="form-label">Paciente <span class="required">*</span></label>
-                            <input type="text" class="form-select" list="pacienteSelect" id="pacienteId" name="pacienteId"
-                                placeholder="Selecione um paciente" required>
-                            <datalist id="pacienteSelect">
-                            </datalist>
+                            <input type="hidden" id="pacienteId" name="pacienteId" required>
+                            <input type="text" class="form-control" id="pacienteNome" name="pacienteNome" readonly>
                         </div>
 
                         <div class="mb-4">
