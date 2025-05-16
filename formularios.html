@@ -13,6 +13,18 @@
 </head>
 
 <body>
+
+    <style scoped>
+        .child-row td:first-child {
+            border: none;
+        }
+
+        .child-row {
+            background-color: #f9f9f9;
+            font-style: italic;
+        }
+    </style>
+
     <header>
         <div class="div-header">
             <span id="headerusuarioNome"></span>
@@ -41,10 +53,9 @@
     <div class="div-principal">
         <img src="./img/unisantos-logo.png" alt="Logo Unisantos" width="233px">
         <div class="div-conteudo">
-            <form class="search-bar form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Search">
-                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Pesquisar</button>
-            </form>
+            <div class="search-bar form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Search" id="inputPesquisaFormularios">
+            </div>
             <div class="div-tabela">
                 <a href="./adicionar-anamnese.html"><button type="button" class="btn add-button btn-success">Adicionar Anamnese</button></a>
                 <a href="./adicionar-retorno.html"><button type="button" class="btn add-button btn-success">Adicionar Retorno</button></a>
@@ -62,7 +73,7 @@
                             <th scope="col" class="text-center">Ações</th>
                         </tr>
                     </thead>
-                    <tbody class="tabela-tbody">
+                    <tbody class="tabela-tbody" id="tabelaFormulariosCorpo">
                     </tbody>
                 </table>
 

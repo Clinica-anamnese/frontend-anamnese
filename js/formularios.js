@@ -5,64 +5,84 @@ const fDataNasc = document.getElementById("dataNasc");
 const tbodyRetornos = document.querySelector(".tabela-tbody-retornos");
 const botaoExportarAnamneses = document.getElementById("botaoExportarAnamneses");
 const botaoExportarRetornos = document.getElementById("botaoExportarRetornos");
+const inputPesquisaFormularios = document.getElementById("inputPesquisaFormularios");
 let itensTabela = "";
 
 function listarFormularios() {
-    fetch(urlApi + endpointFormularios, {
+    var data = selecionarParametrosFormularios();
+    limparTabelaFormularios();
+
+    fetch(`${urlApi + endpointFormularios}?nome=${data.nome}`, {
         headers: {
             "Authorization": `${token}`
         }
     })
-        .then(response => response.json())
-        .then(data => {
-            data.forEach(formulario => {
-                const itemTabela = document.createElement("tr");
-                itemTabela.classList.add("itemTabela", "clickable");
-                itemTabela.id = formulario.id;
-                tbody.appendChild(itemTabela);
+    .then(response => response.json())
+    .then(data => {
+        data.forEach(formulario => {
+            const parentRow = document.createElement("tr");
+            parentRow.classList.add("itemTabela", "clickable");
+            parentRow.id = `formulario-${formulario.id}`;
+            tbody.appendChild(parentRow);
 
-                const colunaId = document.createElement("th");
-                colunaId.classList.add("text-center");
-                colunaId.textContent = `${formulario.id}`
-                itemTabela.appendChild(colunaId);
+            parentRow.innerHTML = `
+                <th class="text-center">${formulario.id}</th>
+                <td>${formulario.tipoFormulario}</td>
+                <td>${formulario.pacienteNome}</td>
+                <td class="text-center">${formatDate(formulario.criadoEm)}</td>
+                <td class="text-center">
+                    ${formulario.tipoFormulario === 'Anamnese' 
+                        ? `<a href="./adicionar-retorno.html?id=${formulario.id}" class="btn btn-sm btn-outline-success" title="Adicionar retorno" style="padding: 0 5px;">+</a>` 
+                        : ""}
+                </td>
+            `;
 
-                const colunaTipoForm = document.createElement("td");
-                colunaTipoForm.textContent = `${formulario.tipoFormulario}`
-                itemTabela.appendChild(colunaTipoForm);
+            if (Array.isArray(formulario.retornos) && formulario.retornos.length > 0) {
+                formulario.retornos.forEach(retorno => {
+                    const childRow = document.createElement("tr");
+                    childRow.classList.add("child-row", `child-of-${formulario.id}`);
+                    childRow.style.display = "none"; // Hide initially
 
-                const colunaPaciente = document.createElement("td");
-                colunaPaciente.textContent = `${formulario.pacienteNome}`
-                itemTabela.appendChild(colunaPaciente);
+                    childRow.innerHTML = `
+                        <td>↳ ${retorno.id}</td>
+                        <td>${retorno.tipoFormulario}</td>
+                        <td>${retorno.pacienteNome}</td>
+                        <td class="text-center">${formatDate(retorno.criadoEm)}</td>
+                    `;
 
-                const colunaAt = document.createElement("td");
-                colunaAt.classList.add("text-center");
-                const dataValue = formatDate(formulario.criadoEm);
-                colunaAt.textContent = dataValue;
-                itemTabela.appendChild(colunaAt);
+                    tbody.appendChild(childRow);
+                });
+            }
 
-                const colunaAcoes = document.createElement("td");
-                colunaAcoes.classList.add("text-center");
-                if(formulario.tipoFormulario == 'Anamnese') {
-                    colunaAcoes.innerHTML = `<a href="./adicionar-retorno.html?id=${formulario.id}" class="btn btn-sm btn-outline-success" title="Adicionar retorno" style="padding: 0 5px;">+</a>`;
+            parentRow.addEventListener("click", (e) => {
+                if (e.target.closest("a")) return;
+
+                const childRows = document.querySelectorAll(`.child-of-${formulario.id}`);
+                childRows.forEach(row => {
+                    row.style.display = row.style.display === "none" ? "table-row" : "none";
+                });
+
+                if (formulario.tipoFormulario === "Anamnese") {
+                    localStorage.setItem("anamneseId", formulario.id);
+                    // Optional: only navigate if not clicked for expanding
+                    // window.location.href = "anamnese.html";
+                } else {
+                    localStorage.setItem("retornoId", formulario.id);
+                    window.location.href = "retorno.html";
                 }
-                itemTabela.appendChild(colunaAcoes);
-            
-
-                itemTabela.addEventListener("click", () => {
-                    if (formulario.tipoFormulario == "Anamnese") {
-                        localStorage.setItem("anamneseId", formulario.id);
-                        window.location.href = "anamnese.html";
-                    } else {
-                        localStorage.setItem("retornoId", formulario.id);
-                        window.location.href = "retorno.html";
-                    }
-                })
             });
-        })
-        .catch(error => {
-            console.error(error);
-            fallback.textContent = "Sem conexão com a API.";
-        })
+        });
+    })
+    .catch(error => {
+        console.error(error);
+        fallback.textContent = "Sem conexão com a API.";
+    });
+}
+
+
+function limparTabelaFormularios() {
+    const tbody = document.getElementById("tabelaFormulariosCorpo")
+    tbody.innerHTML = ""; 
 }
 
 function exportarAnamneses() {
@@ -138,6 +158,24 @@ botaoExportarRetornos.addEventListener("click", async () => {
         verificarAutenticacao();
     }
 });
+
+inputPesquisaFormularios.addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+        listarFormularios();
+    }
+});
+
+inputPesquisaFormularios.addEventListener("blue", function(e) {
+    listarFormularios();
+});
+
+function selecionarParametrosFormularios() {
+    data = {
+        nome: inputPesquisaFormularios.value ?? null
+    }
+
+    return data;
+}
 
 verificarAutenticacao();
 listarFormularios();
