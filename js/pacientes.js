@@ -1,5 +1,6 @@
 const formAddPaciente = document.querySelector(".formAddPaciente");
 const fNome = document.getElementById("nome");
+const fCpf = document.getElementById("cpf");
 const fSexo = document.getElementById("sexo");
 const fDataNasc = document.getElementById("dataNasc");
 let itensTabela = "";
@@ -53,6 +54,7 @@ function cadastrarPaciente() {
                 method: "POST",
                 body: JSON.stringify({
                     nome: fNome.value,
+                    cpf: fCpf.value,
                     sexo: fSexo.value,
                     dataNascimento: fDataNasc.value
                 })

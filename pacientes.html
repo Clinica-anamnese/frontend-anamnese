@@ -31,7 +31,7 @@
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="formularios.html">Formulários</a>
                 </li>
-                <li class="usersTab nav-item">
+                <li class="usersTab admin-only nav-item">
                     <a class="nav-link" aria-current="page" href="gerenciar-usuarios.html">Gerenciar Usuários</a>
                 </li>
             </ul>
@@ -77,6 +77,11 @@
                                 <div class="mb-3">
                                     <label for="nome" class="form-label">Nome Completo <span class="required">*</span></label>
                                     <input type="text" class="form-control" id="nome" required>
+                                    <div class="invalid-feedback">Campo obrigatório.</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="cpf" class="form-label">CPF <span class="required">*</span></label>
+                                    <input type="text" class="form-control" id="cpf" required>
                                     <div class="invalid-feedback">Campo obrigatório.</div>
                                 </div>
                                 <div class="mb-3">

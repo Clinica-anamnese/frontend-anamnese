@@ -18,6 +18,10 @@ const usersTab = document.querySelector(".usersTab");
 const header = document.querySelector("header");
 const headerusuarioNome = document.getElementById("headerusuarioNome");
 
+let isAdmin = false;
+const isEdicao = !!(localStorage.getItem("retornoId") || localStorage.getItem("anamneseId"));
+
+
 function verificarAutenticacao() {
     if (!token) {
         logout();
@@ -107,40 +111,53 @@ function limparTabela() {
     fallback.textContent = "";
 }
 
-function hideUsersTab() {
-    fetch(urlApi + endpointUsuarios, {
-        headers: {
-            "Authorization": `${token}`
-        }
-    })
-        .then(response => {
-            if (!response.ok) {
-                usersTab.remove();
-            }
-        })
+function esconderElementosSeNaoAdmin() {
+  fetch(urlApi + endpointUsuarios, {
+      headers: {
+          "Authorization": `${token}`
+      }
+  })
+  .then(response => {
+      if (!response.ok) {
+          throw new Error();
+      }
+      isAdmin = true; // se chegou aqui, é admin
+  })
+  .catch(() => {
+      isAdmin = false;
+      const elementsToHide = document.querySelectorAll(".admin-only");
+      elementsToHide.forEach(el => el.remove());
+  });
 }
 
 function getHeaderData() {
-    headerusuarioNome.textContent = usuarioNome;
-    hideUsersTab();
+  headerusuarioNome.textContent = usuarioNome;
+  esconderElementosSeNaoAdmin();
 }
 
 async function showTab(n) {
-    tabs[n].style.display = "block"
-  
-    if (n == 0) {
-      prevBtn.style.display = "none";
-      divStepButtons.style.flexDirection = "row-reverse"
-    } else if (n == (tabs.length - 1)) {
-      nextBtn.textContent = "Enviar";
-      prevBtn.style.display = "inline";
+    tabs[n].style.display = "block";
+
+    if (n === 0) {
+        prevBtn.style.display = "none";
+        divStepButtons.style.flexDirection = "row-reverse";
+    } else if (n === (tabs.length - 1)) {
+        if (isEdicao && !isAdmin) {
+            nextBtn.style.display = "none";
+        } else {
+            nextBtn.textContent = "Enviar";
+            nextBtn.style.display = "inline";
+        }
+        prevBtn.style.display = "inline";
     } else {
-      nextBtn.textContent = "Próximo";
-      divStepButtons.style.flexDirection = "row"
-      prevBtn.style.display = "inline";
+        nextBtn.textContent = "Próximo";
+        nextBtn.style.display = "inline";
+        prevBtn.style.display = "inline";
+        divStepButtons.style.flexDirection = "row";
     }
-    fixStepIndicator(n)
-  }
+
+    fixStepIndicator(n);
+}
 
   async function nextTab(func) {
     if (currentTab >= tabs.length - 1) {

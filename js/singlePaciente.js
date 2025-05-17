@@ -1,5 +1,6 @@
 const formAtualizarPaciente = document.querySelector(".formAtualizarPaciente");
 const fNome = document.getElementById("nome");
+const fCpf = document.getElementById("cpf");
 const fSexo = document.getElementById("sexo");
 const fDataNasc = document.getElementById("dataNasc");
 const pacienteId = localStorage.getItem("pacienteId");
@@ -15,6 +16,7 @@ function consultarPaciente() {
         .then(response => response.json())
         .then(paciente => {
             fNome.value = paciente.nome;
+            fCpf.value = paciente.cpf;
             fSexo.value = paciente.sexo;
             fDataNasc.value = paciente.dataNascimento;
             captionName.textContent = paciente.nome;
@@ -81,6 +83,7 @@ function atualizarPaciente() {
                 method: "PUT",
                 body: JSON.stringify({
                     nome: fNome.value,
+                    cpf: fCpf.value,
                     sexo: fSexo.value,
                     dataNascimento: fDataNasc.value
                 })

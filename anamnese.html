@@ -33,7 +33,7 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="formularios.html">Formulários</a>
                 </li>
-                <li class="usersTab nav-item">
+                <li class="usersTab admin-only nav-item">
                     <a class="nav-link" aria-current="page" href="gerenciar-usuarios.html">Gerenciar Usuários</a>
                 </li>
             </ul>
@@ -51,7 +51,7 @@
                     <div class="header-tab">
                         <span>Criado por <span id="criadoPor"></span></span>
                         <h1 class="fs-5">Anamnese de <span id="pacienteNome"></span></h1>
-                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                        <button type="button" class="btn btn-danger admin-only" data-bs-toggle="modal"
                             data-bs-target="#modalDeletarAnamnese">Deletar</button>
                     </div>
 
@@ -3246,7 +3246,7 @@
     </div>
 
     <!-- Modal Deletar Anamnese -->
-    <div class="modal fade" id="modalDeletarAnamnese" tabindex="-1" aria-labelledby="modalDeletarAnamneseLabel"
+    <div class="modal fade admin-only" id="modalDeletarAnamnese" tabindex="-1" aria-labelledby="modalDeletarAnamneseLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">

@@ -90,37 +90,6 @@ function atualizarAnamnese() {
     })
 }
 
-async function showTab(n) {
-    tabs[n].style.display = "block"
-
-    if (n == 0) {
-        prevBtn.style.display = "none";
-        divStepButtons.style.flexDirection = "row-reverse"
-    } else if (n == (tabs.length - 1)) {
-        nextBtn.textContent = "Atualizar";
-        prevBtn.style.display = "inline";
-    } else {
-        nextBtn.textContent = "Próximo";
-        divStepButtons.style.flexDirection = "row"
-        prevBtn.style.display = "inline";
-    }
-    fixStepIndicator(n)
-}
-
-function prevTab() {
-    tabs[currentTab].style.display = "none";
-    currentTab -= 1;
-    showTab(currentTab);
-    window.scrollTo(0, 0);
-}
-
-function fixStepIndicator(n) {
-    var i, x = document.getElementsByClassName("step");
-    for (i = 0; i < x.length; i++) {
-        x[i].className = x[i].className.replace(" active", "");
-    }
-    x[n].className += " active";
-}
 
 function getData() {
     // Seleciona todos os inputs e checkboxes dentro do formulário
