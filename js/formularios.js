@@ -30,9 +30,11 @@ function listarFormularios() {
                 <td>${formulario.tipoFormulario}</td>
                 <td>${formulario.pacienteNome}</td>
                 <td class="text-center">${formatDate(formulario.criadoEm)}</td>
+                <td class="text-center">${formulario.quantidadeDeRetorno}</td>
                 <td class="text-center">
                     ${formulario.tipoFormulario === 'Anamnese' 
-                        ? `<a href="./adicionar-retorno.html?id=${formulario.id}" class="btn btn-sm btn-outline-success" title="Adicionar retorno" style="padding: 0 5px;">+</a>` 
+                        ? `<a onclick="abrirAnamnese(${formulario.id})" class="btn btn-sm btn-outline-success" title="Abrir anamnese" style="padding: 0 3px;">↳</a>
+                        <a href="./adicionar-retorno.html?id=${formulario.id}" class="btn btn-sm btn-outline-success" title="Adicionar retorno" style="padding: 0 5px;">+</a>` 
                         : ""}
                 </td>
             `;
@@ -44,11 +46,16 @@ function listarFormularios() {
                     childRow.style.display = "none"; // Hide initially
 
                     childRow.innerHTML = `
-                        <td>↳ ${retorno.id}</td>
+                        <td class="text-center">↳ ${retorno.id}</td>
                         <td>${retorno.tipoFormulario}</td>
                         <td>${retorno.pacienteNome}</td>
                         <td class="text-center">${formatDate(retorno.criadoEm)}</td>
                     `;
+
+                    childRow.addEventListener("click", (e) => {
+                        localStorage.setItem("retornoId", retorno.id);
+                        window.location.href = "retorno.html";
+                    });
 
                     tbody.appendChild(childRow);
                 });
@@ -79,6 +86,10 @@ function listarFormularios() {
     });
 }
 
+function abrirAnamnese(anamneseId) {
+    localStorage.setItem("anamneseId", anamneseId);
+    window.location.href = "anamnese.html";
+}
 
 function limparTabelaFormularios() {
     const tbody = document.getElementById("tabelaFormulariosCorpo")
