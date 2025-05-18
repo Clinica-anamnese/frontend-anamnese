@@ -41,10 +41,9 @@
     <div class="div-principal">
         <img src="./img/unisantos-logo.png" alt="Logo Unisantos" width="233px">
         <div class="div-conteudo">
-            <form class="search-bar form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Search">
-                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Pesquisar</button>
-            </form>
+            <div class="search-bar form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Search" id="inputPesquisaPacientes">
+            </div>
             <div class="div-tabela">
                 <button type="button" class="btn add-button btn-success" data-bs-toggle="modal"
                     data-bs-target="#modalAddPaciente">Adicionar Paciente</button>
@@ -57,7 +56,7 @@
                             <th scope="col">Criado Em</th>
                         </tr>
                     </thead>
-                    <tbody class="tabela-tbody">
+                    <tbody class="tabela-tbody" id="tabelaPacientesCorpo">
                     </tbody>
                 </table>
                 <span id="fallback"></span>

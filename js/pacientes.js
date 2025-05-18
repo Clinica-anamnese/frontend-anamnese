@@ -2,10 +2,14 @@ const formAddPaciente = document.querySelector(".formAddPaciente");
 const fNome = document.getElementById("nome");
 const fSexo = document.getElementById("sexo");
 const fDataNasc = document.getElementById("dataNasc");
+const inputPesquisaPacientes = document.getElementById("inputPesquisaPacientes");
 let itensTabela = "";
 
 function listarPacientes() {
-    fetch(urlApi + endpointPacientes, {
+    limparTabelaPacientes();
+    var data = selecionarParametrosPacientes();
+
+    fetch(`${urlApi + endpointPacientes}?nome=${data.nome}`, {
         headers: {
             "Authorization": `${token}`
         }
@@ -90,6 +94,29 @@ formAddPaciente.addEventListener("submit", async event => {
         verificarAutenticacao();
     }
 });
+
+inputPesquisaPacientes.addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+        listarPacientes();
+    }
+});
+
+inputPesquisaPacientes.addEventListener("blue", function(e) {
+    listarPacientes();
+});
+
+function limparTabelaPacientes() {
+    const tbody = document.getElementById("tabelaPacientesCorpo")
+    tbody.innerHTML = ""; 
+}
+
+function selecionarParametrosPacientes() {
+    data = {
+        nome: inputPesquisaPacientes.value ?? null
+    }
+
+    return data;
+}
 
 verificarAutenticacao();
 listarPacientes();
