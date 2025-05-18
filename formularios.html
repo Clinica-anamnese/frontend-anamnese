@@ -32,6 +32,15 @@
         .switchVisualizacaoFormulario {
             margin-top: 10px;
         }
+
+        .card-filtros {
+            width: 50%;
+            margin-left: auto;
+        }
+
+        #labelCriadoEmTermino {
+            visibility: hidden;
+        }
     </style>
 
     <header>
@@ -62,9 +71,38 @@
     <div class="div-principal">
         <img src="./img/unisantos-logo.png" alt="Logo Unisantos" width="233px">
         <div class="div-conteudo">
-            <div class="search-bar form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Search" id="inputPesquisaFormularios">
+            <div class="search-bar form-inline mb-3 gap-2 d-flex align-items-center">
+                <input class="form-control" type="search" placeholder="Pesquisar" aria-label="Search" id="inputPesquisaFormularios">
+                <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#filtrosAvancados" aria-expanded="false" aria-controls="filtrosAvancados">
+                    Filtros
+                </button>
             </div>
+            
+            <div class="collapse mb-3" id="filtrosAvancados">
+                <div class="card card-body card-filtros">
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-12">
+                            <label for="filtroTipoFormulario" class="form-label">Tipo de Formulário</label>
+                            <select class="form-select" id="selectTipoFormulario">
+                                <option value="todos" selected>Todos</option>
+                                <option value="anamnese">Anamnese</option>
+                                <option value="retorno">Retorno</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="filtroData" class="form-label">Criado em</label>
+                            <input type="date" class="form-control" id="inputCriadoEmInicio">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="filtroData" class="form-label" id="labelCriadoEmTermino">Até</label>
+                            <input type="date" class="form-control" id="inputCriadoEmTermino">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <div class="div-tabela">
                 <a href="./adicionar-anamnese.html"><button type="button" class="btn add-button btn-success">Adicionar Anamnese</button></a>
                 <a href="./adicionar-retorno.html"><button type="button" class="btn add-button btn-success">Adicionar Retorno</button></a>

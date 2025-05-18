@@ -7,20 +7,27 @@ const botaoExportarAnamneses = document.getElementById("botaoExportarAnamneses")
 const botaoExportarRetornos = document.getElementById("botaoExportarRetornos");
 const inputPesquisaFormularios = document.getElementById("inputPesquisaFormularios");
 const switchTipoVisualizacaoFormulario = document.getElementById("switchTipoVisualizacaoFormulario");
+const selectTipoFormulario = document.getElementById("selectTipoFormulario");
+const inputCriadoEmInicio = document.getElementById("inputCriadoEmInicio");
+const inputCriadoEmTermino = document.getElementById("inputCriadoEmTermino");
 let itensTabela = "";
 
 function listarFormularios() {
     var data = selecionarParametrosFormularios();
     limparTabelaFormularios();
 
-    fetch(`${urlApi + endpointFormularios}?retornoAgrupado=${data.retornoAgrupado}&nome=${data.nome}`, {
+    var queryFilter = `?retornoAgrupado=${data.retornoAgrupado}&nome=${data.nome}&tipo=${data.tipo}`;
+    queryFilter += data.criadoEmInicio ? `&criadoEmInicio=${data.criadoEmInicio}` : "";
+    queryFilter += data.criadoEmTermino ? `&criadoEmTermino=${data.criadoEmTermino}` : "";
+
+    fetch(`${urlApi + endpointFormularios + queryFilter}`, {
         headers: {
             "Authorization": `${token}`
         }
     })
         .then(response => response.json())
         .then(formularios => {
-            if (data.retornoAgrupado == true) {
+            if (data.retornoAgrupado == true && data.tipo != "retorno") {
                 listarFormulariosRetornoAgrupado(formularios);
             } else {
                 listarFormulariosSeparados(formularios);
@@ -226,7 +233,7 @@ inputPesquisaFormularios.addEventListener("keydown", function (e) {
     }
 });
 
-inputPesquisaFormularios.addEventListener("blue", function (e) {
+inputPesquisaFormularios.addEventListener("blur", function (e) {
     listarFormularios();
 });
 
@@ -234,10 +241,25 @@ switchTipoVisualizacaoFormulario.addEventListener("change", function (e) {
     listarFormularios();
 });
 
+selectTipoFormulario.addEventListener("change", function (e) {
+    listarFormularios();
+});
+
+inputCriadoEmInicio.addEventListener("blur", function (e) {
+    listarFormularios();
+});
+
+inputCriadoEmTermino.addEventListener("blur", function (e) {
+    listarFormularios();
+});
+
 function selecionarParametrosFormularios() {
     data = {
         nome: inputPesquisaFormularios.value ?? null,
-        retornoAgrupado: switchTipoVisualizacaoFormulario.checked
+        retornoAgrupado: switchTipoVisualizacaoFormulario.checked,
+        tipo: selectTipoFormulario.value,
+        criadoEmInicio: inputCriadoEmInicio.value,
+        criadoEmTermino: inputCriadoEmTermino.value
     }
 
     return data;
