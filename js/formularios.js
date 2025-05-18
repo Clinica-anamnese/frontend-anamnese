@@ -6,83 +6,133 @@ const tbodyRetornos = document.querySelector(".tabela-tbody-retornos");
 const botaoExportarAnamneses = document.getElementById("botaoExportarAnamneses");
 const botaoExportarRetornos = document.getElementById("botaoExportarRetornos");
 const inputPesquisaFormularios = document.getElementById("inputPesquisaFormularios");
+const switchTipoVisualizacaoFormulario = document.getElementById("switchTipoVisualizacaoFormulario");
 let itensTabela = "";
 
 function listarFormularios() {
     var data = selecionarParametrosFormularios();
     limparTabelaFormularios();
 
-    fetch(`${urlApi + endpointFormularios}?nome=${data.nome}`, {
+    fetch(`${urlApi + endpointFormularios}?retornoAgrupado=${data.retornoAgrupado}&nome=${data.nome}`, {
         headers: {
             "Authorization": `${token}`
         }
     })
-    .then(response => response.json())
-    .then(data => {
-        data.forEach(formulario => {
-            const parentRow = document.createElement("tr");
-            parentRow.classList.add("itemTabela", "clickable");
-            parentRow.id = `formulario-${formulario.id}`;
-            tbody.appendChild(parentRow);
+        .then(response => response.json())
+        .then(formularios => {
+            if (data.retornoAgrupado == true) {
+                listarFormulariosRetornoAgrupado(formularios);
+            } else {
+                listarFormulariosSeparados(formularios);
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            fallback.textContent = "Sem conexão com a API.";
+        });
+}
 
-            parentRow.innerHTML = `
+function listarFormulariosRetornoAgrupado(data) {
+    data.forEach(formulario => {
+        const parentRow = document.createElement("tr");
+        parentRow.classList.add("itemTabela", "clickable");
+        tbody.appendChild(parentRow);
+
+        parentRow.innerHTML = `
                 <th class="text-center">${formulario.id}</th>
                 <td>${formulario.tipoFormulario}</td>
                 <td>${formulario.pacienteNome}</td>
                 <td class="text-center">${formatDate(formulario.criadoEm)}</td>
-                <td class="text-center">${formulario.quantidadeDeRetorno}</td>
                 <td class="text-center">
-                    ${formulario.tipoFormulario === 'Anamnese' 
-                        ? `<a onclick="abrirAnamnese(${formulario.id})" class="btn btn-sm btn-outline-success" title="Abrir anamnese" style="padding: 0 3px;">↳</a>
-                        <a href="./adicionar-retorno.html?id=${formulario.id}" class="btn btn-sm btn-outline-success" title="Adicionar retorno" style="padding: 0 5px;">+</a>` 
-                        : ""}
+                    ${formulario.tipoFormulario === 'Anamnese'
+                ? `<a onclick="abrirAnamnese(${formulario.id})" class="btn btn-sm btn-outline-success" title="Abrir anamnese" style="padding: 0 3px;">↳</a>
+                        <a href="./adicionar-retorno.html?id=${formulario.id}" class="btn btn-sm btn-outline-success" title="Adicionar retorno" style="padding: 0 5px;">+</a>`
+                : ""}
                 </td>
             `;
 
-            if (Array.isArray(formulario.retornos) && formulario.retornos.length > 0) {
-                formulario.retornos.forEach(retorno => {
-                    const childRow = document.createElement("tr");
-                    childRow.classList.add("child-row", `child-of-${formulario.id}`);
-                    childRow.style.display = "none"; // Hide initially
+        if (Array.isArray(formulario.retornos) && formulario.retornos.length > 0) {
+            formulario.retornos.forEach(retorno => {
+                const childRow = document.createElement("tr");
+                childRow.classList.add("child-row", `child-of-${formulario.id}`);
+                childRow.style.display = "none";
 
-                    childRow.innerHTML = `
+                childRow.innerHTML = `
                         <td class="text-center">↳ ${retorno.id}</td>
                         <td>${retorno.tipoFormulario}</td>
                         <td>${retorno.pacienteNome}</td>
                         <td class="text-center">${formatDate(retorno.criadoEm)}</td>
                     `;
 
-                    childRow.addEventListener("click", (e) => {
-                        localStorage.setItem("retornoId", retorno.id);
-                        window.location.href = "retorno.html";
-                    });
-
-                    tbody.appendChild(childRow);
-                });
-            }
-
-            parentRow.addEventListener("click", (e) => {
-                if (e.target.closest("a")) return;
-
-                const childRows = document.querySelectorAll(`.child-of-${formulario.id}`);
-                childRows.forEach(row => {
-                    row.style.display = row.style.display === "none" ? "table-row" : "none";
-                });
-
-                if (formulario.tipoFormulario === "Anamnese") {
-                    localStorage.setItem("anamneseId", formulario.id);
-                    // Optional: only navigate if not clicked for expanding
-                    // window.location.href = "anamnese.html";
-                } else {
-                    localStorage.setItem("retornoId", formulario.id);
+                childRow.addEventListener("click", (e) => {
+                    localStorage.setItem("retornoId", retorno.id);
                     window.location.href = "retorno.html";
-                }
+                });
+
+                tbody.appendChild(childRow);
             });
+        }
+
+        parentRow.addEventListener("click", (e) => {
+            if (e.target.closest("a")) return;
+
+            const childRows = document.querySelectorAll(`.child-of-${formulario.id}`);
+            childRows.forEach(row => {
+                row.style.display = row.style.display === "none" ? "table-row" : "none";
+            });
+
+            if (formulario.tipoFormulario === "Anamnese") {
+                localStorage.setItem("anamneseId", formulario.id);
+            } else {
+                localStorage.setItem("retornoId", formulario.id);
+                window.location.href = "retorno.html";
+            }
         });
-    })
-    .catch(error => {
-        console.error(error);
-        fallback.textContent = "Sem conexão com a API.";
+    });
+}
+
+function listarFormulariosSeparados(data) {
+    data.forEach(formulario => {
+        const itemTabela = document.createElement("tr");
+        itemTabela.classList.add("itemTabela", "clickable");
+        tbody.appendChild(itemTabela);
+
+        const colunaId = document.createElement("th");
+        colunaId.classList.add("text-center");
+        colunaId.textContent = `${formulario.id}`
+        itemTabela.appendChild(colunaId);
+
+        const colunaTipoForm = document.createElement("td");
+        colunaTipoForm.textContent = `${formulario.tipoFormulario}`
+        itemTabela.appendChild(colunaTipoForm);
+
+        const colunaPaciente = document.createElement("td");
+        colunaPaciente.textContent = `${formulario.pacienteNome}`
+        itemTabela.appendChild(colunaPaciente);
+
+        const colunaAt = document.createElement("td");
+        colunaAt.classList.add("text-center");
+        const dataValue = formatDate(formulario.criadoEm);
+        colunaAt.textContent = dataValue;
+        itemTabela.appendChild(colunaAt);
+
+        const colunaAcoes = document.createElement("td");
+        colunaAcoes.classList.add("text-center");
+        if (formulario.tipoFormulario == 'Anamnese') {
+            colunaAcoes.innerHTML = `<a href="./adicionar-retorno.html?id=${formulario.id}" class="btn btn-sm btn-outline-success" title="Adicionar retorno" style="padding: 0 5px;">+</a>`;
+        }
+        itemTabela.appendChild(colunaAcoes);
+
+
+        itemTabela.addEventListener("click", () => {
+            if (formulario.tipoFormulario == "Anamnese") {
+                localStorage.setItem("anamneseId", formulario.id);
+                window.location.href = "anamnese.html";
+            } else {
+                localStorage.setItem("retornoId", formulario.id);
+                window.location.href = "retorno.html";
+            }
+        })
     });
 }
 
@@ -93,7 +143,7 @@ function abrirAnamnese(anamneseId) {
 
 function limparTabelaFormularios() {
     const tbody = document.getElementById("tabelaFormulariosCorpo")
-    tbody.innerHTML = ""; 
+    tbody.innerHTML = "";
 }
 
 function exportarAnamneses() {
@@ -170,19 +220,24 @@ botaoExportarRetornos.addEventListener("click", async () => {
     }
 });
 
-inputPesquisaFormularios.addEventListener("keydown", function(e) {
+inputPesquisaFormularios.addEventListener("keydown", function (e) {
     if (e.key === "Enter") {
         listarFormularios();
     }
 });
 
-inputPesquisaFormularios.addEventListener("blue", function(e) {
+inputPesquisaFormularios.addEventListener("blue", function (e) {
+    listarFormularios();
+});
+
+switchTipoVisualizacaoFormulario.addEventListener("change", function (e) {
     listarFormularios();
 });
 
 function selecionarParametrosFormularios() {
     data = {
-        nome: inputPesquisaFormularios.value ?? null
+        nome: inputPesquisaFormularios.value ?? null,
+        retornoAgrupado: switchTipoVisualizacaoFormulario.checked
     }
 
     return data;

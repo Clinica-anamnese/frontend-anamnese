@@ -23,6 +23,15 @@
             background-color: #f9f9f9;
             font-style: italic;
         }
+
+        .child-row td {
+            background-color: #f9f9f90a;
+            font-style: italic;
+        }
+
+        .switchVisualizacaoFormulario {
+            margin-top: 10px;
+        }
     </style>
 
     <header>
@@ -62,6 +71,11 @@
                 <button id="botaoExportarAnamneses" type="button" class="btn add-button btn-primary">Exportar Anamneses</button>
                 <button id="botaoExportarRetornos" type="button" class="btn add-button btn-primary">Exportar Retornos</button>
 
+                <div class="form-check form-switch form-check-reverse switchVisualizacaoFormulario">
+                    <input class="form-check-input" type="checkbox" id="switchTipoVisualizacaoFormulario" checked>
+                    <label class="form-check-label" for="switchTipoVisualizacaoFormulario">Alterar visualização de formulários</label>
+                </div>
+
                 <table class="table caption-top table-bordered table-hover">
                     <caption>Lista de Formulários</caption>
                     <thead>
@@ -70,7 +84,6 @@
                             <th scope="col">Tipo de Formulário</th>
                             <th scope="col">Paciente</th>
                             <th scope="col" class="text-center">Criado Em</th>
-                            <th scope="col" class="text-center">Retornos</th>
                             <th scope="col" class="text-center">Ações</th>
                         </tr>
                     </thead>
