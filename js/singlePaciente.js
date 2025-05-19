@@ -16,7 +16,7 @@ function consultarPaciente() {
         .then(response => response.json())
         .then(paciente => {
             fNome.value = paciente.nome;
-            fCpf.value = paciente.cpf;
+            fCpf.value = formatarCPF(paciente.cpf);
             fSexo.value = paciente.sexo;
             fDataNasc.value = paciente.dataNascimento;
             captionName.textContent = paciente.nome;
@@ -35,34 +35,60 @@ function listarFormulariosDoPaciente() {
         .then(response => response.json())
         .then(data => {
             data.forEach(formulario => {
-                const itemTabela = document.createElement("tr");
-                itemTabela.classList.add("itemTabela");
-                itemTabela.classList.add("clickable");
-                itemTabela.id = formulario.id;
-                tbody.appendChild(itemTabela);
-                const colunaId = document.createElement("th");
-                colunaId.textContent = `${formulario.id}`
-                itemTabela.appendChild(colunaId);
-                const colunaTipoForm = document.createElement("td");
-                colunaTipoForm.textContent = `${formulario.tipoFormulario}`
-                itemTabela.appendChild(colunaTipoForm);
-                const colunaPaciente = document.createElement("td");
-                colunaPaciente.textContent = `${formulario.pacienteNome}`
-                itemTabela.appendChild(colunaPaciente);
-                const colunaAt = document.createElement("td");
-                const dataValue = formatDate(formulario.criadoEm);
-                colunaAt.textContent = dataValue;
-                itemTabela.appendChild(colunaAt);
-
-                itemTabela.addEventListener("click", () => {
-                    if (formulario.tipoFormulario == "Anamnese") {
+                const parentRow = document.createElement("tr");
+                parentRow.classList.add("itemTabela", "clickable");
+                tbody.appendChild(parentRow);
+        
+                parentRow.innerHTML = `
+                        <th class="text-center">${formulario.id}</th>
+                        <td>${formulario.tipoFormulario}</td>
+                        <td>${formulario.pacienteNome}</td>
+                        <td class="text-center">${formatDate(formulario.criadoEm)}</td>
+                        <td class="text-center">
+                            ${formulario.tipoFormulario === 'Anamnese'
+                        ? `<a onclick="abrirAnamnese(${formulario.id})" class="btn btn-sm btn-outline-success" title="Abrir anamnese" style="padding: 0 3px;">↳</a>
+                                <a href="./adicionar-retorno.html?id=${formulario.id}" class="btn btn-sm btn-outline-success" title="Adicionar retorno" style="padding: 0 5px;">+</a>`
+                        : ""}
+                        </td>
+                    `;
+        
+                if (Array.isArray(formulario.retornos) && formulario.retornos.length > 0) {
+                    formulario.retornos.forEach(retorno => {
+                        const childRow = document.createElement("tr");
+                        childRow.classList.add("child-row", `child-of-${formulario.id}`);
+                        childRow.style.display = "none";
+        
+                        childRow.innerHTML = `
+                                <td class="text-center">↳ ${retorno.id}</td>
+                                <td>${retorno.tipoFormulario}</td>
+                                <td>${retorno.pacienteNome}</td>
+                                <td class="text-center">${formatDate(retorno.criadoEm)}</td>
+                            `;
+        
+                        childRow.addEventListener("click", (e) => {
+                            localStorage.setItem("retornoId", retorno.id);
+                            window.location.href = "retorno.html";
+                        });
+        
+                        tbody.appendChild(childRow);
+                    });
+                }
+        
+                parentRow.addEventListener("click", (e) => {
+                    if (e.target.closest("a")) return;
+        
+                    const childRows = document.querySelectorAll(`.child-of-${formulario.id}`);
+                    childRows.forEach(row => {
+                        row.style.display = row.style.display === "none" ? "table-row" : "none";
+                    });
+        
+                    if (formulario.tipoFormulario === "Anamnese") {
                         localStorage.setItem("anamneseId", formulario.id);
-                        window.location.href = "anamnese.html";
                     } else {
                         localStorage.setItem("retornoId", formulario.id);
                         window.location.href = "retorno.html";
                     }
-                })
+                });
             });
         })
         .catch(error => {
@@ -83,7 +109,7 @@ function atualizarPaciente() {
                 method: "PUT",
                 body: JSON.stringify({
                     nome: fNome.value,
-                    cpf: fCpf.value,
+                    cpf: desformatarCPF(fCpf.value),
                     sexo: fSexo.value,
                     dataNascimento: fDataNasc.value
                 })
@@ -126,6 +152,32 @@ botaoDeletar.addEventListener("click", async () => {
     } catch {
         verificarAutenticacao();
     }
+});
+
+function formatarCPF(valor) {
+    if(!valor) return null;
+
+    const digitos = valor.replace(/\D/g, '').slice(0, 11);
+    return digitos.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+}
+
+function desformatarCPF(valor) {
+    if(!valor) return null;
+
+    const desformatado = valor.replace(/[.\-]/g, '');
+    return desformatado.length === 11 ? desformatado : null;
+}
+
+fCpf.addEventListener("input", () => {
+    const digitos = fCpf.value.replace(/\D/g, '').slice(0, 11);
+    fCpf.value = digitos.replace(/(\d{0,3})(\d{0,3})(\d{0,3})(\d{0,2})/, (_, p1, p2, p3, p4) => {
+        let formatado = '';
+        if (p1) formatado += p1;
+        if (p2) formatado += '.' + p2;
+        if (p3) formatado += '.' + p3;
+        if (p4) formatado += '-' + p4;
+        return formatado;
+    });
 });
 
 verificarAutenticacao();

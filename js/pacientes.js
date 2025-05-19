@@ -58,7 +58,7 @@ function cadastrarPaciente() {
                 method: "POST",
                 body: JSON.stringify({
                     nome: fNome.value,
-                    cpf: fCpf.value,
+                    cpf: desformatarCPF(fCpf.value),
                     sexo: fSexo.value,
                     dataNascimento: fDataNasc.value
                 })
@@ -119,6 +119,25 @@ function selecionarParametrosPacientes() {
 
     return data;
 }
+
+function desformatarCPF(valor) {
+    if(!valor) return null;
+
+    const desformatado = valor.replace(/[.\-]/g, '');
+    return desformatado.length === 11 ? desformatado : null;
+}
+
+fCpf.addEventListener("input", () => {
+    const digitos = fCpf.value.replace(/\D/g, '').slice(0, 11);
+    fCpf.value = digitos.replace(/(\d{0,3})(\d{0,3})(\d{0,3})(\d{0,2})/, (_, p1, p2, p3, p4) => {
+        let formatado = '';
+        if (p1) formatado += p1;
+        if (p2) formatado += '.' + p2;
+        if (p3) formatado += '.' + p3;
+        if (p4) formatado += '-' + p4;
+        return formatado;
+    });
+});
 
 verificarAutenticacao();
 listarPacientes();
