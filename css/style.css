@@ -144,3 +144,15 @@ h1, h2, h3, p, span {
 .primeira-linha th {
     background-color: #6c757d54 !important;
 }
+
+.alerta-cpf {
+    float: right;
+    color: red;
+    font-size: 0.75rem;
+    font-weight: bold;
+    background-color: transparent;
+    border: 1px solid red;
+    border-radius: 4px;
+    padding: 2px 6px;
+    margin-left: 10px;
+}

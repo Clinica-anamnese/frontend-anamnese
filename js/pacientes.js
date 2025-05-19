@@ -23,12 +23,15 @@ function listarPacientes() {
                 itemTabela.classList.add("clickable");
                 itemTabela.id = paciente.id;
                 tbody.appendChild(itemTabela);
+
                 const colunaID = document.createElement("th");
                 colunaID.textContent = `${paciente.id}`
                 itemTabela.appendChild(colunaID);
+
                 const colunaPaciente = document.createElement("td");
                 colunaPaciente.textContent = `${paciente.nome}`
                 itemTabela.appendChild(colunaPaciente);
+
                 const colunaAt = document.createElement("td");
                 const dataValue = formatDate(paciente.criadoEm);
                 colunaAt.textContent = dataValue;
@@ -38,6 +41,15 @@ function listarPacientes() {
                     localStorage.setItem("pacienteId", paciente.id);
                     window.location.href = "paciente.html";
                 })
+
+                // Adiciona alerta caso não tenha CPF
+                if (!paciente.cpf || paciente.cpf.trim() === "") {
+                    const alertaCpf = document.createElement("span");
+                    alertaCpf.textContent = "Adicionar CPF";
+                    alertaCpf.classList.add("alerta-cpf");
+                    colunaPaciente.appendChild(alertaCpf);
+                }
+                
             });
         })
         .catch(error => {
