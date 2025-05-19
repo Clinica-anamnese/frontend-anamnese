@@ -7,6 +7,7 @@ const nextBtn = document.getElementById("nextBtn");
 const prevBtn = document.getElementById("prevBtn");
 const tabs = document.getElementsByClassName("tab");
 const fPacienteSelect = document.getElementById("pacienteSelect");
+const fAnamneseSelect = document.getElementById("anamneseSelect");
 const botaoDeletar = document.getElementById("botaoDeletar");
 let currentTab = 0;
 
@@ -18,7 +19,7 @@ function consultarRetorno() {
     })
         .then(response => response.json())
         .then(retorno => {
-            pacienteNome.textContent = retorno.pacienteNome;
+            preencherCampoPaciente(retorno.anamneseId);
             criadoPor.textContent = retorno.usuarioNome;
             for (const key in retorno) {
                 if (retorno.hasOwnProperty(key)) {
@@ -128,5 +129,6 @@ botaoDeletar.addEventListener("click", async () => {
 
 verificarAutenticacao();
 listarPacientesSelect(fPacienteSelect);
+listarAnamnesesSelect(fAnamneseSelect);
 consultarRetorno();
 showTab(currentTab);

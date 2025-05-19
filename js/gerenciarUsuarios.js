@@ -14,7 +14,10 @@ function limparTabela() {
 }
 
 function listarUsuarios() {
-    fetch(urlApi + endpointUsuarios, {
+    limparTabelaUsuarios();
+    var dados = selecionarParametrosUsuarios();
+
+    fetch(`${urlApi + endpointUsuarios}?nome=${dados.nome}`, {
         headers: {
             "Authorization": `${token}`
         }
@@ -112,6 +115,28 @@ function cadastrarUsuario() {
     });
 }
 
+inputPesquisaUsuarios.addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+        listarUsuarios();
+    }
+});
+
+inputPesquisaUsuarios.addEventListener("blue", function(e) {
+    listarUsuarios();
+});
+
+function limparTabelaUsuarios() {
+    const tbody = document.getElementById("tabelaUsuariosCorpo")
+    tbody.innerHTML = ""; 
+}
+
+function selecionarParametrosUsuarios() {
+    data = {
+        nome: inputPesquisaUsuarios.value ?? null
+    }
+    return data;
+}
+
 formAddUsuario.addEventListener('submit', async event => {
     event.preventDefault();
     badWarning.textContent = "";
@@ -124,6 +149,7 @@ formAddUsuario.addEventListener('submit', async event => {
         verificarAutenticacaoAdmin();
     }
 });
+
 
 verificarAutenticacaoAdmin();
 listarUsuarios();

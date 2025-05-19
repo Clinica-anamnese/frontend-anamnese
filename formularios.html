@@ -13,6 +13,36 @@
 </head>
 
 <body>
+
+    <style scoped>
+        .child-row td:first-child {
+            border: none;
+        }
+
+        .child-row {
+            background-color: #f9f9f9;
+            font-style: italic;
+        }
+
+        .child-row td {
+            background-color: #f9f9f90a;
+            font-style: italic;
+        }
+
+        .switchVisualizacaoFormulario {
+            margin-top: 10px;
+        }
+
+        .card-filtros {
+            width: 50%;
+            margin-left: auto;
+        }
+
+        #labelCriadoEmTermino {
+            visibility: hidden;
+        }
+    </style>
+
     <header>
         <div class="div-header">
             <span id="headerusuarioNome"></span>
@@ -41,27 +71,61 @@
     <div class="div-principal">
         <img src="./img/unisantos-logo.png" alt="Logo Unisantos" width="233px">
         <div class="div-conteudo">
-            <form class="search-bar form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Search">
-                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Pesquisar</button>
-            </form>
+            <div class="search-bar form-inline mb-3 gap-2 d-flex align-items-center">
+                <input class="form-control" type="search" placeholder="Pesquisar" aria-label="Search" id="inputPesquisaFormularios">
+                <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#filtrosAvancados" aria-expanded="false" aria-controls="filtrosAvancados">
+                    Filtros
+                </button>
+            </div>
+            
+            <div class="collapse mb-3" id="filtrosAvancados">
+                <div class="card card-body card-filtros">
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-12">
+                            <label for="filtroTipoFormulario" class="form-label">Tipo de Formulário</label>
+                            <select class="form-select" id="selectTipoFormulario">
+                                <option value="todos" selected>Todos</option>
+                                <option value="anamnese">Anamnese</option>
+                                <option value="retorno">Retorno</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="filtroData" class="form-label">Criado em</label>
+                            <input type="date" class="form-control" id="inputCriadoEmInicio">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="filtroData" class="form-label" id="labelCriadoEmTermino">Até</label>
+                            <input type="date" class="form-control" id="inputCriadoEmTermino">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <div class="div-tabela">
                 <a href="./adicionar-anamnese.html"><button type="button" class="btn add-button btn-success">Adicionar Anamnese</button></a>
                 <a href="./adicionar-retorno.html"><button type="button" class="btn add-button btn-success">Adicionar Retorno</button></a>
                 <button id="botaoExportarAnamneses" type="button" class="btn add-button btn-primary">Exportar Anamneses</button>
                 <button id="botaoExportarRetornos" type="button" class="btn add-button btn-primary">Exportar Retornos</button>
 
+                <div class="form-check form-switch form-check-reverse switchVisualizacaoFormulario">
+                    <input class="form-check-input" type="checkbox" id="switchTipoVisualizacaoFormulario" checked>
+                    <label class="form-check-label" for="switchTipoVisualizacaoFormulario">Alterar visualização de formulários</label>
+                </div>
+
                 <table class="table caption-top table-bordered table-hover">
                     <caption>Lista de Formulários</caption>
                     <thead>
                         <tr>
-                            <th scope="col">Código</th>
+                            <th scope="col" class="text-center">Código</th>
                             <th scope="col">Tipo de Formulário</th>
                             <th scope="col">Paciente</th>
-                            <th scope="col">Criado Em</th>
+                            <th scope="col" class="text-center">Criado Em</th>
+                            <th scope="col" class="text-center">Ações</th>
                         </tr>
                     </thead>
-                    <tbody class="tabela-tbody">
+                    <tbody class="tabela-tbody" id="tabelaFormulariosCorpo">
                     </tbody>
                 </table>
 

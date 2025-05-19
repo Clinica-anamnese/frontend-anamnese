@@ -55,17 +55,19 @@
                     </div>
 
                     <div class="mb-4">
-                        <label for="pacienteId" class="form-label">Paciente <span class="required">*</span></label>
-                        <input type="text" class="form-select" list="pacienteSelect" id="pacienteId" name="pacienteId"
-                            placeholder="Selecione um paciente" required>
-                        <datalist id="pacienteSelect">
+                        <label for="anamneseId" class="form-label">Selecionar a Anamnese para retorno <span class="required">*</span></label>
+                        <input type="text" class="form-select" list="anamneseSelect" id="anamneseId" name="anamneseId"
+                            placeholder="Selecione um anamnese" onchange="preencherCampoPaciente(this.value)" required>
+                        <datalist id="anamneseSelect">
                         </datalist>
                     </div>
 
                     <div class="mb-4">
-                        <label class="form-label" for="retorno">Retorno <span class="required">*</span></label>
-                        <input name="retorno" type="number" class="form-control" id="retorno" required>
+                        <label for="pacienteId" class="form-label">Paciente <span class="required">*</span></label>
+                        <input type="hidden" id="pacienteId" name="pacienteId" required>
+                        <input type="text" class="form-control" id="pacienteNome" name="pacienteNome" readonly>
                     </div>
+
                     <div class="mb-4">
                         <label class="form-label" for="metasUltimasConsultas">Quais metas foram estabelecidas na
                             última
