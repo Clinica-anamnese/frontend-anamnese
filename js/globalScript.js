@@ -1,4 +1,4 @@
-const urlApi = "http://localhost:8080/"
+const urlApi = `${window.location.protocol}//${window.location.hostname}:8080/`;
 const endpointPacientes = "pacientes";
 const endpointUsuarios = "usuarios";
 const endpointAuth = "auth/login";
