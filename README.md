@@ -15,7 +15,7 @@
 
 ### SERVIDOR NGINX
 
-<p>Caso necessário, é possível alterar o arquivo de configuração do servidor Nginx. Nele é configurado porta (5500) onde aplicação irá inicializar, arquivo HTML para redirecionamento e localização da API (porta 8080). Apenas altere o arquivo nginx.conf.</p>
+<p>Caso necessário, é possível alterar o arquivo de configuração do servidor Nginx. Nele é configurado porta (5500) onde aplicação irá inicializar, arquivo HTML para redirecionamento e localização da API (porta 8080). É necessário apenas alterar o arquivo nginx.conf.</p>
 
 <br/>
 
