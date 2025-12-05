@@ -1,10 +1,7 @@
 const formAddRetorno = document.querySelector(".formAddRetorno");
-const divStepButtons = document.querySelector(".div-step-buttons");
 const nextBtn = document.getElementById("nextBtn");
 const prevBtn = document.getElementById("prevBtn");
 const tabs = document.getElementsByClassName("tab");
-const fPacienteSelect = document.getElementById("pacienteSelect");
-const fAnamneseSelect = document.getElementById("anamneseSelect");
 let currentTab = 0;
 
 function cadastrarRetorno() {
@@ -25,62 +22,99 @@ function cadastrarRetorno() {
             forbidden = true;
             return Promise.reject();
           }
-          goodWarning.textContent = "Retorno cadastrada com sucesso!";
+          goodWarning.textContent = "Retorno cadastrado com sucesso!";
           resolve(response);
         })
         .catch(error => {
-          if (forbidden) {
-            badWarning.textContent = "Dados inválidos.";
-          } else {
-            badWarning.textContent = "Erro na comunicação com a API.";
-          }
+          badWarning.textContent = forbidden ? "Dados inválidos." : "Erro na API.";
           reject(error);
         })
     } else {
-      badWarning.textContent = "Preencha todos os campos obrigatórios";
+      badWarning.textContent = "Preencha os campos obrigatórios";
     }
   })
 }
 
 function getData() {
-  // Seleciona todos os inputs e checkboxes dentro do formulário
-  const inputs = document.querySelectorAll('.formAddRetorno input, .formAddRetorno select, .formAddRetorno textarea');
-  const data = { usuarioId: usuarioId, };
+  // Helper para pegar valor de input pelo ID de forma segura
+  const getVal = (id) => {
+      const el = document.getElementById(id);
+      return el ? el.value : null;
+  };
+  
+  const usuarioIdLocal = localStorage.getItem("usuarioId");
 
-  // Itera sobre cada elemento e adiciona seu valor ao objeto data
-  inputs.forEach(input => {
-    let value = input.value;
-
-    if (input.type === 'checkbox') {
-      value = input.checked;
-    } else if (input.type === 'radio') {
-      if (input.checked) {
-        value = input.value;
-      } else {
-        return;
-      }
-    } else if (value === "") {
-      value = null;
-    }
-
-    data[input.name] = value;
-  });
+  const data = {
+      usuario: { id: usuarioIdLocal },
+      paciente: { id: getVal("pacienteId") },
+      anamnese: { id: getVal("anamneseId") },
+      
+      metasUltimasConsultas: getVal("metasUltimasConsultas"),
+      comentariosObservacao: getVal("comentariosObservacao"),
+      metasForamCumpridas: getVal("metasForamCumpridas"),
+      // desempenhoMetas removido daqui pois é radio button
+      motivoCumprimentoMetas: getVal("motivoAssinaladoCumprimentoMetas"),
+      sentiuMudancaHabitos: getVal("comoSentiuMudancaHabitos"),
+      adaptacaoMudanca: getVal("adaptacaoMudancaHabitos"),
+      dificuldadeAdaptacao: getVal("motivosDificuldadeAdaptacao"),
+      melhorarAlimentacao: getVal("sentePrecisaMelhorarAlimentacao"),
+      habitoIntestinal: getVal("habitoIntestinal"),
+      atividadeFisica: getVal("atvFisica"),
+      metasProximoRetorno: getVal("metasProximoRetorno"),
+      
+      peso: getVal("pesoAtual"),
+      imc: getVal("imc"),
+      circunferenciaAbdominal: getVal("circunferenciaAbdominal"),
+      
+      valoresBioimpedancia: getVal("valoresBioimpedancia"),
+      observacoesBioimpedancia: getVal("observacoesBioimpedancia")
+  };
+  
+  // Tratamento correto para Radio Button
+  const desempenhoRadio = document.querySelector('input[name="desempenhoCumprimentoMetas"]:checked');
+  data.desempenhoMetas = desempenhoRadio ? desempenhoRadio.value : null;
 
   return data;
 }
 
-async function adicionarAnamnese() {
-  const urlParametros = new URLSearchParams(window.location.search);
-  const id = urlParametros.get('id');
-  if(!isNaN(id)) {
-    document.getElementById("anamneseId").value = id;
-    await preencherCampoPaciente(id);
-  }
+// Lógica para preencher o select de Anamneses e auto-selecionar Paciente
+function listarAnamnesesSelect(selectEl) {
+    fetch(urlApi + endpointAnamneses, { headers: { "Authorization": `${token}` }})
+    .then(r => r.json())
+    .then(data => {
+        data.forEach(a => {
+            const opt = document.createElement('option');
+            opt.value = a.id;
+            opt.textContent = `Anamnese #${a.id} - ${a.paciente.nome}`;
+            selectEl.appendChild(opt);
+        });
+        verificarUrlParam(); // Verifica se veio ID pela URL
+    });
 }
 
-limparCampoPaciente();
+async function preencherCampoPaciente(anamneseId) {
+    if(!anamneseId) return;
+    try {
+        const r = await fetch(urlApi + endpointAnamneses + "/" + anamneseId, {
+            headers: { "Authorization": `${token}` }
+        });
+        const anamnese = await r.json();
+        if(anamnese && anamnese.paciente) {
+            document.getElementById("pacienteId").value = anamnese.paciente.id;
+            document.getElementById("pacienteNome").value = anamnese.paciente.nome;
+        }
+    } catch(e) { console.error(e); }
+}
+
+function verificarUrlParam() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+    if(id) {
+        document.getElementById("anamneseId").value = id;
+        preencherCampoPaciente(id);
+    }
+}
+
 verificarAutenticacao();
-listarPacientesSelect(fPacienteSelect);
-listarAnamnesesSelect(fAnamneseSelect);
-adicionarAnamnese();
+listarAnamnesesSelect(document.getElementById("anamneseId"));
 showTab(currentTab);

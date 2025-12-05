@@ -45,8 +45,12 @@ function listarFormulariosRetornoAgrupado(data) {
         parentRow.classList.add("itemTabela", "clickable");
         tbody.appendChild(parentRow);
 
+        // Verifica se tem retornos para mostrar um ícone diferente ou cor
+        const temRetornos = Array.isArray(formulario.retornos) && formulario.retornos.length > 0;
+        const iconExpansao = temRetornos ? "▼" : "";
+
         parentRow.innerHTML = `
-                <th class="text-center">${formulario.id}</th>
+                <th class="text-center">${formulario.id} ${iconExpansao}</th>
                 <td>${formulario.tipoFormulario}</td>
                 <td>${formulario.pacienteNome}</td>
                 <td class="text-center">${formatDate(formulario.criadoEm)}</td>
@@ -58,17 +62,19 @@ function listarFormulariosRetornoAgrupado(data) {
                 </td>
             `;
 
-        if (Array.isArray(formulario.retornos) && formulario.retornos.length > 0) {
+        if (temRetornos) {
             formulario.retornos.forEach(retorno => {
                 const childRow = document.createElement("tr");
                 childRow.classList.add("child-row", `child-of-${formulario.id}`);
+                // Começa oculto
                 childRow.style.display = "none";
 
                 childRow.innerHTML = `
-                        <td class="text-center">↳ ${retorno.id}</td>
-                        <td>${retorno.tipoFormulario}</td>
-                        <td>${retorno.pacienteNome}</td>
-                        <td class="text-center">${formatDate(retorno.criadoEm)}</td>
+                        <td class="text-center" style="background-color: #f0f0f0;">↳ ${retorno.id}</td>
+                        <td style="background-color: #f0f0f0;">${retorno.tipoFormulario}</td>
+                        <td style="background-color: #f0f0f0;">${retorno.pacienteNome || formulario.pacienteNome}</td>
+                        <td class="text-center" style="background-color: #f0f0f0;">${formatDate(retorno.criadoEm)}</td>
+                        <td class="text-center" style="background-color: #f0f0f0;"></td>
                     `;
 
                 childRow.addEventListener("click", (e) => {
@@ -80,19 +86,21 @@ function listarFormulariosRetornoAgrupado(data) {
             });
         }
 
+        // Evento de clique para expandir/recolher
         parentRow.addEventListener("click", (e) => {
-            if (e.target.closest("a")) return;
+            // Se clicar nos botões, não expande
+            if (e.target.closest("a") || e.target.closest("button")) return;
 
             const childRows = document.querySelectorAll(`.child-of-${formulario.id}`);
-            childRows.forEach(row => {
-                row.style.display = row.style.display === "none" ? "table-row" : "none";
-            });
-
-            if (formulario.tipoFormulario === "Anamnese") {
-                localStorage.setItem("anamneseId", formulario.id);
+            if (childRows.length > 0) {
+                childRows.forEach(row => {
+                    row.style.display = row.style.display === "none" ? "table-row" : "none";
+                });
             } else {
-                localStorage.setItem("retornoId", formulario.id);
-                window.location.href = "retorno.html";
+                if (formulario.tipoFormulario === "Anamnese") {
+                    localStorage.setItem("anamneseId", formulario.id);
+                    window.location.href = "anamnese.html";
+                }
             }
         });
     });

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adicionar Formulário</title>
+    <title>Atualizar Retorno</title>
     <link rel="stylesheet" href="./css/bootstrap.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/anamnese.css">
@@ -49,17 +49,14 @@
 
                     <div class="header-tab">
                         <span>Criado por <span id="criadoPor"></span></span>
-                        <h1 class="fs-5">Retorno de <span id="pacienteNome"></span></h1>
+                        <h1 class="fs-5">Retorno de <span id="tituloPacienteNome"></span></h1>
                         <button type="button" class="btn btn-danger admin-only" data-bs-toggle="modal"
                             data-bs-target="#modalDeletarRetorno">Deletar</button>
                     </div>
 
                     <div class="mb-4">
                         <label for="anamneseId" class="form-label">Selecionar a Anamnese para retorno <span class="required">*</span></label>
-                        <input type="text" class="form-select" list="anamneseSelect" id="anamneseId" name="anamneseId"
-                            placeholder="Selecione um anamnese" onchange="preencherCampoPaciente(this.value)" required>
-                        <datalist id="anamneseSelect">
-                        </datalist>
+                        <input type="text" class="form-control" id="anamneseId" name="anamneseId" readonly>
                     </div>
 
                     <div class="mb-4">
@@ -231,7 +228,7 @@
                         <label class="form-label" for="metasProximoRetorno">Metas para o Próximo Retorno</label>
                         <input name="metasProximoRetorno" type="text" class="form-control" id="metasProximoRetorno"
                             rows="3"></input>
-                    </div>
+                        </div>
 
                 </div>
 
@@ -269,14 +266,13 @@
                     <div class="mb-4">
                         <label class="form-label" for="valoresBioimpedancia">Descrever os valores da
                             Bioimpedância</label>
-                        <textarea class="form-control" id="valoresBioimpedancia" name="valoresBioimpedancia"
+                            <textarea class="form-control" id="valoresBioimpedancia" name="valoresBioimpedancia"
                             class="form-control"></textarea>
                     </div>
 
                     <div class="mb-4">
                         <label class="form-label" for="observacoesBioimpedancia">Observações</label>
-                        <textarea class="form-control id=" observacoesBioimpedancia" name="observacoesBioimpedancia"
-                            class="form-control"></textarea>
+                        <textarea class="form-control" id="observacoesBioimpedancia" name="observacoesBioimpedancia"></textarea>
                     </div>
 
                 </div>
@@ -302,7 +298,6 @@
         </div>
     </div>
 
-    <!-- Modal Deletar Retorno -->
     <div class="modal fade admin-only" id="modalDeletarRetorno" tabindex="-1" aria-labelledby="modalDeletarRetornoLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
