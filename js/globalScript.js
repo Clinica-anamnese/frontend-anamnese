@@ -140,7 +140,6 @@ async function showTab(n) {
 
     if (n === 0) {
         prevBtn.style.display = "none";
-        divStepButtons.style.flexDirection = "row-reverse";
     } else if (n === (tabs.length - 1)) {
         if (isEdicao && !isAdmin) {
             nextBtn.style.display = "none";
@@ -153,7 +152,6 @@ async function showTab(n) {
         nextBtn.textContent = "Próximo";
         nextBtn.style.display = "inline";
         prevBtn.style.display = "inline";
-        divStepButtons.style.flexDirection = "row";
     }
 
     fixStepIndicator(n);
